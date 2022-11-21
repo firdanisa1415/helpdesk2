@@ -1,159 +1,32 @@
 <template>
   <footer class="relative bg-blueGray-200 pt-8 pb-6">
-    <div
-      class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
-      style="transform: translateZ(0);"
-    >
-      <svg
-        class="absolute bottom-0 overflow-hidden"
-        xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="none"
-        version="1.1"
-        viewBox="0 0 2560 100"
-        x="0"
-        y="0"
-      >
-        <polygon
-          class="text-blueGray-200 fill-current"
-          points="2560 0 2560 100 0 100"
-        ></polygon>
-      </svg>
-    </div>
+    <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20" style="transform: translateZ(0)"></div>
     <div class="container mx-auto px-4">
       <div class="flex flex-wrap text-center lg:text-left">
         <div class="w-full lg:w-6/12 px-4">
-          <h4 class="text-3xl font-semibold">Let's keep in touch!</h4>
-          <h5 class="text-lg mt-0 mb-2 text-blueGray-600">
-            Find us on any of these platforms, we respond 1-2 business days.
-          </h5>
-          <div class="mt-6 lg:mb-0 mb-6">
-            <button
-              class="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-              type="button"
-            >
-              <i class="fab fa-twitter"></i>
-            </button>
-            <button
-              class="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-              type="button"
-            >
-              <i class="fab fa-facebook-square"></i>
-            </button>
-            <button
-              class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-              type="button"
-            >
-              <i class="fab fa-dribbble"></i>
-            </button>
-            <button
-              class="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-              type="button"
-            >
-              <i class="fab fa-github"></i>
-            </button>
-          </div>
-        </div>
-        <div class="w-full lg:w-6/12 px-4">
-          <div class="flex flex-wrap items-top mb-6">
-            <div class="w-full lg:w-4/12 px-4 ml-auto">
-              <span
-                class="block uppercase text-blueGray-500 text-sm font-semibold mb-2"
-              >
-                Useful Links
-              </span>
-              <ul class="list-unstyled">
-                <li>
-                  <a
-                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                    href="https://www.creative-tim.com/presentation?ref=vn-footer"
-                  >
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                    href="https://blog.creative-tim.com?ref=vn-footer"
-                  >
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                    href="https://www.github.com/creativetimofficial?ref=vn-footer"
-                  >
-                    Github
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                    href="https://www.creative-tim.com/bootstrap-themes/free?ref=vn-footer"
-                  >
-                    Free Products
-                  </a>
-                </li>
-              </ul>
+          <div class="row mt-3">
+            <div class="col-md-3 mx-auto mb-4">
+              <h6 class="text-xl mb-2 font-semibold">PT Pelindo Daya Sejahtera</h6>
+              <img src="@/assets/img/brand.png" alt="" width="270" height="100" class="img-fluid" />
             </div>
-            <div class="w-full lg:w-4/12 px-4">
-              <span
-                class="block uppercase text-blueGray-500 text-sm font-semibold mb-2"
-              >
-                Other Resources
-              </span>
-              <ul class="list-unstyled">
-                <li>
-                  <a
-                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                    href="https://github.com/creativetimofficial/vue-notus/blob/main/LICENSE.md?ref=vn-footer"
-                  >
-                    MIT License
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                    href="https://creative-tim.com/terms?ref=vn-footer"
-                  >
-                    Terms & Conditions
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                    href="https://creative-tim.com/privacy?ref=vn-footer"
-                  >
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                    href="https://creative-tim.com/contact-us?ref=vn-footer"
-                  >
-                    Contact Us
-                  </a>
-                </li>
-              </ul>
+            <div class="col-md-9 mb-4">
+              <h6 class="text-xl mb-2 font-semibold">Contact</h6>
+              <p><i class="fas fa-map-pin mr-3" style="font-size: 20px"></i>Kantor PT Pelindo Daya Sejahtera</p>
+              <p class="mx-6 mb-2">Jl Perak Timur 620, Surabaya, 60165</p>
+              <a class="text-reset fw-bold " href="https://www.ptpds.co.id/"><i class="fas fa-globe mr-2"></i>https://www.ptpds.co.id/</a>
+              <p class="mt-2"><i class="fas fa-phone mr-2"></i>031 511 66 384</p>
+              <p class="mx-6">0811 3311 711</p>
             </div>
           </div>
         </div>
       </div>
       <hr class="my-6 border-blueGray-300" />
-      <div
-        class="flex flex-wrap items-center md:justify-between justify-center"
-      >
+      <div class="flex flex-wrap items-center md:justify-between justify-center">
         <div class="w-full md:w-4/12 px-4 mx-auto text-center">
           <div class="text-sm text-blueGray-500 font-semibold py-1">
-            Copyright © {{ date }} Vue Notus by
-            <a
-              href="https://www.creative-tim.com?ref=vn-footer"
-              class="text-blueGray-500 hover:text-blueGray-800"
-            >
-              Creative Tim
-            </a>
-            .
+            Copyright © {{ date }}
+            <a href="https://www.ptpds.co.id/" class="text-blueGray-500 hover:text-blueGray-800"> PT PDS </a>
+            . All rights reserved
           </div>
         </div>
       </div>

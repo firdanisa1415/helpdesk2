@@ -18,9 +18,10 @@ import Auth from "@/layouts/Auth.vue";
 // views for Admin layout
 
 import Dashboard from "@/views/admin/Dashboard.vue";
-import Settings from "@/views/admin/Settings.vue";
-import Tables from "@/views/admin/Tables.vue";
-import Maps from "@/views/admin/Maps.vue";
+import Pelaporan from "@/views/admin/DataPelaporan.vue";
+import Board from "@/views/admin/BoardPenugasan.vue";
+import Penugasan from "@/views/admin/DataPenugasan.vue";
+import Pengguna from "@/views/admin/DataPengguna.vue";
 
 // views for Auth layout
 
@@ -46,16 +47,20 @@ const routes = [
         component: Dashboard,
       },
       {
-        path: "/admin/settings",
-        component: Settings,
+        path: "/admin/pelaporan",
+        component: Pelaporan,
       },
       {
-        path: "/admin/tables",
-        component: Tables,
+        path: "/admin/board",
+        component: Board,
       },
       {
-        path: "/admin/maps",
-        component: Maps,
+        path: "/admin/penugasan",
+        component: Penugasan,
+      },
+      {
+        path: "/admin/pengguna",
+        component: Pengguna,
       },
     ],
   },

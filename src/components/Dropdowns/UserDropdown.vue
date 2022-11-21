@@ -30,26 +30,13 @@
         href="javascript:void(0);"
         class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
       >
-        Action
+        Kelola Akun
       </a>
       <a
         href="javascript:void(0);"
         class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
       >
-        Another action
-      </a>
-      <a
-        href="javascript:void(0);"
-        class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-      >
-        Something else here
-      </a>
-      <div class="h-0 my-2 border border-solid border-blueGray-100" />
-      <a
-        href="javascript:void(0);"
-        class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-      >
-        Seprated link
+        Keluar
       </a>
     </div>
   </div>
@@ -58,7 +45,7 @@
 <script>
 import { createPopper } from "@popperjs/core";
 
-import image from "@/assets/img/team-1-800x800.jpg";
+import image from "@/assets/img/ung2.png";
 
 export default {
   data() {
