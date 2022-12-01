@@ -22,6 +22,8 @@ import Pelaporan from "@/views/admin/DataPelaporan.vue";
 import Board from "@/views/admin/BoardPenugasan.vue";
 import Penugasan from "@/views/admin/DataPenugasan.vue";
 import Pengguna from "@/views/admin/DataPengguna.vue";
+import Backlog from "@/views/admin/Backlog.vue";
+import Sprint from "@/views/admin/Sprint.vue";
 
 // views for Auth layout
 
@@ -49,6 +51,14 @@ const routes = [
       {
         path: "/admin/pelaporan",
         component: Pelaporan,
+      },
+      {
+        path: "/admin/backlog",
+        component: Backlog,
+      },
+      {
+        path: "/admin/sprint",
+        component: Sprint,
       },
       {
         path: "/admin/board",

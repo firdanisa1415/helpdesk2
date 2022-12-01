@@ -1,8 +1,106 @@
 <template>
   <div class="overflow-x-auto relative sm:rounded-lg">
     <div class="text-center flex justify-end py-3">
+      <button
+        class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+        type="button"
+        id="Pelaporan"
+        @click="addPelaporan = true"
+      >
+        Tambah Pelaporan
+      </button>
+      <Teleport to="body">
+        <modal :show="addPelaporan" @close="addPelaporan = false">
+          <template #header>
+            <h3 class="text-2xl font-bold text-center">Tambah Pelaporan</h3>
+          </template>
+          <template #body>
+            <form>
+              <div class="flex flex-wrap">
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Judul Pelaporan </label>
+                    <input
+                      type="text"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Isikan Pelaporan"
+                    />
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product</label>
+                    <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                      <option>--Pilih Product--</option>
+                      <option>PC/Laptop</option>
+                      <option>Printer</option>
+                      <option>Jaringan/Internet</option>
+                      <option>My PDS</option>
+                      <option>Humanis</option>
+                      <option>Penarikan Data</option>
+                      <option>Lainnya</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Permasalahan </label>
+                    <input
+                      type="text"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Jelaskan Permasalahan"
+                    />
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Harapan </label>
+                    <input
+                      type="text"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Tuliskan Harapanmu"
+                    />
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">PIC Pelaporan</label>
+                    <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                      <option>--Pilih PIC Pelaporan--</option>
+                      <option>Budi</option>
+                      <option>Bambang</option>
+                      <option>Joko</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Lampiran </label>
+                    <input type="file" id="dropzoneFile" class="dropzoneFile" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </template>
+          <template #footer>
+            <div class="text-left">
+              <button
+                class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                @click="addPelaporan = false"
+              >
+                Batal
+              </button>
+              <button
+                class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                @click="addPelaporan = false"
+              >
+                Tambah
+              </button>
+            </div>
+          </template>
+        </modal>
+      </Teleport>
     </div>
-
     <table class="w-full mb-5">
       <thead class="text-xs text-white uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400">
         <tr>
@@ -81,21 +179,690 @@
             </div>
           </td>
           <td class="py-4 px-6">
-            <router-link to="/auth/register">
-              <button class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150" type="button">
-                <i class="fas fa-info-circle text-white" style="font-size: 15px"></i>
-              </button>
-            </router-link>
-            <router-link to="/auth/register">
-              <button class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button">
-                <i class="fas fa-pen-square text-white" style="font-size: 15px"></i>
-              </button>
-            </router-link>
-            <router-link to="/auth/register">
-              <button class="bg-red-600 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button">
-                <i class="fas fa-trash text-white" style="font-size: 15px"></i>
-              </button>
-            </router-link>
+            <button
+              class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+              type="button"
+              id="detail"
+              @click="detailPelaporan = true"
+            >
+              <i class="fas fa-info-circle text-white" style="font-size: 15px"></i>
+            </button>
+            <Teleport to="body">
+              <modal :show="detailPelaporan" @close="detailPelaporan = false">
+                <template #header>
+                  <h3 class="text-2xl font-bold text-center">Detail Pelaporan</h3>
+                </template>
+                <template #body>
+                  <div class="flex flex-wrap">
+                    <div class="w-full px-4">
+                      <div class="flex flex-wrap">
+                        <div class="w-full lg:w-3/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Judul Pelaporan</h2>
+                          </div>
+                        </div>
+                        <div class="w-full lg:w-9/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block text-black text-xs font-reguler mb-2">Service Laptop</h2>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-wrap">
+                        <div class="w-full lg:w-3/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Jenis Pelaporan</h2>
+                          </div>
+                        </div>
+                        <div class="w-full lg:w-9/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block text-black text-xs font-reguler mb-2">Incident</h2>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-wrap">
+                        <div class="w-full lg:w-3/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product Pelaporan</h2>
+                          </div>
+                        </div>
+                        <div class="w-full lg:w-9/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block text-black text-xs font-reguler mb-2">PC/Laptop</h2>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-wrap">
+                        <div class="w-full lg:w-3/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Permasalahan</h2>
+                          </div>
+                        </div>
+                        <div class="w-full lg:w-9/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block text-black text-xs font-reguler mb-2">Laptop tiba-tiba mati, tapi kipas tetap berbunyi</h2>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-wrap">
+                        <div class="w-full lg:w-3/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status</h2>
+                          </div>
+                        </div>
+                        <div class="w-full lg:w-9/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block text-black text-xs font-reguler mb-2">In Progress</h2>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+                <template #footer>
+                  <div class="text-center">
+                    <button
+                      class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                      @click="detailPelaporan = false"
+                    >
+                      Oke
+                    </button>
+                  </div>
+                </template>
+              </modal>
+            </Teleport>
+            <button class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="update" @click="updatePelaporan = true">
+              <i class="fas fa-pen-square text-white" style="font-size: 15px"></i>
+            </button>
+            <Teleport to="body">
+              <modal :show="updatePelaporan" @close="updatePelaporan = false">
+                <template #header>
+                  <h3 class="text-2xl font-bold text-center">Update Data Pelaporan</h3>
+                </template>
+                <template #body>
+                  <form>
+                    <div class="flex flex-wrap">
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Judul Pelaporan </label>
+                          <input
+                            type="text"
+                            class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            placeholder="Isikan Pelaporan"
+                          />
+                        </div>
+                      </div>
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product</label>
+                          <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                            <option>--Pilih Product--</option>
+                            <option>PC/Laptop</option>
+                            <option>Printer</option>
+                            <option>Jaringan/Internet</option>
+                            <option>My PDS</option>
+                            <option>Humanis</option>
+                            <option>Penarikan Data</option>
+                            <option>Lainnya</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Permasalahan </label>
+                          <input
+                            type="text"
+                            class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            placeholder="Jelaskan Permasalahan"
+                          />
+                        </div>
+                      </div>
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Harapan </label>
+                          <input
+                            type="text"
+                            class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            placeholder="Tuliskan Harapanmu"
+                          />
+                        </div>
+                      </div>
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">PIC Pelaporan</label>
+                          <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                            <option>--Pilih PIC Pelaporan--</option>
+                            <option>Budi</option>
+                            <option>Bambang</option>
+                            <option>Joko</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Lampiran </label>
+                          <input type="file" id="dropzoneFile" class="dropzoneFile" />
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </template>
+                <template #footer>
+                  <div class="text-left">
+                    <button
+                      class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                      @click="updatePelaporan = false"
+                    >
+                      Batal
+                    </button>
+                    <button
+                      class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                      @click="updatePelaporan = false"
+                    >
+                      Simpan
+                    </button>
+                  </div>
+                </template>
+              </modal>
+            </Teleport>
+            <button class="bg-red-600 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="delete" @click="deletePelaporan = true">
+              <i class="fas fa-trash text-white" style="font-size: 15px"></i>
+            </button>
+            <Teleport to="body">
+              <modal :show="deletePelaporan" @close="deletePelaporan = false">
+                <template #header>
+                  <h3 class="text-2xl font-bold text-center">Delete Data Pelaporan</h3>
+                </template>
+                <template #body>
+                        <div class="relative w-full mb-3 text-center">
+                          Apakah anda yakin ingin menghapus?
+                        </div>
+                </template>
+                <template #footer>
+                  <div class="text-center">
+                    <button
+                      class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-4 ease-linear transition-all duration-150"
+                      @click="deletePelaporan = false"
+                    >
+                      Ya
+                    </button>
+                    <button
+                      class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150"
+                      @click="deletePelaporan = false"
+                    >
+                      Tidak
+                    </button>
+                  </div>
+                </template>
+              </modal>
+            </Teleport>
+          </td>
+        </tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">012890</th>
+          <td class="py-4 px-6">Service Laptop</td>
+          <td class="py-4 px-6">Laptop rusak kipas</td>
+          <td class="py-4 px-6">Incident</td>
+          <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+            <div class="flex items-center">
+              <span class="mr-2">Done</span>
+              <div class="relative w-full">
+                <div class="overflow-hidden h-2 text-xs flex rounded bg-emerald-200">
+                  <div style="width: 100%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500"></div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="py-4 px-6">
+            <button
+              class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+              type="button"
+              id="detail"
+              @click="detailPelaporan = true"
+            >
+              <i class="fas fa-info-circle text-white" style="font-size: 15px"></i>
+            </button>
+            <Teleport to="body">
+              <modal :show="detailPelaporan" @close="detailPelaporan = false">
+                <template #header>
+                  <h3 class="text-2xl font-bold text-center">Detail Pelaporan</h3>
+                </template>
+                <template #body>
+                  <div class="flex flex-wrap">
+                    <div class="w-full px-4">
+                      <div class="flex flex-wrap">
+                        <div class="w-full lg:w-3/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Judul Pelaporan</h2>
+                          </div>
+                        </div>
+                        <div class="w-full lg:w-9/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block text-black text-xs font-reguler mb-2">Service Laptop</h2>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-wrap">
+                        <div class="w-full lg:w-3/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Jenis Pelaporan</h2>
+                          </div>
+                        </div>
+                        <div class="w-full lg:w-9/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block text-black text-xs font-reguler mb-2">Incident</h2>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-wrap">
+                        <div class="w-full lg:w-3/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product Pelaporan</h2>
+                          </div>
+                        </div>
+                        <div class="w-full lg:w-9/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block text-black text-xs font-reguler mb-2">PC/Laptop</h2>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-wrap">
+                        <div class="w-full lg:w-3/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Permasalahan</h2>
+                          </div>
+                        </div>
+                        <div class="w-full lg:w-9/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block text-black text-xs font-reguler mb-2">Laptop tiba-tiba mati, tapi kipas tetap berbunyi</h2>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-wrap">
+                        <div class="w-full lg:w-3/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status</h2>
+                          </div>
+                        </div>
+                        <div class="w-full lg:w-9/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block text-black text-xs font-reguler mb-2">In Progress</h2>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+                <template #footer>
+                  <div class="text-center">
+                    <button
+                      class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                      @click="detailPelaporan = false"
+                    >
+                      Oke
+                    </button>
+                  </div>
+                </template>
+              </modal>
+            </Teleport>
+            <button class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="update" @click="updatePelaporan = true">
+              <i class="fas fa-pen-square text-white" style="font-size: 15px"></i>
+            </button>
+            <Teleport to="body">
+              <modal :show="updatePelaporan" @close="updatePelaporan = false">
+                <template #header>
+                  <h3 class="text-2xl font-bold text-center">Update Data Pelaporan</h3>
+                </template>
+                <template #body>
+                  <form>
+                    <div class="flex flex-wrap">
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Judul Pelaporan </label>
+                          <input
+                            type="text"
+                            class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            placeholder="Isikan Pelaporan"
+                          />
+                        </div>
+                      </div>
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product</label>
+                          <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                            <option>--Pilih Product--</option>
+                            <option>PC/Laptop</option>
+                            <option>Printer</option>
+                            <option>Jaringan/Internet</option>
+                            <option>My PDS</option>
+                            <option>Humanis</option>
+                            <option>Penarikan Data</option>
+                            <option>Lainnya</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Permasalahan </label>
+                          <input
+                            type="text"
+                            class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            placeholder="Jelaskan Permasalahan"
+                          />
+                        </div>
+                      </div>
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Harapan </label>
+                          <input
+                            type="text"
+                            class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            placeholder="Tuliskan Harapanmu"
+                          />
+                        </div>
+                      </div>
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">PIC Pelaporan</label>
+                          <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                            <option>--Pilih PIC Pelaporan--</option>
+                            <option>Budi</option>
+                            <option>Bambang</option>
+                            <option>Joko</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Lampiran </label>
+                          <input type="file" id="dropzoneFile" class="dropzoneFile" />
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </template>
+                <template #footer>
+                  <div class="text-left">
+                    <button
+                      class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                      @click="updatePelaporan = false"
+                    >
+                      Batal
+                    </button>
+                    <button
+                      class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                      @click="updatePelaporan = false"
+                    >
+                      Simpan
+                    </button>
+                  </div>
+                </template>
+              </modal>
+            </Teleport>
+            <button class="bg-red-600 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="delete" @click="deletePelaporan = true">
+              <i class="fas fa-trash text-white" style="font-size: 15px"></i>
+            </button>
+            <Teleport to="body">
+              <modal :show="deletePelaporan" @close="deletePelaporan = false">
+                <template #header>
+                  <h3 class="text-2xl font-bold text-center">Delete Data Pelaporan</h3>
+                </template>
+                <template #body>
+                        <div class="relative w-full mb-3 text-center">
+                          Apakah anda yakin ingin menghapus?
+                        </div>
+                </template>
+                <template #footer>
+                  <div class="text-center">
+                    <button
+                      class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-4 ease-linear transition-all duration-150"
+                      @click="deletePelaporan = false"
+                    >
+                      Ya
+                    </button>
+                    <button
+                      class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150"
+                      @click="deletePelaporan = false"
+                    >
+                      Tidak
+                    </button>
+                  </div>
+                </template>
+              </modal>
+            </Teleport>
+          </td>
+        </tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">012890</th>
+          <td class="py-4 px-6">Service Laptop</td>
+          <td class="py-4 px-6">Laptop rusak kipas</td>
+          <td class="py-4 px-6">Incident</td>
+          <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+            <div class="flex items-center">
+              <span class="mr-2">Inprogress</span>
+              <div class="relative w-full">
+                <div class="overflow-hidden h-2 text-xs flex rounded bg-red-200">
+                  <div style="width: 40%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"></div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="py-4 px-6">
+            <button
+              class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+              type="button"
+              id="detail"
+              @click="detailPelaporan = true"
+            >
+              <i class="fas fa-info-circle text-white" style="font-size: 15px"></i>
+            </button>
+            <Teleport to="body">
+              <modal :show="detailPelaporan" @close="detailPelaporan = false">
+                <template #header>
+                  <h3 class="text-2xl font-bold text-center">Detail Pelaporan</h3>
+                </template>
+                <template #body>
+                  <div class="flex flex-wrap">
+                    <div class="w-full px-4">
+                      <div class="flex flex-wrap">
+                        <div class="w-full lg:w-3/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Judul Pelaporan</h2>
+                          </div>
+                        </div>
+                        <div class="w-full lg:w-9/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block text-black text-xs font-reguler mb-2">Service Laptop</h2>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-wrap">
+                        <div class="w-full lg:w-3/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Jenis Pelaporan</h2>
+                          </div>
+                        </div>
+                        <div class="w-full lg:w-9/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block text-black text-xs font-reguler mb-2">Incident</h2>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-wrap">
+                        <div class="w-full lg:w-3/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product Pelaporan</h2>
+                          </div>
+                        </div>
+                        <div class="w-full lg:w-9/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block text-black text-xs font-reguler mb-2">PC/Laptop</h2>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-wrap">
+                        <div class="w-full lg:w-3/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Permasalahan</h2>
+                          </div>
+                        </div>
+                        <div class="w-full lg:w-9/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block text-black text-xs font-reguler mb-2">Laptop tiba-tiba mati, tapi kipas tetap berbunyi</h2>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-wrap">
+                        <div class="w-full lg:w-3/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status</h2>
+                          </div>
+                        </div>
+                        <div class="w-full lg:w-9/12">
+                          <div class="relative w-full mb-3">
+                            <h2 class="block text-black text-xs font-reguler mb-2">In Progress</h2>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+                <template #footer>
+                  <div class="text-center">
+                    <button
+                      class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                      @click="detailPelaporan = false"
+                    >
+                      Oke
+                    </button>
+                  </div>
+                </template>
+              </modal>
+            </Teleport>
+            <button class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="update" @click="updatePelaporan = true">
+              <i class="fas fa-pen-square text-white" style="font-size: 15px"></i>
+            </button>
+            <Teleport to="body">
+              <modal :show="updatePelaporan" @close="updatePelaporan = false">
+                <template #header>
+                  <h3 class="text-2xl font-bold text-center">Update Data Pelaporan</h3>
+                </template>
+                <template #body>
+                  <form>
+                    <div class="flex flex-wrap">
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Judul Pelaporan </label>
+                          <input
+                            type="text"
+                            class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            placeholder="Isikan Pelaporan"
+                          />
+                        </div>
+                      </div>
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product</label>
+                          <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                            <option>--Pilih Product--</option>
+                            <option>PC/Laptop</option>
+                            <option>Printer</option>
+                            <option>Jaringan/Internet</option>
+                            <option>My PDS</option>
+                            <option>Humanis</option>
+                            <option>Penarikan Data</option>
+                            <option>Lainnya</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Permasalahan </label>
+                          <input
+                            type="text"
+                            class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            placeholder="Jelaskan Permasalahan"
+                          />
+                        </div>
+                      </div>
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Harapan </label>
+                          <input
+                            type="text"
+                            class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            placeholder="Tuliskan Harapanmu"
+                          />
+                        </div>
+                      </div>
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">PIC Pelaporan</label>
+                          <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                            <option>--Pilih PIC Pelaporan--</option>
+                            <option>Budi</option>
+                            <option>Bambang</option>
+                            <option>Joko</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="w-full px-4">
+                        <div class="relative w-full mb-3">
+                          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Lampiran </label>
+                          <input type="file" id="dropzoneFile" class="dropzoneFile" />
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </template>
+                <template #footer>
+                  <div class="text-left">
+                    <button
+                      class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                      @click="updatePelaporan = false"
+                    >
+                      Batal
+                    </button>
+                    <button
+                      class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                      @click="updatePelaporan = false"
+                    >
+                      Simpan
+                    </button>
+                  </div>
+                </template>
+              </modal>
+            </Teleport>
+            <button class="bg-red-600 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="delete" @click="deletePelaporan = true">
+              <i class="fas fa-trash text-white" style="font-size: 15px"></i>
+            </button>
+            <Teleport to="body">
+              <modal :show="deletePelaporan" @close="deletePelaporan = false">
+                <template #header>
+                  <h3 class="text-2xl font-bold text-center">Delete Data Pelaporan</h3>
+                </template>
+                <template #body>
+                        <div class="relative w-full mb-3 text-center">
+                          Apakah anda yakin ingin menghapus?
+                        </div>
+                </template>
+                <template #footer>
+                  <div class="text-center">
+                    <button
+                      class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-4 ease-linear transition-all duration-150"
+                      @click="deletePelaporan = false"
+                    >
+                      Ya
+                    </button>
+                    <button
+                      class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150"
+                      @click="deletePelaporan = false"
+                    >
+                      Tidak
+                    </button>
+                  </div>
+                </template>
+              </modal>
+            </Teleport>
           </td>
         </tr>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -270,7 +1037,10 @@
               </button>
             </router-link>
             <router-link to="/auth/register">
-              <button class="bg-emerald-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()"
+              <button
+                class="bg-emerald-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150"
+                type="button"
+                v-on:click="toggleModal()"
               >
                 <i class="fas fa-check-circle text-white" style="font-size: 15px"></i>
               </button>
@@ -472,9 +1242,7 @@
               </div>
             </div>
           </td>
-          <td class="py-4 px-6">
-            <MyModal />
-          </td>
+          <td class="py-4 px-6"></td>
         </tr>
       </tbody>
     </table>
@@ -483,12 +1251,34 @@
 
 <script>
 import UserDropdown from "@/components/Dropdowns/UserDropdown.vue";
-import MyModal from "@/components/Modal/ModalDetail.vue"
+import Modal from "@/components/Modal/ModalDetail.vue";
+import { ref } from "vue";
 
 export default {
   components: {
     UserDropdown,
-    MyModal
+    Modal,
+  },
+  data() {
+    return {
+      addPelaporan: false,
+      detailPelaporan: false,
+      updatePelaporan: false,
+      deletePelaporan: false,
+    };
+  },
+  setup() {
+    let dropzoneFile = ref("");
+
+    const drop = (e) => {
+      dropzoneFile.value = e.dataTransfer.files[0];
+    };
+
+    const selectedFile = () => {
+      dropzoneFile.value = document.querySelector(".dropzoneFile").files[0];
+    };
+
+    return { dropzoneFile, drop, selectedFile };
   },
 };
 </script>

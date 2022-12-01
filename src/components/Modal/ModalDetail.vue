@@ -1,75 +1,91 @@
-<template>
-  <div class="container mx-auto">
-    <div class="flex justify-center">
-      <button
-        @click="isOpen = true"
-        class="px-6 py-2 text-white bg-blue-500 rounded shadow"
-        type="button"
-      >
-        Open Model
-      </button>
-
-      <div
-        v-show="isOpen"
-        class="
-          absolute
-          inset-0
-          flex
-          items-center
-          justify-center
-          bg-gray-700 bg-opacity-50
-        "
-      >
-      <Teleport to="body">
-        <div class="max-w-2xl p-6 mx-4 bg-white rounded-md shadow-xl">
-          <div class="flex items-center justify-between">
-            <h3 class="text-2xl">Model Title</h3>
-            <svg
-              @click="isOpen = false"
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-8 h-8 text-red-900 cursor-pointer"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-          </div>
-          <div class="mt-4">
-            <p class="mb-4 text-sm">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Voluptatibus qui nihil laborum quaerat blanditiis nemo explicabo
-              voluptatum ea architecto corporis quo vitae, velit temporibus
-              eaque quisquam in quis provident necessitatibus.
-            </p>
-            <button
-              @click="isOpen = false"
-              class="px-6 py-2 text-blue-800 border border-blue-600 rounded"
-            >
-              Cancel
-            </button>
-            <button class="px-6 py-2 ml-2 text-blue-100 bg-blue-600 rounded">
-              Save
-            </button>
-          </div>
-        </div>
-      </Teleport>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script>
-import { ref } from 'vue';
 export default {
-  setup() {
-    let isOpen = ref(false);
-    return { isOpen };
+  props: {
+    show: Boolean,
   },
 };
 </script>
+
+<template>
+  <Transition name="modal">
+    <div v-if="show" class="modal-mask">
+      <div class="modal-wrapper" >
+        <div class="modal-container">
+          <div class="modal-header">
+            <slot name="header">default header</slot>
+          </div>
+
+          <div class="modal-body">
+            <slot name="body">default body</slot>
+          </div>
+
+          <div class="modal-footer">
+            <slot name="footer">
+              <button class="modal-default-button" @click="$emit('close')">OK</button>
+            </slot>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Transition>
+</template>
+
+<style>
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 700px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  transition: all 0.3s ease;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-default-button {
+  float: center;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter-from {
+  opacity: 0;
+}
+
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-from .modal-container,
+.modal-leave-to .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+</style>
