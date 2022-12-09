@@ -6,7 +6,7 @@
           <th scope="col text-center" class="py-3 px-6">Nomor Ticket</th>
           <th scope="col " class="py-3 px-6">
             <div class="flex items-center text-center">
-              Judul Penugasan
+              Judul Epic
               <a href="#"
                 ><svg xmlns="http://www.w3.org/2000/svg" class="ml-1 w-3 h-3" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512">
                   <path
@@ -17,7 +17,7 @@
           </th>
           <th scope="col" class="py-3 px-6">
             <div class="flex items-center">
-              Isi Penugasan
+              Isi Epic
               <a href="#"
                 ><svg xmlns="http://www.w3.org/2000/svg" class="ml-1 w-3 h-3" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512">
                   <path
@@ -28,7 +28,7 @@
           </th>
           <th scope="col text-center" class="py-3 px-6">
             <div class="flex items-center">
-              Jenis Penugasan
+              Jenis Epic
               <a href="#"
                 ><svg xmlns="http://www.w3.org/2000/svg" class="ml-1 w-3 h-3" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512">
                   <path
@@ -39,7 +39,7 @@
           </th>
           <th scope="col text-center" class="py-3 px-6">
             <div class="flex items-center">
-              Status Penugasan
+              Status Epic
               <a href="#"
                 ><svg xmlns="http://www.w3.org/2000/svg" class="ml-1 w-3 h-3" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512">
                   <path
@@ -82,14 +82,14 @@
               class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
               type="button"
               id="detail"
-              @click="detailPenugasan = true"
+              @click="detailEpic = true"
             >
               <i class="fas fa-info-circle text-white" style="font-size: 15px"></i>
             </button>
             <Teleport to="body">
-              <modal :show="detailPenugasan" @close="detailPenugasan = false">
+              <modal :show="detailEpic" @close="detailEpic = false">
                 <template #header>
-                  <h3 class="text-2xl font-bold text-center">Detail Penugasan</h3>
+                  <h3 class="text-2xl font-bold text-center">Detail Epic</h3>
                 </template>
                 <template #body>
                   <div class="flex flex-wrap">
@@ -97,7 +97,7 @@
                       <div class="flex flex-wrap">
                         <div class="w-full lg:w-3/12">
                           <div class="relative w-full mb-3">
-                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Judul Penugasan</h2>
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Judul Epic</h2>
                           </div>
                         </div>
                         <div class="w-full lg:w-9/12">
@@ -109,7 +109,7 @@
                       <div class="flex flex-wrap">
                         <div class="w-full lg:w-3/12">
                           <div class="relative w-full mb-3">
-                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Jenis Penugasan</h2>
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Jenis Epic</h2>
                           </div>
                         </div>
                         <div class="w-full lg:w-9/12">
@@ -121,7 +121,7 @@
                       <div class="flex flex-wrap">
                         <div class="w-full lg:w-3/12">
                           <div class="relative w-full mb-3">
-                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product Penugasan</h2>
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product Epic</h2>
                           </div>
                         </div>
                         <div class="w-full lg:w-9/12">
@@ -161,7 +161,7 @@
                   <div class="text-center">
                     <button
                       class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                      @click="detailPenugasan = false"
+                      @click="detailEpic = false"
                     >
                       Oke
                     </button>
@@ -169,24 +169,24 @@
                 </template>
               </modal>
             </Teleport>
-            <button class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="update" @click="updatePenugasan = true">
+            <button class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="update" @click="updateEpic = true">
               <i class="fas fa-pen-square text-white" style="font-size: 15px"></i>
             </button>
             <Teleport to="body">
-              <modal :show="updatePenugasan" @close="updatePenugasan = false">
+              <modal :show="updateEpic" @close="updateEpic = false">
                 <template #header>
-                  <h3 class="text-2xl font-bold text-center">Update Data Penugasan</h3>
+                  <h3 class="text-2xl font-bold text-center">Update Data Epic</h3>
                 </template>
                 <template #body>
                   <form>
                     <div class="flex flex-wrap">
                       <div class="w-full px-4">
                         <div class="relative w-full mb-3">
-                          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Judul Penugasan </label>
+                          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Judul Epic </label>
                           <input
                             type="text"
                             class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            placeholder="Isikan Penugasan"
+                            placeholder="Isikan Epic"
                           />
                         </div>
                       </div>
@@ -227,9 +227,9 @@
                       </div>
                       <div class="w-full px-4">
                         <div class="relative w-full mb-3">
-                          <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">PIC Penugasan</label>
+                          <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">PIC Epic</label>
                           <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                            <option>--Pilih PIC Penugasan--</option>
+                            <option>--Pilih PIC Epic--</option>
                             <option>Budi</option>
                             <option>Bambang</option>
                             <option>Joko</option>
@@ -249,13 +249,13 @@
                   <div class="text-left">
                     <button
                       class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                      @click="updatePenugasan = false"
+                      @click="updateEpic = false"
                     >
                       Batal
                     </button>
                     <button
                       class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                      @click="updatePenugasan = false"
+                      @click="updateEpic = false"
                     >
                       Simpan
                     </button>
@@ -263,13 +263,13 @@
                 </template>
               </modal>
             </Teleport>
-            <button class="bg-red-600 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="delete" @click="deletePenugasan = true">
+            <button class="bg-red-600 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="delete" @click="deleteEpic = true">
               <i class="fas fa-trash text-white" style="font-size: 15px"></i>
             </button>
             <Teleport to="body">
-              <modal :show="deletePenugasan" @close="deletePenugasan = false">
+              <modal :show="deleteEpic" @close="deleteEpic = false">
                 <template #header>
-                  <h3 class="text-2xl font-bold text-center">Delete Data Penugasan</h3>
+                  <h3 class="text-2xl font-bold text-center">Delete Data Epic</h3>
                 </template>
                 <template #body>
                         <div class="relative w-full mb-3 text-center">
@@ -280,13 +280,13 @@
                   <div class="text-center">
                     <button
                       class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-4 ease-linear transition-all duration-150"
-                      @click="deletePenugasan = false"
+                      @click="deleteEpic = false"
                     >
                       Ya
                     </button>
                     <button
                       class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150"
-                      @click="deletePenugasan = false"
+                      @click="deleteEpic = false"
                     >
                       Tidak
                     </button>
@@ -316,14 +316,14 @@
               class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
               type="button"
               id="detail"
-              @click="detailPenugasan = true"
+              @click="detailEpic = true"
             >
               <i class="fas fa-info-circle text-white" style="font-size: 15px"></i>
             </button>
             <Teleport to="body">
-              <modal :show="detailPenugasan" @close="detailPenugasan = false">
+              <modal :show="detailEpic" @close="detailEpic = false">
                 <template #header>
-                  <h3 class="text-2xl font-bold text-center">Detail Penugasan</h3>
+                  <h3 class="text-2xl font-bold text-center">Detail Epic</h3>
                 </template>
                 <template #body>
                   <div class="flex flex-wrap">
@@ -331,7 +331,7 @@
                       <div class="flex flex-wrap">
                         <div class="w-full lg:w-3/12">
                           <div class="relative w-full mb-3">
-                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Judul Penugasan</h2>
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Judul Epic</h2>
                           </div>
                         </div>
                         <div class="w-full lg:w-9/12">
@@ -343,7 +343,7 @@
                       <div class="flex flex-wrap">
                         <div class="w-full lg:w-3/12">
                           <div class="relative w-full mb-3">
-                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Jenis Penugasan</h2>
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Jenis Epic</h2>
                           </div>
                         </div>
                         <div class="w-full lg:w-9/12">
@@ -355,7 +355,7 @@
                       <div class="flex flex-wrap">
                         <div class="w-full lg:w-3/12">
                           <div class="relative w-full mb-3">
-                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product Penugasan</h2>
+                            <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product Epic</h2>
                           </div>
                         </div>
                         <div class="w-full lg:w-9/12">
@@ -395,7 +395,7 @@
                   <div class="text-center">
                     <button
                       class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                      @click="detailPenugasan = false"
+                      @click="detailEpic = false"
                     >
                       Oke
                     </button>
@@ -403,24 +403,24 @@
                 </template>
               </modal>
             </Teleport>
-            <button class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="update" @click="updatePenugasan = true">
+            <button class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="update" @click="updateEpic = true">
               <i class="fas fa-pen-square text-white" style="font-size: 15px"></i>
             </button>
             <Teleport to="body">
-              <modal :show="updatePenugasan" @close="updatePenugasan = false">
+              <modal :show="updateEpic" @close="updateEpic = false">
                 <template #header>
-                  <h3 class="text-2xl font-bold text-center">Update Data Penugasan</h3>
+                  <h3 class="text-2xl font-bold text-center">Update Data Epic</h3>
                 </template>
                 <template #body>
                   <form>
                     <div class="flex flex-wrap">
                       <div class="w-full px-4">
                         <div class="relative w-full mb-3">
-                          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Judul Penugasan </label>
+                          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Judul Epic </label>
                           <input
                             type="text"
                             class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            placeholder="Isikan Penugasan"
+                            placeholder="Isikan Epic"
                           />
                         </div>
                       </div>
@@ -461,9 +461,9 @@
                       </div>
                       <div class="w-full px-4">
                         <div class="relative w-full mb-3">
-                          <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">PIC Penugasan</label>
+                          <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">PIC Epic</label>
                           <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                            <option>--Pilih PIC Penugasan--</option>
+                            <option>--Pilih PIC Epic--</option>
                             <option>Budi</option>
                             <option>Bambang</option>
                             <option>Joko</option>
@@ -483,13 +483,13 @@
                   <div class="text-left">
                     <button
                       class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                      @click="updatePenugasan = false"
+                      @click="updateEpic = false"
                     >
                       Batal
                     </button>
                     <button
                       class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                      @click="updatePenugasan = false"
+                      @click="updateEpic = false"
                     >
                       Simpan
                     </button>
@@ -497,13 +497,13 @@
                 </template>
               </modal>
             </Teleport>
-            <button class="bg-red-600 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="delete" @click="deletePenugasan = true">
+            <button class="bg-red-600 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="delete" @click="deleteEpic = true">
               <i class="fas fa-trash text-white" style="font-size: 15px"></i>
             </button>
             <Teleport to="body">
-              <modal :show="deletePenugasan" @close="deletePenugasan = false">
+              <modal :show="deleteEpic" @close="deleteEpic = false">
                 <template #header>
-                  <h3 class="text-2xl font-bold text-center">Delete Data Penugasan</h3>
+                  <h3 class="text-2xl font-bold text-center">Delete Data Epic</h3>
                 </template>
                 <template #body>
                         <div class="relative w-full mb-3 text-center">
@@ -514,13 +514,13 @@
                   <div class="text-center">
                     <button
                       class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-4 ease-linear transition-all duration-150"
-                      @click="deletePenugasan = false"
+                      @click="deleteEpic = false"
                     >
                       Ya
                     </button>
                     <button
                       class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150"
-                      @click="deletePenugasan = false"
+                      @click="deleteEpic = false"
                     >
                       Tidak
                     </button>
@@ -537,9 +537,12 @@
 <script>
   import { defineComponent } from 'vue'
   import { VueDraggableNext } from 'vue-draggable-next'
+  import Modal from "@/components/Modal/ModalDetail.vue";
+
   export default defineComponent({
     components: {
       draggable: VueDraggableNext,
+      Modal,
     },
     data() {
       return {
@@ -575,6 +578,10 @@
         }
       ],
         dragging: false,
+        addEpic: false,
+      detailEpic: false,
+      updateEpic: false,
+      deleteEpic: false,
       }
     },
     methods: {
