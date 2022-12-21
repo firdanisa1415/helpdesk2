@@ -36,6 +36,8 @@ import Landing from "@/views/Landing.vue";
 import Profile from "@/views/Profile.vue";
 import Index from "@/views/Index.vue";
 
+import store from "./vuex/store";
+
 // routes
 
 const routes = [
@@ -109,4 +111,8 @@ const router = createRouter({
   routes,
 });
 
-createApp(App).use(router).mount("#app");
+const app = createApp(App);
+
+app.use(router);
+app.use(store);
+app.mount("#app");
