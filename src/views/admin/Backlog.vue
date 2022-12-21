@@ -1,5 +1,106 @@
 <template>
   <div class="overflow-x-auto relative sm:rounded-lg">
+    <div class="text-center flex justify-end py-3">
+      <button
+        class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+        type="button"
+        id="Epic"
+        @click="addEpic = true"
+      >
+        Tambah Epic
+      </button>
+      <Teleport to="body">
+        <modal :show="addEpic" @close="addEpic = false">
+          <template #header>
+            <h3 class="text-2xl font-bold text-center">Tambah Epic</h3>
+          </template>
+          <template #body>
+            <form>
+              <div class="flex flex-wrap">
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Judul Epic </label>
+                    <input
+                      type="text"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Isikan Epic"
+                    />
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product</label>
+                    <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                      <option>--Pilih Product--</option>
+                      <option>PC/Laptop</option>
+                      <option>Printer</option>
+                      <option>Jaringan/Internet</option>
+                      <option>My PDS</option>
+                      <option>Humanis</option>
+                      <option>Penarikan Data</option>
+                      <option>Lainnya</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Permasalahan </label>
+                    <input
+                      type="text"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Jelaskan Permasalahan"
+                    />
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Harapan </label>
+                    <input
+                      type="text"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Tuliskan Harapanmu"
+                    />
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">PIC Epic</label>
+                    <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                      <option>--Pilih PIC Epic--</option>
+                      <option>Budi</option>
+                      <option>Bambang</option>
+                      <option>Joko</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Lampiran </label>
+                    <input type="file" id="dropzoneFile" class="dropzoneFile" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </template>
+          <template #footer>
+            <div class="text-left">
+              <button
+                class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                @click="addEpic = false"
+              >
+                Batal
+              </button>
+              <button
+                class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                @click="addEpic = false"
+              >
+                Tambah
+              </button>
+            </div>
+          </template>
+        </modal>
+      </Teleport>
+    </div>
     <table class="w-full mb-5">
       <thead class="text-xs text-white uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400">
         <tr class="w-full">
@@ -81,7 +182,7 @@
             <button
               class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
               type="button"
-              id="detail"
+              id="detail1"
               @click="detailEpic = true"
             >
               <i class="fas fa-info-circle text-white" style="font-size: 15px"></i>
