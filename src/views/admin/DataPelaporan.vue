@@ -1267,6 +1267,13 @@ export default {
       deletePelaporan: false,
     };
   },
+  computed: { reports() { 
+    return this.$store.state.report.reportList; } 
+  }, 
+  mounted() { 
+    this.$store.dispatch("getAllReports"); 
+    console.log (this.reports)
+  },
   setup() {
     let dropzoneFile = ref("");
 

@@ -1,8 +1,8 @@
 import apiClient from "../../utils/apiClient";
 import {
   SET_REPORT,
-  DELETE_REPORT,
-  UPDATE_REPORT,
+  // DELETE_REPORT,
+  // UPDATE_REPORT,
   CREATE_REPORT,
   GET_ALL_REPORT,
 } from "../constant";
@@ -33,12 +33,12 @@ const reportModules = {
     // [UPDATE_REPORT](state, payload) {
     //   const list = [...state.reportData];
     // },
-    [DELETE_REPORT](state) {
-      state = {};
-    },
+    // [DELETE_REPORT](state) {
+    //   state = {};
+    // },
   },
   actions: {
-    async getAllReports({ commit }, payload) {
+    async getAllReports({ commit }) {
       await apiClient()
         .get("/api/pelaporan")
         .then((res) => {
