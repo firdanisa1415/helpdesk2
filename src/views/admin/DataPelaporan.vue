@@ -1102,6 +1102,7 @@
 import UserDropdown from "@/components/Dropdowns/UserDropdown.vue";
 import Modal from "@/components/Modal/ModalDetail.vue";
 import { ref } from "vue";
+import {mapActions} from "vuex";
 
 export default {
   components: {
@@ -1115,6 +1116,9 @@ export default {
       updatePelaporan: false,
       deletePelaporan: false,
     };
+  },
+  methods:{
+    ...mapActions(['getAllReports'])
   },
   computed: {
     reports() {

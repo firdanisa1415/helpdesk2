@@ -22,7 +22,7 @@ const reportModules = {
   },
   mutations: {
     [GET_ALL_REPORT](state, reports) {
-      state = reports;
+      state.reportList = reports;
     },
     [SET_REPORT](state, payload) {
       state = payload;
@@ -44,6 +44,7 @@ const reportModules = {
         .then((res) => {
           const reports = res?.data?.data;
           commit(GET_ALL_REPORT, reports);
+          console.log(reports)
         });
     },
     async createReport({ commit }, payload) {
