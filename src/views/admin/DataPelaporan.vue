@@ -117,6 +117,12 @@
                     <input type="file" id="dropzoneFile" class="dropzoneFile" />
                   </div>
                 </div>
+                <button
+                class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                type="submit"
+              >
+                Tambah
+              </button>
               </div>
             </form>
           </template>
@@ -1120,7 +1126,8 @@ export default {
         isi_pelaporan: "",
         jenis_product: "",
         harapan: "",
-        status: "",
+        status: "Open",
+        lampiran: "s.png"
       },
       addPelaporan: false,
       detailPelaporan: false,
@@ -1131,7 +1138,8 @@ export default {
   methods: {
     ...mapActions(["getAllReports", "createReport"]),
     submitForm() {
-      this.submitFormData(this.form);
+      this.createReport(this.form);
+      console.log(this.form)
     },
   },
   computed: {

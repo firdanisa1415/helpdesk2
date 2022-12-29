@@ -58,6 +58,7 @@ const reportModules = {
           const data = res.data ?? {};
           commit(CREATE_REPORT, data);
           // commit(CREATE_REPORT, data);
+          console.log(data)
         });
     },
   },
