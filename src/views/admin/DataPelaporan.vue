@@ -15,7 +15,7 @@
             <h3 class="text-2xl font-bold text-center">Tambah Pelaporan</h3>
           </template>
           <template #body>
-            <form>
+            <form @submit.prevent="submitForm">
               <div class="flex flex-wrap">
                 <div class="w-full px-4">
                   <div class="relative w-full mb-3">
@@ -27,6 +27,7 @@
                     </label>
                     <input
                       type="text"
+                      v-model="form.judul_pelaporan"
                       class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Isikan Pelaporan"
                     />
@@ -41,6 +42,7 @@
                     >
                     <select
                       id="divisi"
+                      v-model="form.jenis_product"
                       class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     >
                       <option>--Pilih Product--</option>
@@ -64,6 +66,7 @@
                     </label>
                     <input
                       type="text"
+                      v-model="form.isi_pelaporan"
                       class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Jelaskan Permasalahan"
                     />
@@ -79,6 +82,7 @@
                     </label>
                     <input
                       type="text"
+                      v-model="form.harapan"
                       class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Tuliskan Harapanmu"
                     />
@@ -318,7 +322,7 @@
                             <h2
                               class="block text-black text-xs font-reguler mb-2"
                             >
-                            {{ item?.isi_pelaporan }}
+                              {{ item?.isi_pelaporan }}
                             </h2>
                           </div>
                         </div>
@@ -338,7 +342,7 @@
                             <h2
                               class="block text-black text-xs font-reguler mb-2"
                             >
-                            {{ item?.jenis_product }}
+                              {{ item?.jenis_product }}
                             </h2>
                           </div>
                         </div>
@@ -358,7 +362,7 @@
                             <h2
                               class="block text-black text-xs font-reguler mb-2"
                             >
-                            {{ item?.isi_pelaporan }}
+                              {{ item?.isi_pelaporan }}
                             </h2>
                           </div>
                         </div>
@@ -378,7 +382,7 @@
                             <h2
                               class="block text-black text-xs font-reguler mb-2"
                             >
-                            {{ item?.status }}
+                              {{ item?.status }}
                             </h2>
                           </div>
                         </div>
@@ -1102,7 +1106,7 @@
 import UserDropdown from "@/components/Dropdowns/UserDropdown.vue";
 import Modal from "@/components/Modal/ModalDetail.vue";
 import { ref } from "vue";
-import {mapActions} from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   components: {
@@ -1111,14 +1115,24 @@ export default {
   },
   data() {
     return {
+      form: {
+        judul_pelaporan: "",
+        isi_pelaporan: "",
+        jenis_product: "",
+        harapan: "",
+        status: "",
+      },
       addPelaporan: false,
       detailPelaporan: false,
       updatePelaporan: false,
       deletePelaporan: false,
     };
   },
-  methods:{
-    ...mapActions(['getAllReports'])
+  methods: {
+    ...mapActions(["getAllReports", "createReport"]),
+    submitForm() {
+      this.submitFormData(this.form);
+    },
   },
   computed: {
     reports() {

@@ -2,7 +2,8 @@ import apiClient from "../../utils/apiClient";
 import {
   SET_REPORT,
   // DELETE_REPORT,
-  // UPDATE_REPORT,
+  UPDATE_REPORT,
+  UPDATE_REPORTS,
   CREATE_REPORT,
   GET_ALL_REPORT,
 } from "../constant";
@@ -28,11 +29,14 @@ const reportModules = {
       state = payload;
     },
     [CREATE_REPORT](state, report) {
-      state = report;
+      state.reportList.push(report);
     },
-    // [UPDATE_REPORT](state, payload) {
-    //   const list = [...state.reportData];
-    // },
+    [UPDATE_REPORT](state, report) {
+      state.reportList.push(report);
+    },
+    [UPDATE_REPORTS](state, payload) {
+      state.reportList.push(payload);
+    },
     // [DELETE_REPORT](state) {
     //   state = {};
     // },
@@ -44,7 +48,7 @@ const reportModules = {
         .then((res) => {
           const reports = res?.data?.data;
           commit(GET_ALL_REPORT, reports);
-          console.log(reports)
+          console.log(reports);
         });
     },
     async createReport({ commit }, payload) {
@@ -53,6 +57,7 @@ const reportModules = {
         .then((res) => {
           const data = res.data ?? {};
           commit(CREATE_REPORT, data);
+          // commit(CREATE_REPORT, data);
         });
     },
   },
