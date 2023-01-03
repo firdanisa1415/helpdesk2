@@ -190,28 +190,7 @@
                 Board Penugasan
               </a>
             </router-link>
-          </li>
-
-          <li class="items-center">
-            <router-link to="/admin/penugasan" v-slot="{ href, navigate, isActive }">
-              <a
-                :href="href"
-                @click="navigate"
-                class="text-xs uppercase py-3 font-bold block"
-                :class="[
-                  isActive
-                    ? 'text-blue-500 hover:text-blue-300'
-                    : 'text-blueGray-700 hover:text-blueGray-500',
-                ]"
-              >
-                <i
-                  class="fas fa-clipboard-check mr-4 text-sm" 
-                  :class="[isActive ? 'opacity-75' : 'text-blueGray-300']"
-                ></i>
-                Data Penugasan
-              </a>
-            </router-link>
-          </li>
+          </li>        
 
           <li class="items-center">
             <router-link to="/admin/pengguna" v-slot="{ href, navigate, isActive }">

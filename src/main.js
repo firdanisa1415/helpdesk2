@@ -18,9 +18,8 @@ import Auth from "@/layouts/Auth.vue";
 // views for Admin layout
 
 import Dashboard from "@/views/admin/Dashboard.vue";
-import Pelaporan from "@/views/admin/Coba.vue";
+import Pelaporan from "@/views/admin/DataPelaporan.vue";
 import Board from "@/views/admin/BoardPenugasan.vue";
-import Penugasan from "@/views/admin/DataPenugasan.vue";
 import Pengguna from "@/views/admin/DataPengguna.vue";
 import Backlog from "@/views/admin/Backlog.vue";
 import Sprint from "@/views/admin/Sprint.vue";
@@ -65,10 +64,6 @@ const routes = [
       {
         path: "/admin/board",
         component: Board,
-      },
-      {
-        path: "/admin/penugasan",
-        component: Penugasan,
       },
       {
         path: "/admin/pengguna",
