@@ -145,7 +145,8 @@
         </modal>
       </Teleport>
     </div>
-    <table class="w-full mb-5">
+    <CustomTable v-bind:index="true" :data="getAllReports" :columns="dt.column" :actions="dt.action" />
+    <!-- <table class="w-full mb-5">
       <thead
         class="text-xs text-white uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400"
       >
@@ -282,8 +283,8 @@
                 style="font-size: 15px"
               ></i>
             </button>
-            <!-- Todo: Modal perlu diluar v-for, nanti bakal rekursif pemanggilannya -->
-            <Teleport to="body">
+            Todo: Modal perlu diluar v-for, nanti bakal rekursif pemanggilannya
+  <Teleport to="body">
               <modal :show="detailPelaporan" @close="detailPelaporan = false">
                 <template #header>
                   <h3 class="text-2xl font-bold text-center">
@@ -408,7 +409,7 @@
                 </template>
               </modal>
             </Teleport>
-            <button
+  <button
               class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150"
               type="button"
               id="update"
@@ -591,9 +592,9 @@
           </td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
 
-    <div class="text-center font-bold flex justify-center py-3">
+  <div class="text-center font-bold flex justify-center py-3">
       Tabel Manager
     </div>
     <div class="text-center flex justify-end py-3">
@@ -1105,12 +1106,13 @@
         </tr>
       </tbody>
     </table>
-  </div>
+  </div> 
 </template>
 
 <script>
 import UserDropdown from "@/components/Dropdowns/UserDropdown.vue";
 import Modal from "@/components/Modal/ModalDetail.vue";
+import CustomTable from "@/components/CustomTable.vue";
 import { ref } from "vue";
 import { mapActions } from "vuex";
 
@@ -1118,9 +1120,9 @@ export default {
   components: {
     UserDropdown,
     Modal,
+    CustomTable,
   },
-  data() {
-    return {
+  data: () => ({
       form: {
         judul_pelaporan: "",
         isi_pelaporan: "",
@@ -1129,12 +1131,32 @@ export default {
         status: "Open",
         lampiran: "s.png"
       },
-      addPelaporan: false,
-      detailPelaporan: false,
-      updatePelaporan: false,
-      deletePelaporan: false,
-    };
-  },
+    //   addPelaporan: false,
+    //   detailPelaporan: false,
+    //   updatePelaporan: false,
+    //   deletePelaporan: false,
+    //  };
+    dt: {
+      column: ["Nomor Ticket","Judul Pelaporan","Jenis Product","Harapan", "Status"],
+      action: [
+        {
+          text: "Detail",
+          color: "primary",
+          // event: "detail-pakan",
+        },
+        {
+          text: "Ubah",
+          color: "warning",
+          // event: "ubah-pakan",
+        },
+        {
+          text: "Hapus",
+          color: "danger",
+          // event: "hapus-pakan",
+        },
+      ],
+    },
+}),
   methods: {
     ...mapActions(["getAllReports", "createReport"]),
     submitForm() {

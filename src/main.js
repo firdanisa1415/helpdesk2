@@ -18,7 +18,7 @@ import Auth from "@/layouts/Auth.vue";
 // views for Admin layout
 
 import Dashboard from "@/views/admin/Dashboard.vue";
-import Pelaporan from "@/views/admin/DataPelaporan.vue";
+import Pelaporan from "@/views/admin/Coba.vue";
 import Board from "@/views/admin/BoardPenugasan.vue";
 import Penugasan from "@/views/admin/DataPenugasan.vue";
 import Pengguna from "@/views/admin/DataPengguna.vue";
