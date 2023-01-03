@@ -1,15 +1,10 @@
 <template>
   <!-- Header -->
-  <div class="relative bg-blueGray-100 md:pt-32 pb-20 pt-12">
-    <div class="px-2 md:px-10 mx-auto w-full">
-    </div>
-  </div>
+  <div class="relative border-4 border-rose-500" />
 </template>
 
 <script>
-
 export default {
-  components: {
-  },
+  components: {},
 };
 </script>
