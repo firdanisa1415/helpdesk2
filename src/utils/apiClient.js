@@ -1,13 +1,10 @@
 import axios from "axios";
 
 export default function apiClient() {
-    const apiClient = axios.create({
-        baseURL: "https://114a-182-253-162-134.ap.ngrok.io",
-        withCredentials:true,
-    });
+  const apiClient = axios.create({
+    baseURL: process.env.VUE_APP_API_URL,
+    withCredentials: true,
+  });
 
   return apiClient;
 }
-
-
-
