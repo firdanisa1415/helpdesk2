@@ -55,10 +55,21 @@ const reportModules = {
       await apiClient()
         .post("/api/pelaporan", payload)
         .then((res) => {
-          const data = res.data ?? {};
+          /**
+           * @todo Perlu cek bentukan data di create pelaporan controller.
+           * @argument
+           * {
+           *    status: "success",
+           *    data: {...newPelaporan}
+           * }
+           * @example brarti kalau di frontend nya harus mengikuti BE ditambah pakai argumentnya dari axios (res.data).
+           * @example Misal bentukan existing di BE, kita mau set data barunya. Jadi tinggal response.data.data;
+           *
+           */
+          const { status: statusDariBackend, data: dataDariBackend } = res.data;
+          console.log(statusDariBackend);
+          const data = dataDariBackend ?? {};
           commit(CREATE_REPORT, data);
-          // commit(CREATE_REPORT, data);
-          console.log(data)
         });
     },
   },
