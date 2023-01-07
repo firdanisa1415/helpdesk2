@@ -1282,6 +1282,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgba(14, 115, 185, var(--tw-bg-opacity));
 }
+.bg-blue-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(47, 182, 233, var(--tw-bg-opacity));
+}
 .active\:bg-blue-200:active {
   --tw-bg-opacity: 1;
   background-color: rgba(191, 219, 254, var(--tw-bg-opacity));
