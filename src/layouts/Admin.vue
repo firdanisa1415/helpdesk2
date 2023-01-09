@@ -18,11 +18,11 @@
 </template>
 <style scoped>
 .margin-content {
-  margin-top: 2rem;
+  margin-top: 4rem;
 }
 @media (min-width: 768px) {
   .margin-content {
-    margin-top: 6rem;
+    margin-top: 10rem;
   }
 }
 </style>

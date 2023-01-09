@@ -13,6 +13,8 @@ const reportModules = {
     reportList: [],
     isLoading: false,
     report: null,
+    isUpdating: false,
+    updatedData: null,
     // judul_laporan: "",
     // isi_laporan: "",
     // harapan: "",
@@ -72,7 +74,23 @@ const reportModules = {
           commit(CREATE_REPORT, data);
         });
     },
+    async updateReport({ commit }, payload) {
+      await apiClient()
+        .put("/api/pelaporan/{id}", payload)
+        .then((res) => {
+          const { status: statusDariBackend, data: dataDariBackend } = res.data;
+          console.log(statusDariBackend);
+          const data = dataDariBackend ?? {};
+          commit(UPDATE_REPORT, data);
+        });
+    },
+    async deleteReport({ commit }, payload) {
+      await apiClient()
+      .delete("/api/pelaporan/{id}", payload)
+      .then((res)) => {
+
   },
+},
 };
 
 export default reportModules;

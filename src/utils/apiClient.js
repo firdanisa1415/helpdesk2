@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default function apiClient() {
     const apiClient = axios.create({
-        baseURL: "https://114a-182-253-162-134.ap.ngrok.io",
+        baseURL: process.env.VUE_APP_API_URL,
         withCredentials:true,
     });
 

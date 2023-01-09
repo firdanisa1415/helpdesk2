@@ -2,7 +2,7 @@
   <div>
     <div class="pb-4 flex justify-end">
       <button
-        class="bg-blue-500 mt-20 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+        class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
         type="button"
         id="Pelaporan"
         @click="addPelaporan = true"
@@ -127,6 +127,7 @@
                   <button
                     class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                     @click="addPelaporan = false"
+                    type="button"
                   >
                     Batal
                   </button>
@@ -313,7 +314,7 @@
               </modal>
             </Teleport> -->
                 <button
-                  class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150"
+                  class="bg-blue-300 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150"
                   type="button"
                   id="update"
                   @click="updatePelaporan = true"
@@ -1022,6 +1023,7 @@ import Modal from "@/components/Modal/ModalDetail.vue";
 import { ref } from "vue";
 import { mapActions } from "vuex";
 
+
 export default {
   components: {
     Modal,
@@ -1068,10 +1070,47 @@ export default {
     },
   }),
   methods: {
-    ...mapActions(["getAllReports", "createReport"]),
+    ...mapActions(["getAllReports", "createReport", "updateReport" ]),
     submitForm() {
       this.createReport(this.form);
+      this.addPelaporan = false;
       console.log(this.form);
+      const Toast = this.$swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", this.$swal.stopTimer);
+          toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+        },
+      });
+      this.form = {};
+      Toast.fire({
+        icon: "success",
+        title: "Data Berhasil Ditambahkan",
+      });
+    },
+    async updateReport() {
+      try {
+        const { id, nama_pakan, deskripsi, komposisi, jumlah } = this.input;
+        const data = {
+          id,
+          nama_pakan,
+          deskripsi,
+          komposisi,
+          jumlah,
+        };
+        await this.schema.validate(data);
+        await this.a$pakanEdit(data);
+        this.modal.ubahPakan = false;
+        this.notify(`Edit ${this.pageTitle} Sukses!`);
+      } catch (error) {
+        this.notify(error, false);
+      } finally {
+        this.a$pakanList(this.userInfo.id);
+      }
     },
   },
   computed: {
