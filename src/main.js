@@ -1,13 +1,17 @@
 import { createApp } from "vue";
 import { createWebHistory, createRouter } from "vue-router";
-
+import VueSweetalert2 from 'vue-sweetalert2';
+import { AgGridVue } from "ag-grid-vue3";
+import VueGoodTablePlugin from "vue-good-table";
 // styles
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "@/assets/styles/tailwind.css";
-import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
-
+import "ag-grid-community/styles//ag-grid.css";
+import "ag-grid-community/styles//ag-theme-alpine.css";
+import 'vue-good-table/dist/vue-good-table.css'
+// import { RowGroupingModule } from '@ag-grid-enterprise/row-grouping';
 
 // mouting point for the whole app
 
@@ -115,4 +119,6 @@ const app = createApp(App);
 app.use(router);
 app.use(store);
 app.use(VueSweetalert2);
+app.use(AgGridVue);
+app.use(VueGoodTablePlugin);
 app.mount("#app");

@@ -6,7 +6,7 @@
       <div class="flex flex-wrap items-center">
         <div class="relative w-full max-w-full flex-grow flex-1">
           <h2 class="text-white text-xl font-semibold">
-            Jumlah Data Masuk
+            Pemenuhan SLA 
           </h2>
         </div>
       </div>

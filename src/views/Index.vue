@@ -23,7 +23,7 @@
       <img class="absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860-px" src="@/assets/img/hero.png" alt="..." />
     </section>
 
-    <section class="mt-48 md:mt-40 pb-40 relative bg-blueGray-100">
+    <section class="mt-20 md:mt-40 pb-40 relative bg-blueGray-100">
       <div class="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20" style="transform: translateZ(0)">
         <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
           <polygon class="text-blueGray-100 fill-current" points="2560 0 2560 100 0 100"></polygon>
@@ -31,7 +31,7 @@
       </div>
       <div class="container mx-auto">
         <div class="flex flex-wrap items-center">
-          <div class="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto -mt-32">
+          <div class="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto -mt-20">
             <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blue-500">
               <img alt="..." src="@/assets/img/layanan_page.png" class="w-full align-middle rounded-t-lg" />
               <blockquote class="relative p-8 mb-4">

@@ -13,8 +13,8 @@
             <div class="relative w-full mb-3 bg-white p-4 shadow-lg rounded">
               <h2 class="text-blueGray-700 text-xl font-semibold">Sprint 1</h2>
               <div class="drop-zone" @drop="onDrop($event, 1)" @dragover.prevent @dragenter.prevent>
-                <div v-for="item in listOne" :key="item.title" class="drag-el text-white font-bold rounded" draggable="true" @dragstart="startDrag($event, item)" id="detail" @click="detailPenugasan = true">
-                  {{ item.title }}
+                <div v-for="item in stories" :key="item.id_story" class="drag-el text-white font-bold rounded" draggable="true" @dragstart="startDrag($event, item)" id="detail" @click="detailPenugasan = true">
+                  {{ item.id_story }} - {{ item.isi_story }}
                 </div>
                 <Teleport to="body">
                   <modal :show="detailPenugasan" @close="detailPenugasan = false">
@@ -89,8 +89,7 @@
                           <h3 class="text-xs font-bold text-center mb-2">Action</h3>
                           <div class="border-1 w-full bg-gray-200 text-lightBlue-400 font-bold uppercase text-xs px-2 py-2 mb-1 shadow hover:shadow-md outline ease-linear transition-all duration-150">
                             <i class="fas fa-check-square text-lightBlue-400 mr-4" style="font-size: 15px"></i>
-                            Checklist
-                          </div>
+                            Checstories                        </div>
                           <div class="border-1 w-full bg-gray-200 text-lightBlue-400 font-bold uppercase text-xs px-2 py-2 shadow hover:shadow-md outline ease-linear transition-all duration-150">
                             <i class="fas fa-tag text-lightBlue-400 mr-4" style="font-size: 15px"></i>
                             Label
@@ -117,8 +116,8 @@
             <div class="relative w-full mb-3 bg-white p-4 shadow-lg rounded">
               <h2 class="text-blueGray-700 text-xl font-semibold">Sprint 2</h2>
               <div class="drop-zone" @drop="onDrop($event, 2)" @dragover.prevent @dragenter.prevent>
-                <div v-for="item in listTwo" :key="item.title" class="drag-el text-white font-bold rounded" draggable="true" @dragstart="startDrag($event, item)" id="detail" @click="detailPenugasan = true">
-                  {{ item.title }}
+                <div v-for="item in stories" :key="item.id_story" class="drag-el text-white font-bold rounded" draggable="true" @dragstart="startDrag($event, item)" id="detail" @click="detailPenugasan = true">
+                  {{ item.id_story }} - {{ item.isi_story }}
                 </div>
                 <Teleport to="body">
                   <modal :show="detailPenugasan" @close="detailPenugasan = false">
@@ -193,8 +192,7 @@
                           <h3 class="text-xs font-bold text-center mb-2">Action</h3>
                           <div class="border-1 w-full bg-gray-200 text-lightBlue-400 font-bold uppercase text-xs px-2 py-2 mb-1 shadow hover:shadow-md outline ease-linear transition-all duration-150">
                             <i class="fas fa-check-square text-lightBlue-400 mr-4" style="font-size: 15px"></i>
-                            Checklist
-                          </div>
+                            Checstories                        </div>
                           <div class="border-1 w-full bg-gray-200 text-lightBlue-400 font-bold uppercase text-xs px-2 py-2 shadow hover:shadow-md outline ease-linear transition-all duration-150">
                             <i class="fas fa-tag text-lightBlue-400 mr-4" style="font-size: 15px"></i>
                             Label
@@ -231,8 +229,8 @@
           <div class="relative w-full mb-3 bg-transparant p-4">
             <h2 class="text-blueGray-700 text-xl font-semibold">Backlog</h2>
             <div class="drop-zone" @drop="onDrop($event, 3)" @dragover.prevent @dragenter.prevent>
-              <div v-for="item in listThree" :key="item.title" class="drag-el text-white font-bold rounded" draggable="true" @dragstart="startDrag($event, item)" id="detail" @click="detailPenugasan = true">
-                {{ item.title }}
+              <div v-for="item in stories" :key="item.id_story" class="drag-el text-white font-bold rounded" draggable="true" @dragstart="startDrag($event, item)" id="detail" @click="detailPenugasan = true">
+                {{ item?.id_story }} - {{ item?.isi_story }}
               </div>
               <Teleport to="body">
                 <modal :show="detailPenugasan" @close="detailPenugasan = false">
@@ -337,7 +335,7 @@
   
   <script>
   import Modal from "@/components/Modal/ModalDetail.vue";
-  
+  import { mapActions } from "vuex";
   const STORAGE_KEY = "vue-todomvc";
   
   const filters = {
@@ -350,50 +348,15 @@
     components: {
       Modal,
     },
-    data() {
-      return {
-        items: [
-          {
-            id: 0,
-            title: "Penugasan 1",
-            list: 3,
-          },
-          {
-            id: 1,
-            title: "Penugasan 2",
-            list: 3,
-          },
-          {
-            id: 2,
-            title: "Penugasan 3",
-            list: 3,
-          },
-          {
-            id: 3,
-            title: "Penugasan 4",
-            list: 3,
-          },
-          {
-            id: 4,
-            title: "Penugasan 5",
-            list: 3,
-          },
-        ],
+    data: () => ({
         detailPenugasan: false,
         todos: JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"),
         editedTodo: null,
         visibility: "all",
-      };
-    },
+    }),
     computed: {
-      listOne() {
-        return this.items.filter((item) => item.list === 1);
-      },
-      listTwo() {
-        return this.items.filter((item) => item.list === 2);
-      },
-      listThree() {
-        return this.items.filter((item) => item.list === 3);
+      stories() {
+        return this.$store.state.report.storytList;
       },
       
       filteredTodos() {
@@ -404,6 +367,8 @@
       },
     },
     methods: {
+      ...mapActions(["getAllStories"]),
+
       startDrag(evt, item) {
         evt.dataTransfer.dropEffect = "move";
         evt.dataTransfer.effectAllowed = "move";
@@ -480,6 +445,8 @@
     },
   
     mounted() {
+      this.$store.dispatch("getAllStories");
+      console.log(this.stories);
       window.addEventListener("hashchange", this.onHashChange);
       this.onHashChange();
     },

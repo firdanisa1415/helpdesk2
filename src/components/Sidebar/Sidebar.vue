@@ -139,7 +139,7 @@
                   class="fas fa-stream mr-3 text-sm" 
                   :class="[isActive ? 'opacity-75' : 'text-blueGray-300']"
                 ></i>
-                Backlog
+                Data Epic
               </a>
             </router-link>
           </li>
