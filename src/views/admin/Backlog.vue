@@ -9,8 +9,84 @@
       >
         Tambah Epic
       </button>
-      <Teleport to="body">
-        <modal :show="addEpic" @close="addEpic = false">
+    </div>
+    <div class="overflow-x-auto relative sm:rounded-lg">
+      <div>
+          <modal :show="modalEpic">
+            <template #header>
+              <h3 class="text-2xl font-bold text-center">{{ isEditEpic ? "Ubah" : "Tambah" }} Epic</h3>
+            </template>
+            <template #body>
+              <form @submit.prevent="isEditEpic ? submitEditForm() : submitForm()">
+                <div class="flex flex-wrap">
+                  <div class="w-full px-4">
+                    <div class="relative w-full mb-3">
+                      <label
+                        class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Judul Epic
+                      </label>
+                      <input
+                        type="text"
+                        v-model="form.judul_epic"
+                        class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Isikan Epic"
+                      />
+                    </div>
+                  </div>
+                  <div class="w-full px-4">
+                    <div class="relative w-full mb-3">
+                      <label
+                        class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Isi Epic
+                      </label>
+                      <input
+                        type="text"
+                        v-model="form.isi_epic"
+                        class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Jelaskan Gagasan Anda"
+                      />
+                    </div>
+                  </div>
+                  <div class="w-full px-4">
+                    <div class="relative w-full mb-3">
+                      <label
+                        class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Harapan
+                      </label>
+                      <input
+                        type="text"
+                        v-model="form.harapan"
+                        class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Tuliskan Harapan Anda"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    @click="modalEpic = false"
+                    type="button"
+                  >
+                    Batal
+                  </button>
+                  <button
+                    class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    type="submit"
+                  >
+                  {{ isEditEpic ? "Simpan" : "Tambah" }}
+                  </button>
+                </div>
+              </form>
+            </template>
+          </modal>   
+    </div>
+    <div>
+        <modal :show="detailEpic">
           <template #header>
             <h3 class="text-2xl font-bold text-center">Tambah Epic</h3>
           </template>

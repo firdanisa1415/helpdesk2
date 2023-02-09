@@ -12,6 +12,7 @@
     </div>
     <div class="overflow-x-auto relative sm:rounded-lg">
       <div>
+<<<<<<< Updated upstream
         <Teleport to="body">
           <modal :show="addPelaporan" @close="addPelaporan = false">
             <template #header>
@@ -19,6 +20,111 @@
             </template>
             <template #body>
               <form @submit.prevent="submitForm">
+=======
+        <modal :show="modalPelaporan">
+          <template #header>
+            <h3 class="text-2xl font-bold text-center">{{ isEditPelaporan ? "Ubah" : "Tambah" }} Pelaporan</h3>
+          </template>
+          <template #body>
+            <form @submit.prevent="isEditPelaporan ? submitEditForm() : submitForm()">
+              <div class="flex flex-wrap">
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Judul Pelaporan </label>
+                    <input
+                      type="text"
+                      v-model="form.judul_pelaporan"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Isikan Pelaporan"
+                    />
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product</label>
+                    <select
+                      id="product"
+                      v-model="form.jenis_product"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    >
+                      <option>--Pilih Product--</option>
+                      <option>PC/Laptop</option>
+                      <option>Printer</option>
+                      <option>Jaringan/Internet</option>
+                      <option>My PDS</option>
+                      <option>Humanis</option>
+                      <option>Penarikan Data</option>
+                      <option>Lainnya</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Permasalahan </label>
+                    <input
+                      type="text"
+                      v-model="form.isi_pelaporan"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Jelaskan Permasalahan"
+                    />
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Harapan </label>
+                    <input
+                      type="text"
+                      v-model="form.harapan"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Tuliskan Harapanmu"
+                    />
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">PIC Pelaporan</label>
+                    <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                      <option>--Pilih PIC Pelaporan--</option>
+                      <option>Budi</option>
+                      <option>Bambang</option>
+                      <option>Joko</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Lampiran </label>
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" 
+                    aria-describedby="user_avatar_help" 
+                    id="user_avatar" 
+                    type="file"/>
+                  </div>
+                </div>
+                
+                <div class="text-center">
+                <button
+                  class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  @click="modalPelaporan = false"
+                  type="button"
+                >
+                  Batal
+                </button>
+                <button class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="submit">
+                  {{ isEditPelaporan ? "Simpan" : "Tambah" }}
+                </button>
+              </div>
+              </div>
+            </form>
+          </template>
+        </modal>
+      </div>
+      <div>
+        <modal :show="detailPelaporan">
+          <template #header>
+            <h3 class="text-2xl font-bold text-center">Detail Pelaporan</h3>
+          </template>
+          <template #body>
+>>>>>>> Stashed changes
                 <div class="flex flex-wrap">
                   <div class="w-full px-4">
                     <div class="relative w-full mb-3">
@@ -111,9 +217,38 @@
                   </div>
                   <div class="w-full px-4">
                     <div class="relative w-full mb-3">
+<<<<<<< Updated upstream
                       <label
                         class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
+=======
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        -
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                        <div class="flex flex-wrap mt-2">
+                          <div class="relative w-full mb-3">
+                            <div class="todoapp">
+                              <header class="header">
+                                <h2 class="text-blueGray-700 text-xl font-semibold mb-2">Description</h2>
+                                <textarea
+                                  class="px-3 py-3 mb-2 placeholder-blueGray-300 text-blueGray-600 bg-white text-sm focus:ring w-full ease-linear transition-all duration-150"
+                                  placeholder="Scrum Team"
+                                  v-model="pesan"
+                                />
+                              </header>                            </div>
+                          </div>
+                        </div>
+          </template>
+          <template #footer>
+                    <div class="text-center">
+                      <button
+                        class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                        @click="detailPelaporan = false"
+>>>>>>> Stashed changes
                       >
                         Lampiran
                       </label>
@@ -1039,6 +1174,7 @@ export default {
     detailPelaporan: false,
     updatePelaporan: false,
     deletePelaporan: false,
+<<<<<<< Updated upstream
     //  };
     dt: {
       column: [
@@ -1053,6 +1189,37 @@ export default {
           text: "Detail",
           color: "primary",
           // event: "detail-pakan",
+=======
+    isEditPelaporan: false,
+    
+  }),
+  methods: {
+    ...mapActions(["getAllReports", "deleteReport", "createReport", "updateReport"]),
+    handleShowDetail(item) {
+      this.detailPelaporan = true;
+      this.form = { ...item };
+    },
+    handleShowDeleteModal(item) {
+      this.deletePelaporan = true;
+      this.isEditPelaporan = true;
+      this.form = { ...item };
+    },
+    handleClickCreatePelaporan() {
+      this.modalPelaporan = true;
+      this.isEditPelaporan = false;
+    },
+    deletePelaporanData(item) {
+      this.deletePelaporan = true;
+      const Toast = this.$swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", this.$swal.stopTimer);
+          toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+>>>>>>> Stashed changes
         },
         {
           text: "Ubah",
@@ -1073,6 +1240,7 @@ export default {
       this.createReport(this.form);
       console.log(this.form);
     },
+    
   },
   computed: {
     reports() {
@@ -1096,5 +1264,9 @@ export default {
 
     return { dropzoneFile, drop, selectedFile };
   },
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 };
 </script>
