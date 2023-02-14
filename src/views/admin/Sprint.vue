@@ -2,7 +2,7 @@
   <div>
     <div class="pb-4 flex justify-end">
       <button
-        class="bg-blue-500 mt-16 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+        class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
         type="button"
         id="Story"
         @click="handleClickCreateStory"

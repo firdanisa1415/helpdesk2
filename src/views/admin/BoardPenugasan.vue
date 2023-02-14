@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-wrap ">
-    <div class="w-full lg:w-3/12 px-4 mt-16">
+    <div class="w-full lg:w-3/12 px-4">
       <div class="relative w-full mb-3 bg-white p-4 shadow-lg rounded">
         <h2 class="text-blueGray-700 text-xl font-semibold">Open</h2>
         <draggable class="list-group kanban-column" :list="stories" group="tasks">
@@ -19,7 +19,7 @@
         </draggable> -->
       </div>
     </div>
-    <div class="w-full lg:w-3/12 px-4 mt-16">
+    <div class="w-full lg:w-3/12 px-4">
       <div class="relative w-full mb-3 bg-white p-4 shadow-lg rounded">
         <h2 class="text-blueGray-700 text-xl font-semibold">In Progress</h2>
         <draggable class="text-white font-bold rounded kanban-column" :list="arrInProgress" group="tasks">
@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <div class="w-full lg:w-3/12 px-4 mt-16">
+    <div class="w-full lg:w-3/12 px-4">
       <div class="relative w-full mb-3 bg-white p-4 shadow-lg rounded">
         <h2 class="text-blueGray-700 text-xl font-semibold">Testing</h2>
         <draggable class="list-group kanban-column" :list="arrTested" group="tasks">
@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <div class="w-full lg:w-3/12 px-4 mt-16">
+    <div class="w-full lg:w-3/12 px-4">
       <div class="relative w-full mb-3 bg-white p-4 shadow-lg rounded">
         <h2 class="text-blueGray-700 text-xl font-semibold">Done</h2>
         <draggable class="list-group kanban-column" :list="arrDone" group="tasks">
@@ -69,7 +69,7 @@ export default {
   },
   computed: {
     stories() {
-      return this.$store.state.story.storytList;
+      return this.$store.state.story.storyList;
     },
   },
   mounted() {
