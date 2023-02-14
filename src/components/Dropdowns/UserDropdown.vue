@@ -33,8 +33,8 @@
         Kelola Akun
       </a>
       <a
-        href="/"
-        class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+        @click="handleLogout"
+        class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 cursor-pointer"
       >
         Keluar
       </a>
@@ -44,8 +44,9 @@
 
 <script>
 import { createPopper } from "@popperjs/core";
-
+import { baseRouteLinks } from "../../utils/routeLinks";
 import image from "@/assets/img/ung2.png";
+import { mapActions } from "vuex";
 
 export default {
   data() {
@@ -55,6 +56,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["logOut"]),
     toggleDropdown: function (event) {
       event.preventDefault();
       if (this.dropdownPopoverShow) {
@@ -65,6 +67,26 @@ export default {
           placement: "bottom-start",
         });
       }
+    },
+    handleLogout() {
+      const Toast = this.$swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", this.$swal.stopTimer);
+          toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+        },
+      });
+      this.logOut().then(() => {
+        this.$router.push(baseRouteLinks.home);
+        Toast.fire({
+          icon: "success",
+          title: "Logout Successfully",
+        });
+      });
     },
   },
 };

@@ -16,15 +16,24 @@
 <script>
 import Navbar from "@/components/Navbars/AuthNavbar.vue";
 import FooterSmall from "@/components/Footers/FooterSmall.vue";
-
+import CookieHandler from "../utils/cookieHandler";
+import { adminRouteLinks } from "../utils/routeLinks";
+import { useRouter } from "vue-router";
+const cookieHandler = new CookieHandler();
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   components: {
     Navbar,
     FooterSmall,
+  },
+  setup() {
+    const router = useRouter();
+    const token = cookieHandler.get("token");
+    if (token) {
+      router.push(adminRouteLinks.dashboard);
+    }
   },
 };
 </script>

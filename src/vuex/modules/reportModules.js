@@ -84,16 +84,12 @@ const reportModules = {
           commit(UPDATE_REPORT, data);
         });
     },
-    async deleteReport({ commit }, payload) {
+    async deleteReport(_, payload) {
       await apiClient()
-        .delete(`api/pelaporan/${payload}`)
-        .then((res) => {
-          console.log(res);
-          commit(DELETE_REPORT, payload);
-        });
+        .delete("/api/pelaporan/{id}", payload)
+        .then(() => {});
     },
   },
-},
 };
 
 export default reportModules;
