@@ -6,6 +6,7 @@ import {
   UPDATE_REPORTS,
   CREATE_REPORT,
   GET_ALL_REPORT,
+  DELETE_REPORT,
 } from "../constant";
 
 const reportModules = {
@@ -13,13 +14,8 @@ const reportModules = {
     reportList: [],
     isLoading: false,
     report: null,
-    // judul_laporan: "",
-    // isi_laporan: "",
-    // harapan: "",
-    // product: "",
-    // jenis_pelaporan: "",
-    // status: "",
-    // lampiran: "",
+    isUpdating: false,
+    updatedData: null,
   },
   mutations: {
     [GET_ALL_REPORT](state, reports) {
@@ -31,15 +27,21 @@ const reportModules = {
     [CREATE_REPORT](state, report) {
       state.reportList.push(report);
     },
-    [UPDATE_REPORT](state, report) {
-      state.reportList.push(report);
+    [UPDATE_REPORT](state, payload) {
+      let index = state.reportList.findIndex(
+        (item) => item.id_pelaporan === payload.id_pelaporan
+      );
+      state.reportList.splice(index, 1, payload);
     },
     [UPDATE_REPORTS](state, payload) {
       state.reportList.push(payload);
     },
-    // [DELETE_REPORT](state) {
-    //   state = {};
-    // },
+    [DELETE_REPORT](state, payload) {
+      const index = state.reportList.findIndex(
+        (post) => post.id_pelaporan === payload
+      );
+      state.reportList.splice(index, 1);
+    },
   },
   actions: {
     async getAllReports({ commit }) {
@@ -70,6 +72,24 @@ const reportModules = {
           console.log(statusDariBackend);
           const data = dataDariBackend ?? {};
           commit(CREATE_REPORT, data);
+        });
+    },
+    async updateReport({ commit }, { id_pelaporan, ...rest }) {
+      await apiClient()
+        .put(`/api/pelaporan/${id_pelaporan}`, rest)
+        .then((res) => {
+          const { status: statusDariBackend, data: dataDariBackend } = res.data;
+          console.log(statusDariBackend);
+          const data = dataDariBackend ?? {};
+          commit(UPDATE_REPORT, data);
+        });
+    },
+    async deleteReport({ commit }, payload) {
+      await apiClient()
+        .delete(`api/pelaporan/${payload}`)
+        .then((res) => {
+          console.log(res);
+          commit(DELETE_REPORT, payload);
         });
     },
   },

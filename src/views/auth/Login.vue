@@ -4,10 +4,9 @@
       <div class="w-full lg:w-6/12 px-4">
         <div class="relative flex flex-col min-w-0 break-words w-full mt-4 shadow-lg rounded-lg bg-blueGray-100 border-0">
           <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-            <div class="text-center justify-center mb-5 mt-5">
-              <img src="@/assets/img/brand.png" width="150" height="50" class="text-center"/>
-
-              <h6 class="text-black text-sm font-bold">Masuk Pelapor</h6>
+            <div class="relative text-center mb-5 mt-5">
+              <img src="@/assets/img/brand.png" width="150" height="50"/>
+              <h6 class="text-black text-sm font-bold text-center">Masuk Pelapor</h6>
             </div>
             <form>
               <div class="relative w-full mb-3">
