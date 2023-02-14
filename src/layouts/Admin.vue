@@ -56,8 +56,8 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch("getUser");
-    // console.log(this.reports);
+    const nrp = cookieHandler.get("nrp");
+    this.$store.dispatch("getUser", { nrp });
   },
 };
 </script>
