@@ -139,7 +139,7 @@
                   class="fas fa-stream mr-3 text-sm" 
                   :class="[isActive ? 'opacity-75' : 'text-blueGray-300']"
                 ></i>
-                Backlog
+                Data Epic
               </a>
             </router-link>
           </li>
@@ -166,7 +166,7 @@
                 Sprint Backlog
               </a>
             </router-link>
-          </li>
+          </li>       
 
           <li class="items-center">
             <router-link
@@ -190,7 +190,7 @@
                 Board Penugasan
               </a>
             </router-link>
-          </li>        
+          </li>   
 
           <li class="items-center">
             <router-link to="/admin/pengguna" v-slot="{ href, navigate, isActive }">

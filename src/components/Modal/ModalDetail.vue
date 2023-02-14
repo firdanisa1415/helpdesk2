@@ -19,10 +19,10 @@ export default {
             <slot name="body">default body</slot>
           </div>
 
-          <div class="modal-footer">
+          <!-- <div class="modal-footer">
             <slot name="footer">
             </slot>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
