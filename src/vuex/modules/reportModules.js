@@ -93,6 +93,7 @@ const reportModules = {
         });
     },
   },
+},
 };
 
 export default reportModules;

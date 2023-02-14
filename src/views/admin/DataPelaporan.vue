@@ -160,6 +160,19 @@
                       {{ form?.judul_pelaporan }}
                     </h5>
                   </div>
+                  <button
+                    class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    @click="addPelaporan = false"
+                    type="button"
+                  >
+                    Batal
+                  </button>
+                  <button
+                    class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    type="submit"
+                  >
+                    Tambah
+                  </button>
                 </div>
 
                 <!-- Buttons -->
