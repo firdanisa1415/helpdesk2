@@ -5,9 +5,8 @@ import { createWebHistory, createRouter } from "vue-router";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "@/assets/styles/tailwind.css";
-import VueSweetalert2 from 'vue-sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
-
+import VueSweetalert2 from "vue-sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 // mouting point for the whole app
 
@@ -39,66 +38,69 @@ import Profile from "@/views/Profile.vue";
 import Index from "@/views/Index.vue";
 
 import store from "./vuex/store";
-
-// routes
+import {
+  adminRouteLinks,
+  baseRouteLinks,
+  credsRouteLinks,
+} from "./utils/routeLinks";
 
 const routes = [
   {
     path: "/admin",
-    redirect: "/admin/dashboard",
+    redirect: adminRouteLinks.dashboard,
     component: Admin,
     children: [
       {
-        path: "/admin/dashboard",
+        path: adminRouteLinks.dashboard,
         component: Dashboard,
       },
       {
-        path: "/admin/pelaporan",
+        path: adminRouteLinks.pelaporan,
         component: Pelaporan,
       },
       {
-        path: "/admin/backlog",
+        path: adminRouteLinks.backlog,
         component: Backlog,
       },
       {
-        path: "/admin/sprint",
+        path: adminRouteLinks.sprint,
         component: Sprint,
       },
       {
-        path: "/admin/board",
+        path: adminRouteLinks.board,
         component: Board,
       },
       {
-        path: "/admin/pengguna",
+        path: adminRouteLinks.pengguna,
         component: Pengguna,
       },
     ],
   },
   {
     path: "/auth",
-    redirect: "/auth/login",
+    redirect: credsRouteLinks.login,
     component: Auth,
     children: [
       {
-        path: "/auth/login",
+        path: credsRouteLinks.login,
         component: Login,
       },
       {
-        path: "/auth/register",
+        path: credsRouteLinks.logout,
         component: Register,
       },
     ],
   },
   {
-    path: "/landing",
+    path: baseRouteLinks.landing,
     component: Landing,
   },
   {
-    path: "/profile",
+    path: baseRouteLinks.profile,
     component: Profile,
   },
   {
-    path: "/",
+    path: baseRouteLinks.home,
     component: Index,
   },
   { path: "/:pathMatch(.*)*", redirect: "/" },
@@ -108,7 +110,6 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
-
 
 const app = createApp(App);
 
