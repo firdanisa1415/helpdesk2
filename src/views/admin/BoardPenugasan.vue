@@ -19,7 +19,7 @@
       status="testing"
     />
     <card-boardpenugasan
-      title="Done"
+      title="Done testing"
       :items="storiesFilteredByStatus('done')"
       @onDragEnd="handleDragEnd"
       status="done"
