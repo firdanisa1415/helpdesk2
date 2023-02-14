@@ -2,7 +2,7 @@
   <div>
     <div class="pb-4 flex justify-end">
       <button
-        class="bg-blue-500 mt-16 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+        class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
         type="button"
         id="Epic"
         @click="handleClickCreateEpic"
@@ -161,9 +161,7 @@
                     </div>
                   </div>
                 </div>
-          </template>
-          <template #footer>
-                    <div class="text-center">
+                <div class="text-center mt-2">
                       <button
                         class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                         @click="detailEpic = false"
@@ -171,7 +169,7 @@
                         Oke
                       </button>
                     </div>
-                  </template>
+          </template>
         </modal>
       </div>
       <div>
@@ -183,16 +181,12 @@
             <div>
               <div class="flex flex-wrap">
                 <div class="w-full px-4">
-                  <div class="relative w-full mb-3">
-                    <h5>
-                      Yakin ingin menghapus data pelaporan
+                  <div class="relative w-full mb-3 text-center">
+                    <h5 class="font-bold ">
+                      Yakin ingin menghapus data epic
                       {{ form?.id_epic }}? 
-                      Data yang sudah dihapus tidak dapat dikembalikan
                     </h5>
-                  </div>
-                </div>
-
-                <!-- Buttons -->
+                     <!-- Buttons -->
                 <button
                   class="bg-gray-600 text-black active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                   @click="deleteEpic = false"
@@ -205,6 +199,9 @@
                 >
                   Hapus
                 </button>
+                  </div>
+                </div>
+               
               </div>
             </div>
           </template>
@@ -226,7 +223,7 @@
         <tr 
           v-for="item in epics" 
           :key="item.id_epic" 
-          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 ">
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
           <th
               scope="row"
               class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"

@@ -2,7 +2,7 @@
   <div>
     <div class="pb-4 flex justify-end">
       <button
-        class="bg-blue-500 mt-16 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+        class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
         type="button"
         id="Pelaporan"
         @click="handleClickCreatePelaporan"
@@ -41,6 +41,7 @@
                     />
                   </div>
                 </div>
+                </div>
                 <div class="w-full px-4">
                   <div class="relative w-full mb-3">
                     <label
@@ -63,8 +64,7 @@
                       <option>Lainnya</option>
                     </select>
                   </div>
-                </div>
-                <div class="w-full px-4">
+                  <div class="w-full px-4">
                   <div class="relative w-full mb-3">
                     <label
                       class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -160,23 +160,9 @@
                       {{ form?.judul_pelaporan }}
                     </h5>
                   </div>
-                  <button
-                    class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                    @click="addPelaporan = false"
-                    type="button"
-                  >
-                    Batal
-                  </button>
-                  <button
-                    class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                    type="submit"
-                  >
-                    Tambah
-                  </button>
                 </div>
-
-                <!-- Buttons -->
-                <button
+               <!-- Buttons -->
+               <button
                   class="bg-blue-900 text-black active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                   @click="detailPelaporan = false"
                 >
@@ -241,7 +227,7 @@
           <tr
             v-for="item in reports"
             :key="item.id_pelaporan"
-            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center"
           >
             <th
               scope="row"
