@@ -24,3 +24,16 @@ export const LOGOUT_USER = "LOGOUT_USER";
 export const UPDATE_USER = "UPDATE_USER";
 export const UPDATE_USERS = "UPDATE_USERS";
 export const CREATE_USER = "CREATE_USER";
+export const GET_ALL_EPIC = "GET_ALL_EPIC";
+export const CREATE_EPIC = "CREATE_EPIC";
+export const SET_EPIC = "SET_EPIC";
+export const UPDATE_EPIC = "UPDATE_EPIC";
+export const UPDATE_EPICS = "UPDATE_EPICS";
+export const DELETE_EPIC = "DELETE_EPIC";
+export const GET_ALL_STORY = "GET_ALL_STORY";
+export const CREATE_STORY = "CREATE_STORY";
+export const SET_STORY = "SET_STORY";
+export const UPDATE_STORY = "UPDATE_STORY";
+export const UPDATE_STORYS = "UPDATE_STORYS";
+export const DELETE_STORY = "DELETE_STORY";
+
