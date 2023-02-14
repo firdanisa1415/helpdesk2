@@ -31,6 +31,11 @@ import AdminNavbar from "@/components/Navbars/AdminNavbar.vue";
 import Sidebar from "@/components/Sidebar/Sidebar.vue";
 // import HeaderStats from "@/components/Headers/HeaderStats.vue";
 import FooterAdmin from "@/components/Footers/FooterAdmin.vue";
+import { mapActions } from "vuex";
+import CookieHandler from "../utils/cookieHandler";
+import { credsRouteLinks } from "../utils/routeLinks";
+import { useRouter } from "vue-router";
+const cookieHandler = new CookieHandler();
 
 export default {
   name: "admin-layout",
@@ -39,6 +44,20 @@ export default {
     Sidebar,
     // HeaderStats,
     FooterAdmin,
+  },
+  methods: {
+    ...mapActions(["getUser"]),
+  },
+  setup() {
+    const router = useRouter();
+    const token = cookieHandler.get("token");
+    if (!token) {
+      router.push(credsRouteLinks.login);
+    }
+  },
+  mounted() {
+    this.$store.dispatch("getUser");
+    // console.log(this.reports);
   },
 };
 </script>
