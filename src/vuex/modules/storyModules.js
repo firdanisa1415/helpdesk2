@@ -34,7 +34,10 @@ const storyModules = {
       state.storyList.push(story);
     },
     [UPDATE_STORY](state, story) {
-      state.storyList.push(story);
+      let index = state.storyList.findIndex(
+        (item) => item.id_story === story.id_story
+      );
+      state.storyList.splice(index, 1, story);
     },
     [UPDATE_STORYS](state, payload) {
       state.storyList.push(payload);
@@ -72,12 +75,11 @@ const storyModules = {
           console.log(statusDariBackend);
           const data = dataDariBackend ?? {};
           commit(CREATE_STORY, data);
-          
         });
     },
-    async updatestory({ commit }, payload) {
+    async updateStory({ commit }, { id_story, ...rest }) {
       await apiClient()
-        .put("/api/story/{id}", payload)
+        .put(`/api/story/${id_story}`, rest)
         .then((res) => {
           const { status: statusDariBackend, data: dataDariBackend } = res.data;
           console.log(statusDariBackend);
@@ -87,14 +89,14 @@ const storyModules = {
     },
     async deletestory({ commit }, payload) {
       await apiClient()
-      .delete("/api/story/{id}", payload)
-      .then((res) => {
-        const { status: statusDariBackend, data: dataDariBackend } = res.data;
+        .delete("/api/story/{id}", payload)
+        .then((res) => {
+          const { status: statusDariBackend, data: dataDariBackend } = res.data;
           console.log(statusDariBackend);
           const data = dataDariBackend ?? {};
           commit(DELETE_STORY, data);
-      })
-    }
-  }
-}
+        });
+    },
+  },
+};
 export default storyModules;
