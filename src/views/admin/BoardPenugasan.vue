@@ -1,75 +1,82 @@
 <template>
-  <div class="flex flex-wrap ">
-    <div class="w-full lg:w-3/12 px-4 mt-16">
-      <div class="relative w-full mb-3 bg-white p-4 shadow-lg rounded">
-        <h2 class="text-blueGray-700 text-xl font-semibold">Open</h2>
-        <draggable class="list-group kanban-column" :list="stories" group="tasks">
-          <div class="list-group-item" v-for="element in stories" :key="element.id_story">
-            {{ element.id_story }}
-          </div>
-        </draggable>
-        <!-- <draggable class="text-blueGray-700 rounded kanban-column">
-          <div>
-            <ul>
-              <li v-for="item in stories" :key="item.id_story" class="text-xs text-white uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400">
-            {{item.isi_story }}>
-              </li>
-            </ul>
-          </div>
-        </draggable> -->
-      </div>
-    </div>
-    <div class="w-full lg:w-3/12 px-4 mt-16">
-      <div class="relative w-full mb-3 bg-white p-4 shadow-lg rounded">
-        <h2 class="text-blueGray-700 text-xl font-semibold">In Progress</h2>
-        <draggable class="text-white font-bold rounded kanban-column" :list="arrInProgress" group="tasks">
-          <div class="list-group-item" v-for="element in arrInProgress" :key="element.name">
-            {{ element.name }}
-          </div>
-        </draggable>
-      </div>
-    </div>
-
-    <div class="w-full lg:w-3/12 px-4 mt-16">
-      <div class="relative w-full mb-3 bg-white p-4 shadow-lg rounded">
-        <h2 class="text-blueGray-700 text-xl font-semibold">Testing</h2>
-        <draggable class="list-group kanban-column" :list="arrTested" group="tasks">
-          <div class="list-group-item" v-for="element in arrTested" :key="element.name">
-            {{ element.name }}
-          </div>
-        </draggable>
-      </div>
-    </div>
-
-    <div class="w-full lg:w-3/12 px-4 mt-16">
-      <div class="relative w-full mb-3 bg-white p-4 shadow-lg rounded">
-        <h2 class="text-blueGray-700 text-xl font-semibold">Done</h2>
-        <draggable class="list-group kanban-column" :list="arrDone" group="tasks">
-          <div class="list-group-item" v-for="element in arrDone" :key="element.name">
-            {{ element.name }}
-          </div>
-        </draggable>
-      </div>
-    </div>
+  <div class="flex flex-wrap">
+    <card-boardpenugasan
+      title="Open"
+      @onDragEnd="handleDragEnd"
+      :items="storiesFilteredByStatus('open')"
+      status="open"
+    />
+    <card-boardpenugasan
+      title="In Progress"
+      :items="storiesFilteredByStatus('inprogress')"
+      @onDragEnd="handleDragEnd"
+      status="inprogress"
+    />
+    <card-boardpenugasan
+      title="Testing"
+      :items="storiesFilteredByStatus('testing')"
+      @onDragEnd="handleDragEnd"
+      status="testing"
+    />
+    <card-boardpenugasan
+      title="Done"
+      :items="storiesFilteredByStatus('done')"
+      @onDragEnd="handleDragEnd"
+      status="done"
+    />
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import { VueDraggableNext } from "vue-draggable-next";
+import CardBoardPenugasan from "../../components/Cards/CardBoardPenugasan.vue";
 
 export default {
   name: "kanban-board",
   components: {
-    //import draggable as a component
-    draggable: VueDraggableNext,
+    "card-boardpenugasan": CardBoardPenugasan,
   },
   methods: {
-    ...mapActions(["getAllStories"]),
+    ...mapActions(["getAllStories", "updateStory"]),
+    storiesFilteredByStatus(status) {
+      return this.stories.filter((story) => story.status === status);
+    },
+    handleDragEnd(event, _, status) {
+      const filteredStories = this.storiesFilteredByStatus(status);
+      const targetStory = filteredStories.find(
+        (_, index) => index === event.oldIndex
+      );
+      const classNameSplitted = event.to.className.split(" ");
+      const newStatus = classNameSplitted[2];
+      console.log(newStatus)
+
+      const updatedStory = { ...targetStory, status: newStatus };
+      this.updateStory(updatedStory);
+    },
   },
   computed: {
     stories() {
-      return this.$store.state.story.storytList;
+      return this.$store.state.story.storyList;
+    },
+    storiesOpen() {
+      return this.$store.state.story.storyList.filter(
+        (item) => item.status === "open"
+      );
+    },
+    storiesInProgress() {
+      return this.$store.state.story.storyList.filter(
+        (item) => item.status === "inprogress"
+      );
+    },
+    storiesTesting() {
+      return this.$store.state.story.storyList.filter(
+        (item) => item.status === "testing"
+      );
+    },
+    storiesDone() {
+      return this.$store.state.story.storyList.filter(
+        (item) => item.status === "done"
+      );
     },
   },
   mounted() {
