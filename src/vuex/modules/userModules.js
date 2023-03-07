@@ -7,6 +7,7 @@ import {
   UPDATE_USER,
   GET_ALL_USER,
   LOGOUT_USER,
+  GET_ALL_OPERATOR
 } from "../constant";
 const cookieHandler = new CookieHandler();
 const userModules = {
@@ -14,10 +15,11 @@ const userModules = {
     data: null,
     users: [],
     isSubmitting: false,
+    operatorList:[]
   },
   mutations: {
     [GET_ALL_USER](state, user) {
-      state.users.push(user);
+      state.users=user;
     },
     [SET_IS_LOADING](state, payload) {
       state.isSubmitting = payload;
@@ -36,6 +38,9 @@ const userModules = {
     [LOGOUT_USER](state) {
       state.data = null;
     },
+    [GET_ALL_OPERATOR](state, operator){
+      state.operatorList = operator;
+    }
   },
   actions: {
     async getAllUser({ commit }, params) {
@@ -44,7 +49,17 @@ const userModules = {
           params,
         })
         .then(async (res) => {
-          await commit(GET_ALL_USER, res.data.data);
+          const user = res?.data?.data;
+          await commit(GET_ALL_USER, user);
+        });
+    },
+    async getAllOperator({ commit }) {
+      await apiClient()
+        .get(`/api/operator`)
+        .then((res) => {
+          const operator = res?.data?.data;
+          commit(GET_ALL_OPERATOR, operator);
+          console.log(operator);
         });
     },
     async getUser({ commit }, params) {

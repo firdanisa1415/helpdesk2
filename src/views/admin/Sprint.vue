@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="pb-4 flex justify-end">
+    <div class="pb-4 mt-2 flex justify-end">
       <button
         class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
         type="button"
         id="Story"
         @click="handleClickCreateStory"
       >
-        Tambah Story
+        Tambah Sprint
       </button>
     </div>
     <div class="overflow-x-auto relative sm:rounded-lg">
@@ -23,15 +23,14 @@
                     <div class="relative w-full mb-3">
                       <label
                         class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
                       >
-                        Judul Story
+                        Isi Story
                       </label>
                       <input
                         type="text"
                         v-model="form.isi_story"
                         class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Isikan Epic"
+                        placeholder="Isikan Story"
                       />
                     </div>
                   </div>
@@ -39,7 +38,6 @@
                     <div class="relative w-full mb-3">
                       <label
                         class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
                       >
                         Epic
                       </label>
@@ -55,7 +53,6 @@
                     <div class="relative w-full mb-3">
                       <label
                         class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
                       >
                         Sprint
                       </label>
@@ -67,19 +64,21 @@
                       />
                     </div>
                   </div>
+                  <div class="relative w-full text-center mt-2">
                   <button
-                    class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-2 ease-linear transition-all duration-150"
                     @click="modalStory = false"
                     type="button"
                   >
                     Batal
                   </button>
                   <button
-                    class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ml-2 ease-linear transition-all duration-150"
                     type="submit"
                   >
                   {{ isEditStory ? "Simpan" : "Tambah" }}
                   </button>
+                </div>
                 </div>
               </form>
             </template>
@@ -108,7 +107,7 @@
                 <div class="flex flex-wrap">
                   <div class="lg:w-3/12 ">
                     <div class="relative w-full mb-3">
-                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Judul Epic</h2>
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Isi Story</h2>
                     </div>
                   </div>
                   <div class="lg:w-9/12">
@@ -122,13 +121,13 @@
                 <div class="flex flex-wrap">
                   <div class="lg:w-3/12 ">
                     <div class="relative w-full mb-3">
-                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Isi Epic</h2>
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Judul Epic</h2>
                     </div>
                   </div>
                   <div class="lg:w-9/12">
                     <div class="relative w-full mb-3">
                       <h2 class="block text-black text-xs font-reguler mb-2">
-                        {{ form?.epic_id }}
+                        {{ form?.epic_id}}
                       </h2>
                     </div>
                   </div>
@@ -147,9 +146,7 @@
                     </div>
                   </div>
                 </div>
-          </template>
-          <template #footer>
-                    <div class="text-center">
+                <div class="text-center mt-2">
                       <button
                         class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                         @click="detailStory = false"
@@ -157,7 +154,7 @@
                         Oke
                       </button>
                     </div>
-                  </template>
+          </template>
         </modal>
       </div>
       <div>
@@ -170,18 +167,18 @@
               <div class="flex flex-wrap">
                 <div class="w-full px-4">
                   <div class="relative w-full mb-3 text-center">
-                    <h5 class="font-semibold mb-3">
+                    <h5 >
                       Yakin ingin menghapus data pelaporan
-                      {{ form?.id_story }}? 
                     </h5>
+                    <h5 class="font-bold mb-6">{{ form?.id_story }}?</h5>
                     <button
-                  class="bg-gray-600 text-black active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  class="bg-blue-300 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-2 ease-linear transition-all duration-150"
                   @click="deleteStory = false"
                 >
                   Batal
                 </button>
                 <button
-                  class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ml-1 ease-linear transition-all duration-150"
+                  class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ml-2 ease-linear transition-all duration-150"
                   @click="deleteStoryData(form)"
                 >
                   Hapus
@@ -260,12 +257,14 @@ import { defineComponent } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
 import Modal from "@/components/Modal/ModalDetail.vue";
 import { mapActions } from "vuex";
+// import kanbanCard from "@/components/Cards/CardSprint.vue";
 
 export default defineComponent({
   name: "Data-story",
   components: {
     draggable: VueDraggableNext,
     Modal,
+    // 'kanban-card':kanbanCard,
   },
   data:() => ({
     form: {},
@@ -276,7 +275,7 @@ export default defineComponent({
     //  };
   }),
   methods: {
-    ...mapActions(["getAllStories", "createStory", "updateStory", "deleteStory", ]),
+    ...mapActions(["getAllStories", "createStory", "updateStory", "deleteStories",]),
     handleShowDetail(item) {
       this.detailStory = true;
       this.form = { ...item };
@@ -304,7 +303,7 @@ export default defineComponent({
         },
       });
       if (!item) return;
-      this.deleteStorys(item.id_story)
+      this.deleteStories(item.id_story)
         .then(() => {
           Toast.fire({
             icon: "success",
@@ -401,7 +400,7 @@ export default defineComponent({
       console.log(item);
       this.form = {
         id_story: item.id_story,
-        judul_story: item.isi_story,
+        isi_story: item.isi_story,
         epic_id: item.epic_id,
         sprint_id: item.sprint_id,
       };

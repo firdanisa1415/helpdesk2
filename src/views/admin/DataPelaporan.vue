@@ -64,6 +64,7 @@
                       <option>Lainnya</option>
                     </select>
                   </div>
+                </div>
                   <div class="w-full px-4">
                   <div class="relative w-full mb-3">
                     <label
@@ -99,18 +100,18 @@
                 <div class="w-full px-4">
                   <div class="relative w-full mb-3">
                     <label
-                      for="countries"
                       class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       >PIC Pelaporan</label
                     >
                     <select
-                      id="divisi"
+                      id="pic"
+                      v-model="form.pic_pelaporan"
                       class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     >
-                      <option>--Pilih PIC Pelaporan--</option>
-                      <option>Budi</option>
-                      <option>Bambang</option>
-                      <option>Joko</option>
+                      <option>--PIC PELAPORAN--</option>
+                      <option>Rahmat Yoyok P.</option>
+                      <option>Agus Setyawan</option>
+                      <option>A. Zaki Ubaid</option>
                     </select>
                   </div>
                 </div>
@@ -125,21 +126,39 @@
                     <input type="file" id="dropzoneFile" class="dropzoneFile" />
                   </div>
                 </div>
-                <button
-                  class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                <!-- <div class="flex flex-wrap">
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    >
+                      status
+                    </label>
+                    <input
+                      type="text"
+                      v-model="form.status"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Isikan Status"
+                    />
+                  </div>
+                </div>
+                </div> -->
+                <div class="relative w-full text-center mt-4">
+                  <button
+                  class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-2 ease-linear transition-all duration-150"
                   @click="modalPelaporan = false"
                   type="button"
                 >
                   Batal
                 </button>
                 <button
-                  class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ml-2 ease-linear transition-all duration-150"
                   type="submit"
                 >
                   {{ isEditPelaporan ? "Simpan" : "Tambah" }}
                 </button>
-              </div>
-            </form>
+                </div>
+              </form>
           </template>
         </modal>
       </div>
@@ -149,27 +168,112 @@
             <h3 class="text-2xl font-bold text-center">Detail Pelaporan</h3>
           </template>
           <template #body>
-            <div>
-              <div class="flex flex-wrap">
-                <div class="w-full px-4">
-                  <div class="relative w-full mb-3">
-                    <h5>
-                      {{ form?.id_pelaporan }}
-                    </h5>
-                    <h5>
-                      {{ form?.judul_pelaporan }}
-                    </h5>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Nomor Ticket</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.id_pelaporan}}
+                      </h2>
+                    </div>
                   </div>
                 </div>
-               <!-- Buttons -->
-               <button
-                  class="bg-blue-900 text-black active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                  @click="detailPelaporan = false"
-                >
-                  Tutup
-                </button>
-              </div>
-            </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Judul Pelaporan</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.judul_pelaporan}}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Jenis Produk</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.jenis_product}}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Isi Pelaporan</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.isi_pelaporan }}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Harapan</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.harapan }}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">PIC Pelaporan</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.pic_pelaporan }}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.status }}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center mt-2">
+                      <button
+                        class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                        @click="detailPelaporan = false"
+                      >
+                        Oke
+                      </button>
+                    </div>
           </template>
         </modal>
       </div>
@@ -182,28 +286,27 @@
             <div>
               <div class="flex flex-wrap">
                 <div class="w-full px-4">
-                  <div class="relative w-full mb-3">
+                  <div class="relative w-full mb-3 text-center">
                     <h5>
                       Yakin ingin menghapus data pelaporan
-                      {{ form?.id_pelaporan }}? Data yang sudah dihapus tidak
-                      dapat dikembalikan
                     </h5>
-                  </div>
-                </div>
-
-                <!-- Buttons -->
-                <button
-                  class="bg-gray-600 text-black active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    <h5 class="font-bold mb-6">
+                      {{ form?.id_pelaporan }}?
+                    </h5>
+                    <button
+                  class="bg-blue-300 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-2 ease-linear transition-all duration-150"
                   @click="deletePelaporan = false"
                 >
                   Batal
                 </button>
                 <button
-                  class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ml-2n ease-linear transition-all duration-150"
                   @click="deletePelaporanData(form)"
                 >
                   Hapus
                 </button>
+                  </div>
+                </div>
               </div>
             </div>
           </template>
@@ -298,31 +401,7 @@ export default {
     detailPelaporan: false,
     deletePelaporan: false,
     isEditPelaporan: false,
-    //  };
-    dt: {
-      column: [
-        "Nomor Ticket",
-        "Judul Pelaporan",
-        "Jenis Product",
-        "Harapan",
-        "Status",
-      ],
-      action: [
-        {
-          text: "Detail",
-          color: "primary",
-        },
-        {
-          text: "Ubah",
-          color: "warning",
-        },
-        {
-          text: "Hapus",
-          color: "danger",
-        },
-      ],
-    },
-  }),
+    }),
   methods: {
     ...mapActions([
       "getAllReports",
@@ -423,7 +502,7 @@ export default {
        * @todo sementara aku spread dulu isian form dari input sama inputan hardcode (status & lampiran)
        * @type `Object`
        */
-      const submitData = { status: "open", lampiran: "tes.png", ...this.form };
+      const submitData = { status: "open", ...this.form };
       this.createReport(submitData)
         .then(() => {
           this.modalPelaporan = false;
@@ -480,6 +559,9 @@ export default {
     reports() {
       return this.$store.state.report.reportList;
     },
+    operator(){
+      return this.$store.state.operator.operatorList;
+    }
   },
   mounted() {
     this.$store.dispatch("getAllReports");
@@ -494,15 +576,5 @@ export default {
       immediate: true,
     },
   },
-  // setup() {
-  //   let dropzoneFile = ref("");
-  //   const drop = (e) => {
-  //     dropzoneFile.value = e.dataTransfer.files[0];
-  //   };
-  //   const selectedFile = () => {
-  //     dropzoneFile.value = document.querySelector(".dropzoneFile").files[0];
-  //   };
-  //   return { dropzoneFile, drop, selectedFile };
-  // },
 };
 </script>

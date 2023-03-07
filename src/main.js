@@ -21,6 +21,7 @@ import Auth from "@/layouts/Auth.vue";
 
 import Dashboard from "@/views/admin/Dashboard.vue";
 import Pelaporan from "@/views/admin/DataPelaporan.vue";
+import BoardPelaporan from "@/views/admin/BoardPelaporan.vue";
 import Board from "@/views/admin/BoardPenugasan.vue";
 import Pengguna from "@/views/admin/DataPengguna.vue";
 import Backlog from "@/views/admin/Backlog.vue";
@@ -59,6 +60,10 @@ const routes = [
         component: Pelaporan,
       },
       {
+        path: adminRouteLinks.boardpelaporan,
+        component: BoardPelaporan,
+      },
+      {
         path: adminRouteLinks.backlog,
         component: Backlog,
       },
@@ -87,6 +92,10 @@ const routes = [
       },
       {
         path: credsRouteLinks.logout,
+        component: Register,
+      },
+      {
+        path: credsRouteLinks.guest,
         component: Register,
       },
     ],

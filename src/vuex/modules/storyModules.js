@@ -24,8 +24,8 @@ const storyModules = {
     // lampiran: "",
   },
   mutations: {
-    [GET_ALL_STORY](state, storys) {
-      state.storyList = storys;
+    [GET_ALL_STORY](state, story) {
+      state.storyList = story;
     },
     [SET_STORY](state, payload) {
       state = payload;
@@ -43,34 +43,26 @@ const storyModules = {
       state.storyList.push(payload);
     },
     [DELETE_STORY](state, payload) {
-      state.storyList.push(payload);
+      const index = state.storyList.findIndex(
+        (post) => post.id_story === payload
+      );
+      state.storyList.splice(index, 1);
     },
   },
   actions: {
     async getAllStories({ commit }) {
       await apiClient()
-        .get("/api/story")
+        .get(`/api/story`)
         .then((res) => {
           const story = res?.data?.data;
           commit(GET_ALL_STORY, story);
           console.log(story);
         });
     },
-    async createstory({ commit }, payload) {
+    async createStory({ commit }, {epic_id, ...rest}) {
       await apiClient()
-        .post("/api/story", payload)
+        .post(`/api/story/${epic_id}`, rest)
         .then((res) => {
-          /**
-           * @todo Perlu cek bentukan data di create pelaporan controller.
-           * @argument
-           * {
-           *    status: "success",
-           *    data: {...newPelaporan}
-           * }
-           * @example brarti kalau di frontend nya harus mengikuti BE ditambah pakai argumentnya dari axios (res.data).
-           * @example Misal bentukan existing di BE, kita mau set data barunya. Jadi tinggal response.data.data;
-           *
-           */
           const { status: statusDariBackend, data: dataDariBackend } = res.data;
           console.log(statusDariBackend);
           const data = dataDariBackend ?? {};
@@ -87,15 +79,15 @@ const storyModules = {
           commit(UPDATE_STORY, data);
         });
     },
-    async deletestory({ commit }, payload) {
+    async deleteStories({ commit }, payload) {
       await apiClient()
-        .delete("/api/story/{id}", payload)
+        .delete(`/api/story/${payload}` )
         .then((res) => {
           const { status: statusDariBackend, data: dataDariBackend } = res.data;
           console.log(statusDariBackend);
           const data = dataDariBackend ?? {};
           commit(DELETE_STORY, data);
-        });
+        })
     },
   },
 };

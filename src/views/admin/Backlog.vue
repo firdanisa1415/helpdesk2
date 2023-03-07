@@ -12,163 +12,166 @@
     </div>
     <div class="overflow-x-auto relative sm:rounded-lg">
       <div>
-          <modal :show="modalEpic">
-            <template #header>
-              <h3 class="text-2xl font-bold text-center">{{ isEditEpic ? "Ubah" : "Tambah" }} Epic</h3>
-            </template>
-            <template #body>
-              <form @submit.prevent="isEditEpic ? submitEditForm() : submitForm()">>
-                <div class="flex flex-wrap">
-                  <div class="w-full px-4">
-                    <div class="relative w-full mb-3">
-                      <label
-                        class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Judul Epic
-                      </label>
-                      <input
-                        type="text"
-                        v-model="form.judul_epic"
-                        class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Isikan Epic"
-                      />
-                    </div>
+        <modal :show="modalEpic">
+          <template #header>
+            <h3 class="text-2xl font-bold text-center">{{ isEditEpic ? "Ubah" : "Tambah" }} Epic</h3>
+          </template>
+          <template #body>
+            <form @submit.prevent="isEditEpic ? submitEditForm() : submitForm()">
+              <div class="flex flex-wrap">
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Judul Epic </label>
+                    <input
+                      type="text"
+                      v-model="form.judul_epic"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Isikan Epic"
+                    />
                   </div>
-                  <div class="w-full px-4">
-                    <div class="relative w-full mb-3">
-                      <label
-                        class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Isi Epic
-                      </label>
-                      <input
-                        type="text"
-                        v-model="form.isi_epic"
-                        class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Jelaskan Gagasan Anda"
-                      />
-                    </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Isi Epic </label>
+                    <input
+                      type="text"
+                      v-model="form.isi_epic"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Jelaskan Gagasan Anda"
+                    />
                   </div>
-                  <div class="w-full px-4">
-                    <div class="relative w-full mb-3">
-                      <label
-                        class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Harapan
-                      </label>
-                      <input
-                        type="text"
-                        v-model="form.harapan"
-                        class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Tuliskan Harapan Anda"
-                      />
-                    </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-4">
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Harapan </label>
+                    <input
+                      type="text"
+                      v-model="form.harapan"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Tuliskan Harapan Anda"
+                    />
                   </div>
+                </div>
+                <div class="relative w-full text-center mt-2">
                   <button
-                    class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-2 ease-linear transition-all duration-150"
                     @click="modalEpic = false"
                     type="button"
                   >
                     Batal
                   </button>
-                  <button
-                    class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                    type="submit"
-                  >
-                  {{ isEditEpic ? "Simpan" : "Tambah" }}
+                  <button class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ml-2 ease-linear transition-all duration-150" type="submit">
+                    {{ isEditEpic ? "Simpan" : "Tambah" }}
                   </button>
                 </div>
-              </form>
-            </template>
-          </modal>   
-    </div>
-    <div>
+              </div>
+            </form>
+          </template>
+        </modal>
+      </div>
+      <div>
         <modal :show="detailEpic">
           <template #header>
             <h3 class="text-2xl font-bold text-center">Detail Epic</h3>
           </template>
           <template #body>
-                <div class="flex flex-wrap">
-                  <div class="lg:w-3/12 ">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Nomor Ticket</h2>
-                    </div>
-                  </div>
-                  <div class="lg:w-9/12">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block text-black text-xs font-reguler mb-2">
-                        {{ form?.id_epic}}
-                      </h2>
-                    </div>
-                  </div>
+            <div class="flex flex-wrap">
+              <div class="lg:w-3/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Nomor Ticket</h2>
                 </div>
-                <div class="flex flex-wrap">
-                  <div class="lg:w-3/12 ">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Judul Epic</h2>
-                    </div>
-                  </div>
-                  <div class="lg:w-9/12">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block text-black text-xs font-reguler mb-2">
-                        {{ form?.judul_epic}}
-                      </h2>
-                    </div>
-                  </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ form?.id_epic }}
+                  </h2>
                 </div>
-                <div class="flex flex-wrap">
-                  <div class="lg:w-3/12 ">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Isi Epic</h2>
-                    </div>
-                  </div>
-                  <div class="lg:w-9/12">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block text-black text-xs font-reguler mb-2">
-                        {{ form?.isi_epic }}
-                      </h2>
-                    </div>
-                  </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap">
+              <div class="lg:w-3/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Judul Epic</h2>
                 </div>
-                <div class="flex flex-wrap">
-                  <div class="lg:w-3/12 ">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Harapan</h2>
-                    </div>
-                  </div>
-                  <div class="lg:w-9/12">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block text-black text-xs font-reguler mb-2">
-                        {{ form?.harapan }}
-                      </h2>
-                    </div>
-                  </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ form?.judul_epic }}
+                  </h2>
                 </div>
-                <div class="flex flex-wrap">
-                  <div class="lg:w-3/12 ">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status</h2>
-                    </div>
-                  </div>
-                  <div class="lg:w-9/12">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block text-black text-xs font-reguler mb-2">
-                        {{ form?.status }}
-                      </h2>
-                    </div>
-                  </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap">
+              <div class="lg:w-3/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Isi Epic</h2>
                 </div>
-                <div class="text-center mt-2">
-                      <button
-                        class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                        @click="detailEpic = false"
-                      >
-                        Oke
-                      </button>
-                    </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ form?.isi_epic }}
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap">
+              <div class="lg:w-3/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Harapan</h2>
+                </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ form?.harapan }}
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap">
+              <div class="lg:w-3/12">
+                <div class="relative w-full mb-4">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status</h2>
+                </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-4">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ form?.status }}
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <hr class="my-2 border-blueGray-300" />
+            <h3 class="text-xs font-bold text-left mb-2">List Story</h3>
+            <button @click="showAddStoryForm = true">Tambah Story</button>
+            <div v-if="showAddStoryForm">
+              <form @submit.prevent="addStory">
+                <input
+                  type="text"
+                  v-model="inputValue.isi_story"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Isikan Story"
+                />
+                <button type="submit">Tambahkan</button>
+              </form>
+            </div>
+            <ul>
+              <li v-for="story in stories" :key="story.id_story">
+                <p>{{ story.isi_story }}</p>
+              </li>
+            </ul>
+            <div class="text-center mt-2">
+              <button
+                class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                @click="detailEpic = false"
+              >
+                Oke
+              </button>
+            </div>
           </template>
         </modal>
       </div>
@@ -182,92 +185,81 @@
               <div class="flex flex-wrap">
                 <div class="w-full px-4">
                   <div class="relative w-full mb-3 text-center">
-                    <h5 class="font-bold ">
-                      Yakin ingin menghapus data epic
-                      {{ form?.id_epic }}? 
-                    </h5>
-                     <!-- Buttons -->
-                <button
-                  class="bg-gray-600 text-black active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                  @click="deleteEpic = false"
-                >
-                  Batal
-                </button>
-                <button
-                  class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                  @click="deleteEpicData(form)"
-                >
-                  Hapus
-                </button>
+                    <h5 class="font-semibold">Yakin ingin menghapus data epic</h5>
+                    <h5 class="font-bold mb-6">{{ form?.id_epic }}?</h5>
+                    <button
+                      class="bg-blue-300 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-2 ease-linear transition-all duration-150"
+                      @click="deleteEpic = false"
+                    >
+                      Batal
+                    </button>
+                    <button
+                      class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ml-2 ease-linear transition-all duration-150"
+                      @click="deleteEpicData(form)"
+                    >
+                      Hapus
+                    </button>
                   </div>
                 </div>
-               
               </div>
             </div>
           </template>
         </modal>
       </div>
-    <table class="w-full mb-5 overflow-x-auto relative">
-      <thead class="text-xs text-white uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400">
-        <tr class="w-full">
-          <th class="py-3 px-6">Nomor Epic</th>
-          <th class="py-3 px-6">Judul Epic</th>
-          <th class="py-3 px-6">Isi Epic</th>
-          <th class="py-3 px-6">Harapan</th>
-          <th class="py-3 px-6">Nama Pelapor</th>
-          <th class="py-3 px-6">Status</th>
-          <th class="py-3 px-6">Action</th>
-        </tr>
-      </thead>
-      <draggable tag="tbody">
-        <tr 
-          v-for="item in epics" 
-          :key="item.id_epic" 
-          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
-          <th
-              scope="row"
-              class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
+      <table class="w-full mb-5 overflow-x-auto relative">
+        <thead class="text-xs text-white uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400">
+          <tr class="w-full">
+            <th class="py-3 px-6">Nomor Epic</th>
+            <th class="py-3 px-6">Judul Epic</th>
+            <th class="py-3 px-6">Deskripsi</th>
+            <th class="py-3 px-6">Nama Pelapor</th>
+            <th class="py-3 px-6">Status</th>
+            <th class="py-3 px-6">Total Story</th>
+            <th class="py-3 px-6">Action</th>
+          </tr>
+        </thead>
+        <draggable tag="tbody">
+          <tr v-for="item in epics" :key="item.id_epic" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
+            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
               {{ item?.id_epic }}
             </th>
             <td class="py-4 px-6">{{ item?.judul_epic }}</td>
             <td class="py-4 px-6">{{ item?.isi_epic }}</td>
-            <td class="py-4 px-6">{{ item?.harapan }}</td>
             <td class="py-4 px-6">Budi</td>
             <td class="py-4 px-6">{{ item?.status }}</td>
-          <td>
-            <div class="flex space-x-2 justify-center py-4 px-6">
-              <button
-              class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
-              type="button"
-              id="detail1"
-              @click="handleShowDetail(item)"
-            >
-              <i class="fas fa-info-circle text-white" style="font-size: 15px"></i>
-            </button>
-            <button
-              class="bg-blue-300 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150"
-              type="button"
-              id="update"
-              @click="handleSelectedData(item)"
-            >
-              <i class="fas fa-pen-square text-white" style="font-size: 15px"></i>
-            </button>
-            <button
-              class="bg-red-600 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150"
-              type="button"
-              id="delete"
-              @click="handleShowDeleteModal(item)"
-            >
-              <i class="fas fa-trash text-white" style="font-size: 15px"></i>
-            </button>
-            </div>
-          </td>
-        </tr>
-      </draggable>
-    </table>
-    <div>
-    </div>
+            <td class="py-4 px-6">{{ item?.harapan }}</td>
+            <td>
+              <div class="flex space-x-2 justify-center py-4 px-6">
+                <button
+                  class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                  type="button"
+                  id="detail1"
+                  @click="handleShowDetail(item)"
+                >
+                  <i class="fas fa-info-circle text-white" style="font-size: 15px"></i>
+                </button>
+                <button
+                  class="bg-blue-300 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150"
+                  type="button"
+                  id="update"
+                  @click="handleSelectedData(item)"
+                >
+                  <i class="fas fa-pen-square text-white" style="font-size: 15px"></i>
+                </button>
+                <button
+                  class="bg-red-600 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150"
+                  type="button"
+                  id="delete"
+                  @click="handleShowDeleteModal(item)"
+                >
+                  <i class="fas fa-trash text-white" style="font-size: 15px"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </draggable>
+      </table>
+      <div></div>
     </div>
   </div>
 </template>
@@ -283,16 +275,24 @@ export default defineComponent({
     draggable: VueDraggableNext,
     Modal,
   },
-  data:() => ({
+  props: {
+    epic_id: {
+      type: Number,
+      required: true,
+    },
+  },
+  data: () => ({
     form: {},
     modalEpic: false,
     detailEpic: false,
     isEditEpic: false,
     deleteEpic: false,
+    inputValue: {},
+    showAddStoryForm: false,
     //  };
   }),
   methods: {
-    ...mapActions(["getAllEpics", "createEpic", "updateEpic", "deleteEpics", ]),
+    ...mapActions(["getAllEpics", "createEpic", "updateEpic", "deleteEpics", "createStory"]),
     handleShowDetail(item) {
       this.detailEpic = true;
       this.form = { ...item };
@@ -386,7 +386,7 @@ export default defineComponent({
         },
       });
 
-      const submitData = { status: "Sprint 1", ...this.form };
+      const submitData = { status: "sprint 1", ...this.form };
       this.createEpic(submitData)
         .then(() => {
           this.modalEpic = false;
@@ -411,6 +411,19 @@ export default defineComponent({
           });
         });
     },
+    addStory() {
+      const submitData = {epic_id: this.id_epic, sprint_id: "SPR-000001", status: "Open", ...this.inputValue };
+      this.createStory(submitData)
+        .then(() => {
+          this.showAddStoryForm = false;
+        })
+        .catch((err) => {
+          this.showAddStoryForm = false;
+          const errorFromBe = err.response?.data?.message ?? {};
+          const errorMessages = Object.entries(errorFromBe).length > 0 ? Object.values(errorFromBe).map((item) => item[0]) : [];
+          console.log(errorMessages);
+        });
+    },
     handleSelectedData(item) {
       this.modalEpic = true;
       this.isEditEpic = true;
@@ -432,10 +445,14 @@ export default defineComponent({
     epics() {
       return this.$store.state.epic.epicList;
     },
+    stories() {
+      return this.$store.state.story.storyList.filter((story)=> story.epic_id === this.id_epic);
+    },
   },
   mounted() {
-    this.$store.dispatch("getAllEpics");
+    this.$store.dispatch("getAllEpics", "getAllStories");
     console.log(this.epics);
+    console.log(this.stories);
   },
   watch: {
     modalEpic: {

@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<script>
+  <script>
 import { mapActions } from "vuex";
 import CardBoardPenugasan from "../../components/Cards/CardBoardPenugasan.vue";
 

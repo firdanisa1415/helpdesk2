@@ -46,7 +46,7 @@ const reportModules = {
   actions: {
     async getAllReports({ commit }) {
       await apiClient()
-        .get("/api/pelaporan")
+        .get(`/api/pelaporan`)
         .then((res) => {
           const reports = res?.data?.data;
           commit(GET_ALL_REPORT, reports);
@@ -55,7 +55,7 @@ const reportModules = {
     },
     async createReport({ commit }, payload) {
       await apiClient()
-        .post("/api/pelaporan", payload)
+        .post(`/api/pelaporan`, payload)
         .then((res) => {
           /**
            * @todo Perlu cek bentukan data di create pelaporan controller.
@@ -68,9 +68,10 @@ const reportModules = {
            * @example Misal bentukan existing di BE, kita mau set data barunya. Jadi tinggal response.data.data;
            *
            */
-          const { status: statusDariBackend, data: dataDariBackend } = res.data;
+          const { status: statusDariBackend, data: dataDariBackend, file_url } = res.data;
           console.log(statusDariBackend);
           const data = dataDariBackend ?? {};
+          data.file_url = file_url;
           commit(CREATE_REPORT, data);
         });
     },
@@ -84,10 +85,15 @@ const reportModules = {
           commit(UPDATE_REPORT, data);
         });
     },
-    async deleteReport(_, payload) {
+    async deleteReport({commit}, payload) {
       await apiClient()
-        .delete("/api/pelaporan/{id}", payload)
-        .then(() => {});
+        .delete(`/api/pelaporan/${payload}`)
+        .then((res) => {
+          const { status: statusDariBackend, data: dataDariBackend } = res.data;
+          console.log(statusDariBackend);
+          const data = dataDariBackend ?? {};
+          commit(DELETE_REPORT, data);
+        });
     },
   },
 };

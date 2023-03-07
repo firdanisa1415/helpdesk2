@@ -3,8 +3,8 @@
     <index-navbar />
     <section class="header relative items-center flex h-screen max-h-860-px">
       <div class="container mx-auto align-items-center flex flex-wrap">
+        <img class="sm:w-6/12 mt-10 w-10/12 max-h-860-px" src="@/assets/img/hero.png" alt="..." />
         <div class="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-2 py-2">
-          <div class="pt-32 sm:pt-0">
             <h2 class="font-semibold text-4xl text-blueGray-600">Layanan Pengaduan Permasalahan Sistem</h2>
             <p class="mt-4 text-lg leading-relaxed text-blueGray-500">Laporkan dan ajukan Terkait permasalahan sistem operasional anda disini, Operator kami akan segera memprosesnya</p>
             <div class="mt-12">
@@ -16,11 +16,8 @@
             </button>
             </router-link>
             </div>
-          </div>
         </div>
       </div>
-
-      <img class="absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860-px" src="@/assets/img/hero.png" alt="..." />
     </section>
 
     <section class="mt-48 md:mt-40 pb-40 relative bg-blueGray-100">
