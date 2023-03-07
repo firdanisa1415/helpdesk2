@@ -1,4 +1,5 @@
 import apiClient from "../../utils/apiClient";
+import { convertToEncodedURL } from "../../utils/usefulFunctions";
 import {
   SET_STORY,
   DELETE_STORY,
@@ -15,13 +16,6 @@ const storyModules = {
     story: null,
     isUpdating: false,
     updatedData: null,
-    // judul_laporan: "",
-    // isi_laporan: "",
-    // harapan: "",
-    // product: "",
-    // jenis_pelaporan: "",
-    // status: "",
-    // lampiran: "",
   },
   mutations: {
     [GET_ALL_STORY](state, story) {
@@ -50,16 +44,21 @@ const storyModules = {
     },
   },
   actions: {
-    async getAllStories({ commit }) {
+    async getAllStories({ commit }, obj) {
+      let params = "";
+      if (obj) {
+        params = convertToEncodedURL(obj);
+        params = params.length ? "?" + params : "";
+      }
       await apiClient()
-        .get(`/api/story`)
+        .get(`/api/story` + params)
         .then((res) => {
           const story = res?.data?.data;
           commit(GET_ALL_STORY, story);
           console.log(story);
         });
     },
-    async createStory({ commit }, {epic_id, ...rest}) {
+    async createStory({ commit }, { epic_id, ...rest }) {
       await apiClient()
         .post(`/api/story/${epic_id}`, rest)
         .then((res) => {
@@ -81,13 +80,13 @@ const storyModules = {
     },
     async deleteStories({ commit }, payload) {
       await apiClient()
-        .delete(`/api/story/${payload}` )
+        .delete(`/api/story/${payload}`)
         .then((res) => {
           const { status: statusDariBackend, data: dataDariBackend } = res.data;
           console.log(statusDariBackend);
           const data = dataDariBackend ?? {};
           commit(DELETE_STORY, data);
-        })
+        });
     },
   },
 };
