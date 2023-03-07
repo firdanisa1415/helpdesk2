@@ -306,7 +306,7 @@
             <td class="py-4 px-6">{{ item?.nama_karyawan }}</td>
             <td class="py-4 px-6">{{ item?.nrp }}</td>
             <td class="py-4 px-6">{{ item?.divisi.nama_divisi }}</td>
-            <td class="py-4 px-6">{{ item?.roles.name }}</td>
+            <td class="py-4 px-6">{{ item?.roles[0]?.name }}</td>
             <td class="py-4 px-6">{{ item?.email }}</td>
             <td>
               <div class="flex space-x-2 justify-center px-6">

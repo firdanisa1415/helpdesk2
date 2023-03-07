@@ -108,10 +108,8 @@
                       v-model="form.pic_pelaporan"
                       class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     >
-                      <option>--PIC PELAPORAN--</option>
-                      <option>Rahmat Yoyok P.</option>
-                      <option>Agus Setyawan</option>
-                      <option>A. Zaki Ubaid</option>
+                      <option disabled>---PIC Pelaporan---</option>
+                      <option v-for="item in operator" :key="item.id">{{ item.nama_karyawan }}</option>
                     </select>
                   </div>
                 </div>
@@ -408,6 +406,7 @@ export default {
       "deleteReport",
       "createReport",
       "updateReport",
+      "getAllOperator"
     ]),
     handleShowDetail(item) {
       this.detailPelaporan = true;
@@ -560,11 +559,12 @@ export default {
       return this.$store.state.report.reportList;
     },
     operator(){
-      return this.$store.state.operator.operatorList;
+      return this.$store.state.user.operatorList;
     }
   },
   mounted() {
     this.$store.dispatch("getAllReports");
+    this.$store.dispatch("getAllOperator");
     console.log(this.reports);
     console.log(this.form);
   },
