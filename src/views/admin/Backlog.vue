@@ -189,6 +189,12 @@
             </div>
             <hr class="my-2 border-blueGray-300" />
             <h3 class="text-xs font-bold text-left mb-2">List Story</h3>
+            <ul>
+              <li v-for="story in stories" :key="story.id_story">
+                <input type="checkbox" v-model="checkedItems">
+                {{ story.isi_story }}
+              </li>
+            </ul>
             <button @click="showAddStoryForm = true">Tambah Story</button>
             <div v-if="showAddStoryForm">
               <form @submit.prevent="addStory(form)">
@@ -201,11 +207,6 @@
                 <button type="submit">Tambahkan</button>
               </form>
             </div>
-            <ul>
-              <li v-for="story in stories" :key="story.id_story">
-                <p>{{ story.isi_story }}</p>
-              </li>
-            </ul>
             <div class="text-center mt-2">
               <button
                 class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -352,6 +353,7 @@ export default defineComponent({
     inputValue: {},
     showAddStoryForm: false,
     selectedIdEpic: 0,
+    checkedItems: []
   }),
   methods: {
     ...mapActions(["createEpic", "updateEpic", "deleteEpics", "createStory"]),

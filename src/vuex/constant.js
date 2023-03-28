@@ -43,4 +43,11 @@ export const SET_GUEST = "SET_GUEST";
 export const UPDATE_GUEST = "UPDATE_GUEST";
 export const UPDATE_GUESTS = "UPDATE_GUESTS";
 export const DELETE_GUEST = "DELETE_GUEST";
-
+export const GET_ALL_ROLES = "GET_ALL_ROLES";
+export const GET_ALL_DIVISI = "GET_ALL_DIVISI";
+export const GET_ALL_SPRINT = "GET_ALL_SPRINT";
+export const CREATE_SPRINT = "CREATE_SPRINT";
+export const SET_SPRINT = "SET_SPRINT";
+export const UPDATE_SPRINT = "UPDATE_SPRINT";
+export const UPDATE_SPRINTS = "UPDATE_SPRINTS";
+export const DELETE_SPRINT = "DELETE_SPRINT";

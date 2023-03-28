@@ -101,46 +101,13 @@
                   <div class="relative w-full mb-3">
                     <label
                       class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                      >PIC Pelaporan</label
-                    >
-                    <select
-                      id="pic"
-                      v-model="form.pic_pelaporan"
-                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    >
-                      <option disabled>---PIC Pelaporan---</option>
-                      <option v-for="item in operator" :key="item.id">{{ item.nama_karyawan }}</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="w-full px-4">
-                  <div class="relative w-full mb-3">
-                    <label
-                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
                       Lampiran
                     </label>
-                    <input type="file" id="dropzoneFile" class="dropzoneFile" />
+                    <input type="file" @change="onFileChange" />
                   </div>
                 </div>
-                <!-- <div class="flex flex-wrap">
-                <div class="w-full px-4">
-                  <div class="relative w-full mb-3">
-                    <label
-                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    >
-                      status
-                    </label>
-                    <input
-                      type="text"
-                      v-model="form.status"
-                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Isikan Status"
-                    />
-                  </div>
-                </div>
-                </div> -->
                 <div class="relative w-full text-center mt-4">
                   <button
                   class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-2 ease-linear transition-all duration-150"
@@ -239,13 +206,27 @@
                 <div class="flex flex-wrap">
                   <div class="lg:w-3/12 ">
                     <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Klasifikasi</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.klasifikasi }}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
                       <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">PIC Pelaporan</h2>
                     </div>
                   </div>
                   <div class="lg:w-9/12">
                     <div class="relative w-full mb-3">
                       <h2 class="block text-black text-xs font-reguler mb-2">
-                        {{ form?.pic_pelaporan }}
+                        {{ form?.nama_pic }}
                       </h2>
                     </div>
                   </div>
@@ -310,6 +291,11 @@
           </template>
         </modal>
       </div>
+      <input type="text" 
+      v-model="searchTerm" 
+      class="px-3 py-3 mb-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring lg:w-3/12 ease-linear transition-all duration-150" 
+      placeholder="Cari..."
+      >
       <table class="w-full mb-5 overflow-x-auto relative">
         <thead
           class="text-xs text-white uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400"
@@ -320,14 +306,14 @@
             <th class="py-3 px-6">Isi Pelaporan</th>
             <th class="py-3 px-6">Jenis Product</th>
             <th class="py-3 px-6">Harapan</th>
+            <th class="py-3 px-6">Pic Pelaporan</th>
             <th class="py-3 px-6">Status</th>
             <th class="py-3 px-6">Action</th>
           </tr>
         </thead>
         <tbody>
           <tr
-            v-for="item in reports"
-            :key="item.id_pelaporan"
+          v-for="item in filteredItems" :key="item.id_pelaporan"
             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center"
           >
             <th
@@ -340,6 +326,7 @@
             <td class="py-4 px-6">{{ item?.isi_pelaporan }}</td>
             <td class="py-4 px-6">{{ item?.jenis_product }}</td>
             <td class="py-4 px-6">{{ item?.harapan }}</td>
+            <td class="py-4 px-6">{{ item?.nama_pic }}</td>
             <td class="py-4 px-6">{{ item?.status }}</td>
             <td>
               <div class="flex space-x-2 justify-center px-6">
@@ -399,6 +386,7 @@ export default {
     detailPelaporan: false,
     deletePelaporan: false,
     isEditPelaporan: false,
+    searchTerm: '',
     }),
   methods: {
     ...mapActions([
@@ -501,7 +489,7 @@ export default {
        * @todo sementara aku spread dulu isian form dari input sama inputan hardcode (status & lampiran)
        * @type `Object`
        */
-      const submitData = { status: "open", ...this.form };
+      const submitData = { status: "Open", ...this.form };
       this.createReport(submitData)
         .then(() => {
           this.modalPelaporan = false;
@@ -539,8 +527,10 @@ export default {
         id_pelaporan: item.id_pelaporan,
         judul_pelaporan: item.judul_pelaporan,
         isi_pelaporan: item.isi_pelaporan,
-        harapan: item.harapan,
         jenis_product: item.jenis_product,
+        class: item.class,
+        harapan: item.harapan,
+        pic_pelaporan:item.pic_pelaporan,
         status: item.status,
         lampiran: item.lampiran,
         // tanggal_mulai: item.tanggal_mulai,
@@ -560,7 +550,16 @@ export default {
     },
     operator(){
       return this.$store.state.user.operatorList;
-    }
+    },
+    filteredItems() {
+      return this.reports.filter(item =>{
+        return Object.keys(item).some(key =>
+          String(item[key]).toLowerCase().includes(this.searchTerm.toLowerCase())
+        );
+      }
+      );
+    },
+
   },
   mounted() {
     this.$store.dispatch("getAllReports");

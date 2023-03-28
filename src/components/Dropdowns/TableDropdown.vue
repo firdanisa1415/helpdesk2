@@ -6,7 +6,6 @@
       ref="btnDropdownRef"
       v-on:click="toggleDropdown($event)"
     >
-      <i class="fas fa-ellipsis-v"></i>
     </a>
     <div
       ref="popoverDropdownRef"

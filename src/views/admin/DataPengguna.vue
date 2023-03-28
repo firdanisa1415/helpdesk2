@@ -64,30 +64,27 @@
                     >
                       Divisi
                     </label>
-                    <input
-                      type="text"
+                    <select
                       v-model="form.divisi_id"
                       class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Tuliskan Harapanmu"
-                    />
+                    >
+                      <option disabled>---Pilih Divisi---</option>
+                      <option v-for="item in divisi" :key="item.id">{{ item.nama_divisi }}</option>
+                    </select>
                   </div>
                 </div>
                 <div class="w-full px-4">
                   <div class="relative w-full mb-3">
                     <label
-                      for="countries"
                       class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       >Role</label
                     >
                     <select
-                      id="divisi"
                       v-model="form.role_id"
                       class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     >
-                      <option>--Pilih Role--</option>
-                      <option>Karyawan Umum</option>
-                      <option>Operator</option>
-                      <option>Manager</option>
+                      <option disabled>---Roles---</option>
+                      <option v-for="item in roles" :key="item.id">{{ item.name }}</option>
                     </select>
                   </div>
                 </div>
@@ -369,7 +366,7 @@ export default {
     }),
   methods: {
     ...mapActions([
-      "getAllUser",
+      "getAllUser","getAllRoles", "getAllDivisi"
     ]),
     handleShowDetail(item) {
       this.detailPengguna = true;
@@ -520,9 +517,17 @@ export default {
     users() {
       return this.$store.state.user.users;
     },
+    roles(){
+      return this.$store.state.roles.roleList;
+    },
+    divisi(){
+      return this.$store.state.divisi.divisiList;
+    }
   },
   mounted() {
     this.$store.dispatch("getAllUser");
+    this.$store.dispatch("getAllRoles");
+    this.$store.dispatch("getAllDivisi");
     console.log(this.users);
     console.log(this.form);
   },

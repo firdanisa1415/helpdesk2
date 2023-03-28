@@ -55,7 +55,7 @@ const reportModules = {
     },
     async createReport({ commit }, payload) {
       await apiClient()
-        .post(`/api/pelaporan`, payload)
+        .post(`/api/prediksi`, payload)
         .then((res) => {
           /**
            * @todo Perlu cek bentukan data di create pelaporan controller.

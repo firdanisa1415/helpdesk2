@@ -58,6 +58,15 @@ const storyModules = {
           console.log(story);
         });
     },
+    async getStories({ commit }) {
+      await apiClient()
+        .get(`/api/stories`)
+        .then((res) => {
+          const stories = res?.data?.data;
+          commit(GET_ALL_STORY, stories);
+          console.log(stories);
+        });
+    },
     async createStory({ commit }, { epic_id, ...rest }) {
       await apiClient()
         .post(`/api/story/${epic_id}`, rest)

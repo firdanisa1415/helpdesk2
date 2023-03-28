@@ -37,7 +37,7 @@ export default {
     "card-boardpenugasan": CardBoardPenugasan,
   },
   methods: {
-    ...mapActions(["getAllStories", "updateStory"]),
+    ...mapActions(["getStories", "updateStory"]),
     storiesFilteredByStatus(status) {
       return this.stories.filter((story) => story.status === status);
     },
@@ -80,7 +80,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("getAllStories");
+    this.$store.dispatch("getStories");
   },
 };
 </script>
