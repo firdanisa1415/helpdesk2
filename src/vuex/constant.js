@@ -39,4 +39,11 @@ export const SET_STORY = "SET_STORY";
 export const UPDATE_STORY = "UPDATE_STORY";
 export const UPDATE_STORYS = "UPDATE_STORYS";
 export const DELETE_STORY = "DELETE_STORY";
-
+export const DELETE_SPRINT = "DELETE_SPRINT";
+export const SET_SPRINT = "SET_SPRINT";
+export const UPDATE_SPRINT = "UPDATE_SPRINT";
+export const UPDATE_SPRINTS = "UPDATE_SPRINTS";
+export const CREATE_SPRINT = "CREATE_SPRINT";
+export const GET_ALL_SPRINT = "GET_ALL_SPRINT";
+export const GET_ALL_ROLES = "GET_ALL_ROLES";
+export const GET_ALL_DIVISI = "GET_ALL_DIVISI";
