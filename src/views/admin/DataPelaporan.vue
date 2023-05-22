@@ -10,7 +10,7 @@
         Tambah Pelaporan
       </button>
     </div>
-    <div class="overflow-x-auto relative sm:rounded-lg">
+    <div  class="overflow-x-auto relative sm:rounded-lg">
       <div>
         <modal :show="modalPelaporan">
           <template #header>
@@ -301,6 +301,7 @@
           class="text-xs text-white uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400"
         >
           <tr>
+            <!-- <th class="py-3 px-6"><input type="checkbox"/></th> -->
             <th class="py-3 px-6">Nomor Ticket</th>
             <th class="py-3 px-6">Judul Pelaporan</th>
             <th class="py-3 px-6">Isi Pelaporan</th>
@@ -313,15 +314,11 @@
         </thead>
         <tbody>
           <tr
-          v-for="item in filteredItems" :key="item.id_pelaporan"
+          v-for="item in filteredItems" :key="item.id"
             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center"
           >
-            <th
-              scope="row"
-              class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              {{ item?.id_pelaporan }}
-            </th>
+            <!-- <td class="py-2 px-4"><input type="checkbox" @change="handleCheck(item)"/></td> -->
+            <td class="py-4 px-6">{{ item?.id_pelaporan }}</td>
             <td class="py-4 px-6">{{ item?.judul_pelaporan }}</td>
             <td class="py-4 px-6">{{ item?.isi_pelaporan }}</td>
             <td class="py-4 px-6">{{ item?.jenis_product }}</td>
@@ -363,12 +360,235 @@
                     style="font-size: 15px"
                   ></i>
                 </button>
+                <!-- <button v-if="selectedItems.length > 0" @click="handleDelete">Hapus</button> -->
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        
+      </table>
+    </div>
+    <!-- <div class="overflow-x-auto relative sm:rounded-lg">
+      <div>
+        <modal :show="detailPelaporan">
+          <template #header>
+            <h3 class="text-2xl font-bold text-center">Detail Pelaporan</h3>
+          </template>
+          <template #body>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Nomor Ticket</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.id_pelaporan}}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Judul Pelaporan</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.judul_pelaporan}}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Jenis Produk</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.jenis_product}}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Isi Pelaporan</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.isi_pelaporan }}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Harapan</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.harapan }}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Klasifikasi</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.klasifikasi }}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">PIC Pelaporan</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.nama_pic }}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.status }}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center mt-2">
+                      <button
+                        class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                        @click="detailPelaporan = false"
+                      >
+                        Oke
+                      </button>
+                    </div>
+          </template>
+        </modal>
+      </div>
+      <div>
+        <modal :show="deletePelaporan">
+          <template #header>
+            <h3 class="text-2xl font-bold text-center">Hapus Pelaporan</h3>
+          </template>
+          <template #body>
+            <div>
+              <div class="flex flex-wrap">
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3 text-center">
+                    <h5>
+                      Yakin ingin menghapus data pelaporan
+                    </h5>
+                    <h5 class="font-bold mb-6">
+                      {{ form?.id_pelaporan }}?
+                    </h5>
+                    <button
+                  class="bg-blue-300 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-2 ease-linear transition-all duration-150"
+                  @click="deletePelaporan = false"
+                >
+                  Batal
+                </button>
+                <button
+                  class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ml-2n ease-linear transition-all duration-150"
+                  @click="deletePelaporanData(form)"
+                >
+                  Hapus
+                </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+        </modal>
+      </div>
+      <input type="text" 
+      v-model="searchTerm" 
+      class="px-3 py-3 mb-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring lg:w-3/12 ease-linear transition-all duration-150" 
+      placeholder="Cari..."
+      >
+      <table class="w-full mb-5 overflow-x-auto relative">
+        <thead
+          class="text-xs text-white uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <tr>
+            <th class="py-3 px-6">Nomor Ticket</th>
+            <th class="py-3 px-6">Judul Pelaporan</th>
+            <th class="py-3 px-6">Isi Pelaporan</th>
+            <th class="py-3 px-6">Jenis Product</th>
+            <th class="py-3 px-6">Harapan</th>
+            <th class="py-3 px-6">Pic Pelaporan</th>
+            <th class="py-3 px-6">Status</th>
+            <th class="py-3 px-6">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+          v-for="item in filteredItems" :key="item.id_pelaporan"
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center"
+          >
+            <th
+              scope="row"
+              class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            >
+              {{ item?.id_pelaporan }}
+            </th>
+            <td class="py-4 px-6">{{ item?.judul_pelaporan }}</td>
+            <td class="py-4 px-6">{{ item?.isi_pelaporan }}</td>
+            <td class="py-4 px-6">{{ item?.jenis_product }}</td>
+            <td class="py-4 px-6">{{ item?.harapan }}</td>
+            <td class="py-4 px-6">{{ item?.nama_pic }}</td>
+            <td class="py-4 px-6">{{ item?.status }}</td>
+            <td>
+              <div class="flex space-x-2 justify-center px-6">
+                <button
+                  class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                  type="button"
+                  id="detail"
+                  @click="handleShowDetail(item)"
+                >
+                  <i
+                    class="fas fa-info-circle text-white"
+                    style="font-size: 15px"
+                  ></i>
+                </button>
               </div>
             </td>
           </tr>
         </tbody>
       </table>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -387,6 +607,7 @@ export default {
     deletePelaporan: false,
     isEditPelaporan: false,
     searchTerm: '',
+    selectedItems: [],
     }),
   methods: {
     ...mapActions([
@@ -524,13 +745,14 @@ export default {
       this.isEditPelaporan = true;
       console.log(item);
       this.form = {
+        id: item.id,
         id_pelaporan: item.id_pelaporan,
         judul_pelaporan: item.judul_pelaporan,
         isi_pelaporan: item.isi_pelaporan,
         jenis_product: item.jenis_product,
-        class: item.class,
+        klasifikasi: item.klasifikasi,
         harapan: item.harapan,
-        pic_pelaporan:item.pic_pelaporan,
+        nama_pic:item.nama_pic,
         status: item.status,
         lampiran: item.lampiran,
         // tanggal_mulai: item.tanggal_mulai,
@@ -543,6 +765,19 @@ export default {
         this.form = {};
       }
     },
+    // handleCheck(item) {
+    //   if (this.selectedItems.includes(item)) {
+    //     this.selectedItems = this.selectedItems.filter((i) => i !== item);
+    //   } else {
+    //     this.selectedItems.push(item);
+    //   }
+    // },
+    // handleDelete() {
+
+    //   this.item = this.item.filter((item) => !this.selectedItems.includes(item));
+
+    //   this.selectedItems = [];
+    // },
   },
   computed: {
     reports() {

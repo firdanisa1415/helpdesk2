@@ -26,12 +26,16 @@
         block: dropdownPopoverShow,
       }"
     >
-      <a
+      <router-link
+        to="/profile"
+      >
+        <a
         href="javascript:void(0);"
         class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
       >
         Kelola Akun
       </a>
+      </router-link>
       <a
         @click="handleLogout"
         class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 cursor-pointer"

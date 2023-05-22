@@ -5,24 +5,28 @@
         @onDragEnd="handleDragEnd"
         :items="reportFilteredByStatus('Open')"
         status="Open"
+        :selectedItem="selectedItem"
       />
       <card-boardpelaporan
         title="In Progress"
-        :items="reportFilteredByStatus('In Progress')"
+        :items="reportFilteredByStatus('Inprogress')"
         @onDragEnd="handleDragEnd"
-        status="In Progress"
+        status="Inprogress"
+        :selectedItem="selectedItem"
       />
       <card-boardpelaporan
         title="Review"
         :items="reportFilteredByStatus('Review')"
         @onDragEnd="handleDragEnd"
         status="Review"
+        :selectedItem="selectedItem"
       />
       <card-boardpelaporan
         title="Closed"
         :items="reportFilteredByStatus('Closed')"
         @onDragEnd="handleDragEnd"
         status="Closed"
+        :selectedItem="selectedItem"
       />
     </div>
   </template>
@@ -33,6 +37,9 @@
   
   export default {
     name: "kanban-board",
+    data : () =>({
+      selectedItem: null,
+    }),
     components: {
       "card-boardpelaporan": CardBoardPelaporan,
     },
@@ -52,6 +59,7 @@
   
         const updatedReport = { ...targetReport, status: newStatus };
         this.updateReport(updatedReport);
+        console.log(updatedReport)
       },
     },
     computed: {
@@ -65,7 +73,7 @@
       },
       reportDone() {
         return this.$store.state.report.reportList.filter(
-          (item) => item.status === "In Progress"
+          (item) => item.status === "Inprogress"
         );
       },
       reportClosed() {

@@ -5,24 +5,29 @@
       @onDragEnd="handleDragEnd"
       :items="storiesFilteredByStatus('open')"
       status="open"
+      :selectedItem="selectedItem"
     />
     <card-boardpenugasan
       title="In Progress"
       :items="storiesFilteredByStatus('inprogress')"
       @onDragEnd="handleDragEnd"
       status="inprogress"
+      :selectedItem="selectedItem"
     />
     <card-boardpenugasan
       title="Testing"
       :items="storiesFilteredByStatus('testing')"
       @onDragEnd="handleDragEnd"
       status="testing"
+      :selectedItem="selectedItem"
     />
     <card-boardpenugasan
       title="Done"
       :items="storiesFilteredByStatus('done')"
       @onDragEnd="handleDragEnd"
       status="done"
+      :selectedItem="selectedItem"
+      :selectedIdstory = "selectedIdstory"
     />
   </div>
 </template>
@@ -36,13 +41,18 @@ export default {
   components: {
     "card-boardpenugasan": CardBoardPenugasan,
   },
+  data : () =>({
+      selectedItem: null,
+      selectedIdstory: null,
+  }),
   methods: {
-    ...mapActions(["getStories", "updateStory"]),
+    ...mapActions(["getStories", "updateStory", "createTask"]),
     storiesFilteredByStatus(status) {
       return this.stories.filter((story) => story.status === status);
     },
     handleDragEnd(event, _, status) {
       const filteredStories = this.storiesFilteredByStatus(status);
+      console.log(event)
       const targetStory = filteredStories.find(
         (_, index) => index === event.oldIndex
       );
@@ -57,6 +67,10 @@ export default {
   computed: {
     stories() {
       return this.$store.state.story.storyList;
+    },
+    task() {
+      const story = this.stories.find((story) => this.selectedIdstory === story.id_story);
+      return story.task;
     },
     storiesOpen() {
       return this.$store.state.story.storyList.filter(

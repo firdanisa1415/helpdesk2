@@ -7,6 +7,8 @@ import mailModules from "./modules/mailModules";
 import rolesModules from "./modules/rolesModules";
 import divisiModules from "./modules/divisiModules";
 import sprintModules from "./modules/sprintModules";
+import taskModules from "./modules/taskModules";
+
 
 const store = createStore({
   modules: {
@@ -18,7 +20,7 @@ const store = createStore({
     roles:rolesModules,
     divisi:divisiModules,
     sprint:sprintModules,
-
+    task: taskModules,
   },
 });
 

@@ -4,6 +4,9 @@ export const SET_IS_LOADING = "SET_IS_LOADING";
  */
 export const SET_TASK = "SET_TASK";
 export const DELETE_TASK = "DELETE_TASK";
+export const CREATE_TASK = "CREATE_TASK";
+export const GET_ALL_TASK = "GET_ALL_TASK";
+/**"
 /**
  * @description Constants for Report (Pelaporan)
  */
