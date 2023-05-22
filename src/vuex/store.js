@@ -3,6 +3,11 @@ import reportModules from "./modules/reportModules";
 import userModules from "./modules/userModules";
 import epicModules from "./modules/epicModules";
 import storyModules from "./modules/storyModules";
+import mailModules from "./modules/mailModules";
+import rolesModules from "./modules/rolesModules";
+import divisiModules from "./modules/divisiModules";
+import sprintModules from "./modules/sprintModules";
+import taskModules from "./modules/taskModules";
 
 
 const store = createStore({
@@ -11,6 +16,11 @@ const store = createStore({
     user: userModules,
     epic:epicModules,
     story:storyModules,
+    guest:mailModules,
+    roles:rolesModules,
+    divisi:divisiModules,
+    sprint:sprintModules,
+    task: taskModules,
   },
 });
 

@@ -52,6 +52,7 @@ const epicModules = {
           console.log(epics);
         });
     },
+
     async createEpic({ commit }, payload) {
       await apiClient()
         .post(`/api/epic`, payload)

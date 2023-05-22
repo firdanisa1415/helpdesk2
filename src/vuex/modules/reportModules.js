@@ -29,7 +29,7 @@ const reportModules = {
     },
     [UPDATE_REPORT](state, payload) {
       let index = state.reportList.findIndex(
-        (item) => item.id_pelaporan === payload.id_pelaporan
+        (item) => item.id === payload.id
       );
       state.reportList.splice(index, 1, payload);
     },
@@ -55,7 +55,7 @@ const reportModules = {
     },
     async createReport({ commit }, payload) {
       await apiClient()
-        .post("/api/pelaporan", payload)
+        .post(`/api/pelaporan`, payload)
         .then((res) => {
           /**
            * @todo Perlu cek bentukan data di create pelaporan controller.
@@ -74,9 +74,9 @@ const reportModules = {
           commit(CREATE_REPORT, data);
         });
     },
-    async updateReport({ commit }, { id_pelaporan, ...rest }) {
+    async updateReport({ commit }, { id, ...rest }) {
       await apiClient()
-        .put(`/api/pelaporan/${id_pelaporan}`, rest)
+        .put(`/api/pelaporan/${id}`, rest)
         .then((res) => {
           const { status: statusDariBackend, data: dataDariBackend } = res.data;
           console.log(statusDariBackend);

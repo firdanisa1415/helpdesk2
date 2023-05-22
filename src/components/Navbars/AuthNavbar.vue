@@ -24,14 +24,14 @@
         :class="[navbarOpen ? 'block' : 'hidden']"
         id="example-navbar-warning"
       >
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div class="flex flex-col lg:flex-row list-none lg:ml-auto">
           <li class="flex items-center">
             <router-link class="nav-link text-white " to="#">Home</router-link>
           </li>
           <li class="flex items-center">
             <router-link class="nav-link text-white ml-3" to="/">Panduan</router-link>
           </li>
-        </ul>
+        </div>
       </div>
       </div>
   </nav>

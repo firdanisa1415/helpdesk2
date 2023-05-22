@@ -21,14 +21,14 @@
       <img src="@/assets/img/brand.png" alt="" width="150" height="50" />
       </router-link>
       <!-- User -->
-      <ul class="md:hidden items-center flex flex-wrap list-none">
+      <div class="md:hidden items-center flex flex-wrap list-none">
         <li class="inline-block relative">
           <notification-dropdown />
         </li>
         <li class="inline-block relative">
           <user-dropdown />
         </li>
-      </ul>
+      </div>
       <!-- Collapse -->
       <div
         class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded"
@@ -71,7 +71,7 @@
 
         <!-- Navigation -->
 
-        <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        <div class="md:flex-col md:min-w-full flex flex-col list-none">
           <li class="items-center">
             <router-link
               to="/admin/dashboard"
@@ -212,8 +212,7 @@
               </a>
             </router-link>
           </li>
-
-        </ul>
+        </div>
       </div>
     </div>
   </nav>
