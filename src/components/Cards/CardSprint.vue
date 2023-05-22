@@ -1,22 +1,41 @@
 <template>
-  <div class="w-full lg:w-3/12 px-4 mt-16">
-    <div class="relative w-full mb-3 bg-white p-4 shadow-lg rounded">
-      <h2 class="text-blueGray-700 text-xl font-semibold">{{ title }}</h2>
-      <draggable
-        :class="`list-group kanban-column ${status}`"
-        @end="(event) => $emit('onDragEnd', event, event.draggedItem, status)"
-        :list="items"
-        group="stories"
+  <div class="w-full px-4 mt-2">
+    <!-- <div class="pb-2 flex justify-end">
+      <button
+        class="bg-orange-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+        type="button"
+        id="Sprint"
+        @click="handleClickRunSprint"
       >
-        <div
-          class="list-group-item bg-blue-500 text-white p-2 mb-4 cursor-pointer"
-          v-for="element in items"
-          :key="element.id_story"
-          @click="handleShowDetail(element)"
-        >
-          <h2>{{ element.id_story }} - {{ element.isi_story }}</h2>
-          <small>{{ element.sprint_id }}</small>
-        </div>
+        Run Sprint
+      </button>
+    </div> -->
+    <div>
+    </div>
+    <div class="relative w-full mb-3 bg-white p-4 shadow-lg rounded" v-for="sprint in sprints" :key="sprint.id_sprint">
+      <h2 class="font-bold">{{ sprint.id_sprint }}</h2>
+      <!-- <small>{{ sprint.tanggal_mulai }} - {{ sprint.tanggal_akhir }}</small> -->
+      <draggable 
+        :class="`list-group kanban-column ${sprint.id_sprint}`" 
+        :move="(event) => onMove(event)" 
+        @end="(event) => $emit('handleDragEnd', event, stories[event.newIndex], sprint.id_sprint)" 
+        :list="sprint.stories" 
+        group="stories">
+          <div 
+            class="list-group-item rounded bg-blue-500 text-white p-2 mb-4 cursor-pointer" 
+            v-for="story in sprint.stories" 
+            :key="story.id_story"
+            @click="handleShowDetail(story)"
+            >
+            {{ story.id_story }} - {{ story.isi_story }}
+          </div>
+      </draggable>
+    </div>
+    <div class="relative w-full mb-3 bg-white p-4 shadow-lg rounded">
+      <h2 class="font-bold">Backlog</h2>
+      <draggable>
+        <div class="list-group bg-white mb-2 p-2"></div>
+        <div class="list-group-item rounded bg-blue-500 text-white p-2 mb-4 cursor-pointer" v-for="story in storiesNull" :key="story.id_story" @click="handleShowDetail(story)">{{ story.id_story }} - {{ story.isi_story }}</div>
       </draggable>
     </div>
     <div class="overflow-x-auto relative sm:rounded-lg">
@@ -103,12 +122,12 @@
                       {{ tugas.isi_tugas}}
                     </li>
                   </ul>
-                  <button @click="showAddTaskForm = true">Tambah Tugas</button>
-                  <div v-if="showAddTaskForm">
+                  <button @click="showAddStoryForm = true">Tambah Tugas</button>
+                  <div v-if="showAddStoryForm">
                     <form @submit.prevent="addTask(form)">
                       <input
                         type="text"
-                        v-model="inputTask.isi_tugas"
+                        v-model="inputValue.isi_tugas"
                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Isikan Tugas"
                       />
@@ -126,23 +145,16 @@
             </template>
           </modal>
         </div>
-        
       </div>
   </div>
 </template>
-<style scoped>
-.list-group-item {
- 
-}
-</style>
+
 <script>
-import { defineComponent } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
 import Modal from "@/components/Modal/ModalDetail.vue";
 import { mapActions } from "vuex";
 
-export default defineComponent({
-  name: "card-boardpenugasan",
+export default {
   components: {
     draggable: VueDraggableNext,
     Modal
@@ -150,37 +162,36 @@ export default defineComponent({
   data: () => ({
       detailStory: false,
       selectedItem: null,
-      showAddTaskForm: false,
-      selectedIdstory: null,
-      inputTask: {},
-    }),
+      stories: [],
+      inputValue: {},
+      showAddStoryForm: false,
+      runSprint: false,
+      selectedSprint: [],
+      selectedStoryId: null
+  }),
   props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    status: {
-      type: String,
-      required: true,
-    },
-    items: {
+    sprints: {
       type: Array,
       required: true,
     },
   },
   methods: {
-    ...mapActions(["createTask"]),
-      handleShowDetail(item) {
+    ...mapActions(["updateStory", "getAllTask"]),
+    onMove(event) {
+      this.stories = event.relatedContext.list;
+    },
+    handleShowDetail(item) {
       this.detailStory = true;
       this.selectedItem = item;
+      this.inputValue = this.selectedItem.tugas;
     },
-    addTask(storyData) {
+    addStory(storyData) {
       if (!storyData) return;
       const submitData = {
-        story_id: storyData.id_story,
-        ...this.inputTask,
+        story_id: storyData.id_epic,
+        ...this.inputValue,
       };
-      this.createTask(submitData)
+      this.createTugas(submitData)
         .then(() => {
           this.showAddStoryForm = false;
         })
@@ -191,6 +202,37 @@ export default defineComponent({
           console.log(errorMessages);
         });
     },
+    handleClickRunSprint() {
+      this.runSprint = true;
+    },
+    handleRunSprint(selectedSprint) {
+      console.log(selectedSprint)
+      const storyIndex = selectedSprint.stories.findIndex(story => story.id_story ===  selectedSprint.id_story);
+      console.log(storyIndex)
+      // const run = selectedSprint.stories.filter(story => story.sprint_id === selectedSprint);
+      // const selectedStory = run.find(story => story.id_story === selectedStoryId);
+      if (storyIndex) {
+        storyIndex.status = "open";
+        this.updateStory(storyIndex);
+        console.log(storyIndex)
+      } else {
+        console.log("Story not found in the selected sprint");
+      }
+    },
+    storiesNull() {
+        return this.$store.state.story.storyList.filter(
+          (story) => story.sprint_id === null
+        );
+      },
   },
-});
+};
 </script>
+
+<style>
+/* light stylings for the kanban columns */
+.kanban-column {
+  background-color: #fff;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+</style>
