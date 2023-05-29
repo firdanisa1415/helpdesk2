@@ -51,10 +51,8 @@
                       placeholder="Tuliskan Harapan Anda"
                     />
                   </div>
-                </div>
-                <div class="relative w-full text-center mt-2">
                   <button
-                    class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-2 ease-linear transition-all duration-150"
+                    class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                     @click="modalEpic = false"
                     type="button"
                   >
@@ -65,11 +63,11 @@
                   </button>
                 </div>
               </div>
-            </form>
-          </template>
-        </modal>
-      </div>
-      <div>
+              </form>
+            </template>
+          </modal>   
+    </div>
+    <div>
         <modal :show="detailEpic">
           <template #header>
             <h3 class="text-2xl font-bold text-center">Detail Epic</h3>
@@ -122,12 +120,19 @@
                 <div class="relative w-full mb-3">
                   <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Harapan</h2>
                 </div>
-              </div>
-              <div class="lg:w-9/12">
-                <div class="relative w-full mb-3">
-                  <h2 class="block text-black text-xs font-reguler mb-2">
-                    {{ form?.harapan }}
-                  </h2>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Isi Epic</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.isi_epic }}
+                      </h2>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -136,12 +141,19 @@
                 <div class="relative w-full mb-4">
                   <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status</h2>
                 </div>
-              </div>
-              <div class="lg:w-9/12">
-                <div class="relative w-full mb-4">
-                  <h2 class="block text-black text-xs font-reguler mb-2">
-                    {{ form?.status }}
-                  </h2>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.status }}
+                      </h2>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -206,6 +218,7 @@
                     </button>
                   </div>
                 </div>
+               
               </div>
             </div>
           </template>
@@ -336,6 +349,7 @@
             </th>
             <td class="py-4 px-6">{{ item?.judul_epic }}</td>
             <td class="py-4 px-6">{{ item?.isi_epic }}</td>
+            <td class="py-4 px-6">{{ item?.harapan }}</td>
             <td class="py-4 px-6">Budi</td>
             <td class="py-4 px-6">{{ item?.status }}</td>
             <td class="py-4 px-6">{{ item?.harapan }}</td>
@@ -386,13 +400,7 @@ export default defineComponent({
     draggable: VueDraggableNext,
     Modal,
   },
-  props: {
-    epic_id: {
-      type: Number,
-      required: true,
-    },
-  },
-  data: () => ({
+  data:() => ({
     form: {},
     modalEpic: false,
     detailEpic: false,
@@ -405,10 +413,9 @@ export default defineComponent({
     selectedItem: null,
   }),
   methods: {
-    ...mapActions(["createEpic", "updateEpic", "deleteEpics", "createStory"]),
+    ...mapActions(["getAllEpics", "createEpic", "updateEpic", "deleteEpics", ]),
     handleShowDetail(item) {
       this.detailEpic = true;
-      this.selectedIdEpic = item.id_epic;
       this.form = { ...item };
     },
     handleShowDetailStory(item) {
@@ -504,7 +511,7 @@ export default defineComponent({
         },
       });
 
-      const submitData = { status: "sprint 1", ...this.form };
+      const submitData = { status: "Sprint 1", ...this.form };
       this.createEpic(submitData)
         .then(() => {
           this.modalEpic = false;
