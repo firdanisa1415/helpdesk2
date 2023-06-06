@@ -28,27 +28,16 @@
         </li>
       </div>
     </div>
-    <div
-      class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
-    >
+    <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
       <div class="px-4 py-5 flex-auto">
         <div class="tab-content tab-space">
           <div v-bind:class="{ hidden: openTab !== 1, block: openTab === 1 }">
             <div class="flex flex-wrap">
               <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-                <card-line-chart
-                  chartId="chart-test2"
-                  title="Test 2"
-                  :chartData="chartData"
-                  :chartOptions="chartOptions"
-                />
+                <card-line-chart chartId="chart-test2" title="Test 2" :chartData="chartData" :chartOptions="chartOptions" />
               </div>
               <div class="w-full xl:w-4/12 px-4">
-                <card-pie-chart
-                  chartId="chart-test2-pie"
-                  :chartData="chartPieData"
-                  :chartOptions="chartPieOptions"
-                />
+                <card-pie-chart chartId="chart-test2-pie" :chartData="chartPieData" :chartOptions="chartPieOptions" />
               </div>
               <!-- <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
                 <card-line-chart title="Test" />
@@ -59,39 +48,20 @@
             </div>
             <div class="flex flex-wrap mt-4">
               <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-                <card-bar-chart
-                  title="Bar Horizontal Chart Biasa Incident"
-                  chartId="chart-test3-bar-horizontal"
-                  :chartData="chartBarData"
-                  :chartOptions="chartHorizontalBarOptions"
-                />
+                <card-bar-chart title="Bar Horizontal Chart Biasa Incident" chartId="chart-test3-bar-horizontal" :chartData="chartBarData" :chartOptions="chartHorizontalBarOptions" />
               </div>
               <div class="w-full xl:w-4/12 px-4">
-                <card-bar-chart
-                  title="Bar Chart Biasa Incident"
-                  chartId="chart-test3-bar"
-                  :chartData="chartBarData"
-                  :chartOptions="chartBarOptions"
-                />
+                <card-bar-chart title="Bar Chart Biasa Incident" chartId="chart-test3-bar" :chartData="chartBarData" :chartOptions="chartBarOptions" />
               </div>
             </div>
           </div>
           <div v-bind:class="{ hidden: openTab !== 2, block: openTab === 2 }">
             <div class="flex flex-wrap">
               <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-                <card-line-chart
-                  chartId="chart-test3"
-                  title="Test 3"
-                  :chartData="chartData"
-                  :chartOptions="chartOptions"
-                />
+                <card-line-chart chartId="chart-test3" title="Test 3" :chartData="chartData" :chartOptions="chartOptions" />
               </div>
               <div class="w-full xl:w-4/12 px-4">
-                <card-pie-chart
-                  chartId="chart-test3-pie"
-                  :chartData="chartPieData"
-                  :chartOptions="chartPieOptions"
-                />
+                <card-pie-chart chartId="chart-test3-pie" :chartData="chartPieData" :chartOptions="chartPieOptions" />
               </div>
               <!-- <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
                 <card-line-chart title="Test" />
@@ -102,20 +72,10 @@
             </div>
             <div class="flex flex-wrap mt-4">
               <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-                <card-bar-chart
-                  title="Bar Horizontal Chart Biasa Scrum"
-                  chartId="chart-test2-bar-horizontal"
-                  :chartData="chartBarData"
-                  :chartOptions="chartHorizontalBarOptions"
-                />
+                <card-bar-chart title="Bar Horizontal Chart Biasa Scrum" chartId="chart-test2-bar-horizontal" :chartData="chartBarData" :chartOptions="chartHorizontalBarOptions" />
               </div>
               <div class="w-full xl:w-4/12 px-4">
-                <card-bar-chart
-                  title="Bar Chart Biasa Scrum"
-                  chartId="chart-test2-bar"
-                  :chartData="chartBarData"
-                  :chartOptions="chartBarOptions"
-                />
+                <card-bar-chart title="Bar Chart Biasa Scrum" chartId="chart-test2-bar" :chartData="chartBarData" :chartOptions="chartBarOptions" />
               </div>
             </div>
           </div>
@@ -128,6 +88,7 @@
 import CardLineChart from "@/components/Cards/CardLineChart.vue";
 import CardBarChart from "@/components/Cards/CardBarChart.vue";
 import CardPieChart from "@/components/Cards/CardPieChart.vue";
+import { mapActions, mapGetters } from "vuex";
 // import CardPageVisits from "@/components/Cards/CardPageVisits.vue";
 // import CardSocialTraffic from "@/components/Cards/CardSocialTraffic.vue";
 export default {
@@ -142,15 +103,7 @@ export default {
   data() {
     return {
       chartBarData: {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-        ],
+        labels: ["January", "February", "March", "April", "May", "June", "July"],
         datasets: [
           {
             label: new Date().getFullYear(),
@@ -297,21 +250,13 @@ export default {
         maintainAspectRatio: false,
       },
       chartData: {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-        ],
+        labels: this.getMappedMonth(this.monthlyList),
         datasets: [
           {
             label: new Date().getFullYear(),
             backgroundColor: "#4c51bf",
             borderColor: "#4c51bf",
-            data: [65, 78, 66, 44, 56, 67, 75],
+            data: this.getMappedMonthlyCount,
             fill: false,
           },
           {
@@ -323,6 +268,7 @@ export default {
           },
         ],
       },
+
       chartOptions: {
         maintainAspectRatio: false,
         responsive: true,
@@ -392,11 +338,27 @@ export default {
     };
   },
   computed: {
-    
+    getMappedMonthlyName() {
+      return this.monthlyList.map((data) => data.month);
+    },
+    getMappedMonthlyCount() {
+      return this.monthlyList.map((data) => data.total_users);
+    },
+  },
+  mounted() {
+    this.$store.dispatch("getMonthlyReports");
   },
   methods: {
+    ...mapActions(["getMonthlyReports"]),
+    ...mapGetters(["monthlyList"]),
     toggleTabs: function (tabNumber) {
       this.openTab = tabNumber;
+    },
+    getMappedMonth: function (data) {
+      console.log(data);
+      return data.map((d) => {
+        return d.month;
+      });
     },
   },
 };

@@ -16,6 +16,7 @@ export const SET_REPORT = "SET_REPORT";
 export const UPDATE_REPORT = "UPDATE_REPORT";
 export const UPDATE_REPORTS = "UPDATE_REPORTS";
 export const DELETE_REPORT = "DELETE_REPORT";
+export const GET_MONTHLY_REPORT = "GET_MONTHLY_REPORT";
 /**
  * @description Constants for User (Pengguna)
  */

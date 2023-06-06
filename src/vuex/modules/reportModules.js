@@ -7,11 +7,16 @@ import {
   CREATE_REPORT,
   GET_ALL_REPORT,
   DELETE_REPORT,
+  GET_MONTHLY_REPORT,
 } from "../constant";
 
 const reportModules = {
   state: {
     reportList: [],
+    monthlyList: [],
+    statusList: [],
+    productList: [],
+    picList: [],
     isLoading: false,
     report: null,
     isUpdating: false,
@@ -28,20 +33,28 @@ const reportModules = {
       state.reportList.push(report);
     },
     [UPDATE_REPORT](state, payload) {
-      let index = state.reportList.findIndex(
-        (item) => item.id === payload.id
-      );
+      let index = state.reportList.findIndex((item) => item.id === payload.id);
       state.reportList.splice(index, 1, payload);
     },
     [UPDATE_REPORTS](state, payload) {
       state.reportList.push(payload);
     },
     [DELETE_REPORT](state, payload) {
-      const index = state.reportList.findIndex(
-        (post) => post.id_pelaporan === payload
-      );
+      const index = state.reportList.findIndex((post) => post.id_pelaporan === payload);
       state.reportList.splice(index, 1);
     },
+    [GET_MONTHLY_REPORT](state, monthly) {
+      state.monthlyList = monthly;
+    },
+    // [GET_STATUS_REPORT](state, status) {
+    //   state.statusList = status;
+    // },
+    // [GET_PRODUCT_REPORT](state, product) {
+    //   state.productList = product;
+    // },
+    // [GET_PIC_REPORT](state, pic) {
+    //   state.picList = pic;
+    // },
   },
   actions: {
     async getAllReports({ commit }) {
@@ -85,7 +98,7 @@ const reportModules = {
           commit(UPDATE_REPORT, data);
         });
     },
-    async deleteReport({commit}, payload) {
+    async deleteReport({ commit }, payload) {
       await apiClient()
         .delete(`/api/pelaporan/${payload}`)
         .then((res) => {
@@ -93,6 +106,14 @@ const reportModules = {
           console.log(statusDariBackend);
           const data = dataDariBackend ?? {};
           commit(DELETE_REPORT, data);
+        });
+    },
+    async getMonthlyReports({ commit }) {
+      await apiClient()
+        .get(`/api/bulan`)
+        .then((res) => {
+          const monthly = res?.data;
+          commit(GET_MONTHLY_REPORT, monthly);
         });
     },
   },
