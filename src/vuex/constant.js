@@ -16,6 +16,7 @@ export const SET_REPORT = "SET_REPORT";
 export const UPDATE_REPORT = "UPDATE_REPORT";
 export const UPDATE_REPORTS = "UPDATE_REPORTS";
 export const DELETE_REPORT = "DELETE_REPORT";
+export const GET_MONTHLY_REPORT = "GET_MONTHLY_REPORT";
 /**
  * @description Constants for User (Pengguna)
  */
@@ -27,6 +28,7 @@ export const LOGOUT_USER = "LOGOUT_USER";
 export const UPDATE_USER = "UPDATE_USER";
 export const UPDATE_USERS = "UPDATE_USERS";
 export const CREATE_USER = "CREATE_USER";
+export const GET_ALL_OPERATOR = "GET_ALL_OPERATOR";
 export const GET_ALL_EPIC = "GET_ALL_EPIC";
 export const CREATE_EPIC = "CREATE_EPIC";
 export const SET_EPIC = "SET_EPIC";

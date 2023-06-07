@@ -16,17 +16,10 @@ const storyModules = {
     story: null,
     isUpdating: false,
     updatedData: null,
-    // judul_laporan: "",
-    // isi_laporan: "",
-    // harapan: "",
-    // product: "",
-    // jenis_pelaporan: "",
-    // status: "",
-    // lampiran: "",
   },
   mutations: {
-    [GET_ALL_STORY](state, storys) {
-      state.storyList = storys;
+    [GET_ALL_STORY](state, story) {
+      state.storyList = story;
     },
     [SET_STORY](state, story) {
       state.storyList = story;
@@ -35,9 +28,7 @@ const storyModules = {
       state.storyList.push(story);
     },
     [UPDATE_STORY](state, story) {
-      let index = state.storyList.findIndex(
-        (item) => item.id_story === story.id_story
-      );
+      let index = state.storyList.findIndex((item) => item.id_story === story.id_story);
       state.storyList.splice(index, 1, story);
     },
     [UPDATE_STORYS](state, payload) {
@@ -87,17 +78,6 @@ const storyModules = {
       await apiClient()
         .post("/api/story")
         .then((res) => {
-          /**
-           * @todo Perlu cek bentukan data di create pelaporan controller.
-           * @argument
-           * {
-           *    status: "success",
-           *    data: {...newPelaporan}
-           * }
-           * @example brarti kalau di frontend nya harus mengikuti BE ditambah pakai argumentnya dari axios (res.data).
-           * @example Misal bentukan existing di BE, kita mau set data barunya. Jadi tinggal response.data.data;
-           *
-           */
           const { status: statusDariBackend, data: dataDariBackend } = res.data;
           console.log(statusDariBackend);
           const data = dataDariBackend ?? {};
@@ -114,9 +94,9 @@ const storyModules = {
           commit(UPDATE_STORY, data);
         });
     },
-    async deletestory({ commit }, payload) {
+    async deleteStories({ commit }, payload) {
       await apiClient()
-        .delete("/api/story/{id}", payload)
+        .delete(`/api/story/${payload}`)
         .then((res) => {
           const { status: statusDariBackend, data: dataDariBackend } = res.data;
           console.log(statusDariBackend);

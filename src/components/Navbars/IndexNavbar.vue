@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="top-0 z-50 w-full flex flex-wrap items-center justify-between py-3 navbar-expand-lg bg-img"
+    class="relative top-0 z-50 w-full flex flex-wrap items-center justify-between py-3 navbar-expand-lg bg-img"
   >
     <div
       class="container px-4 mx-auto flex flex-wrap items-center justify-between"
@@ -18,7 +18,7 @@
           type="button"
           v-on:click="setNavbarOpen"
         >
-          <i class="fas fa-bars"></i>
+          <i class="text-white fas fa-bars"></i>
         </button>
       </div>
       <div
@@ -43,11 +43,11 @@
           </router-link>
           </li>
           <li class="flex items-center">
-            <router-link to="/auth/register">
+            <router-link to="/auth/guest">
             <button
               class="bg-white text-blue active:bg-white text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
               type="button"
-            >Daftar
+            >Isi Formulir
             </button>
           </router-link>
           </li>

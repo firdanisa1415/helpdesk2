@@ -1,633 +1,543 @@
 <template>
-  <div class="overflow-x-auto relative sm:rounded-lg">
-     <div class="text-center flex justify-end py-3">
-       <button
-         class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-         type="button"
-         id="Pengguna"
-         @click="addPengguna = true"
-       >
-         Tambah Pengguna
-       </button>
-       <Teleport to="body">
-         <modal :show="addPengguna" @close="addPengguna = false">
-           <template #header>
-             <h3 class="text-2xl font-bold text-center">Tambah Pengguna</h3>
-           </template>
-           <template #body>
-             <form>
-               <div class="flex flex-wrap">
-                 <div class="w-full px-4">
-                   <div class="relative w-full mb-3">
-                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Nama Pengguna </label>
-                     <input
-                       type="text"
-                       class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                       placeholder="Isikan Nama Anda"
-                     />
-                   </div>
-                 </div>
-                 <div class="w-full px-4">
-                   <div class="relative w-full mb-3">
-                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> NRP </label>
-                     <input
-                       type="text"
-                       class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                       placeholder="Isikan NRP"
-                     />
-                   </div>
-                 </div>
-                 <div class="w-full px-4">
-                   <div class="relative w-full mb-3">
-                     <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Divisi</label>
-                     <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                       <option>--Pilih Divisi--</option>
-                       <option>Divisi Sumber Daya dan Umum</option>
-                  <option>Divisi Operasional dan HSSE</option>
-                  <option>Biro Satuan Pengawas Internal</option>
-                  <option>Divisi Komersial dan Pemasaran</option>
-                  <option>Divisi Asesmen, Pelatihan, dan Konsultasi</option>
-                  <option>Pengadaan Barang dan Jasa</option>
-                  <option>Divisi Teknologi dan Informasi</option>
-                  <option>Divisi Keuangan</option>
-                  <option>Biro Hukum dan Sekretaris Perusahaan</option>
-                     </select>
-                   </div>
-                 </div>
-                 <div class="w-full px-4">
-                   <div class="relative w-full mb-3">
-                     <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Role</label>
-                     <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                       <option>--Pilih Role--</option>
-                       <option>Manager</option>
-                       <option>Operator</option>
-                       <option>Karyawan</option>
-                     </select>
-                   </div>
-                 </div>
-                 <div class="w-full px-4">
-                   <div class="relative w-full mb-3">
-                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Email Pengguna </label>
-                     <input
-                       type="email"
-                       class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                       placeholder="Isikan Email Anda"
-                     />
-                   </div>
-                 </div>
-               </div>
-             </form>
-           </template>
-           <template #footer>
-             <div class="text-left">
-               <button
-                 class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                 @click="addPengguna = false"
-               >
-                 Batal
-               </button>
-               <button
-                 class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                 @click="addPengguna = false"
-               >
-                 Tambah
-               </button>
-             </div>
-           </template>
-         </modal>
-       </Teleport>
-     </div>
-     <table class="w-full mb-5">
-       <thead class="text-xs text-white uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400">
-         <tr>
-           <th scope="col text-center" class="py-3 px-6">Nomor Pengguna</th>
-           <th scope="col " class="py-3 px-6">
-             <div class="flex items-center text-center">
-               Nama Pengguna
-               <a href="#"
-                 ><svg xmlns="http://www.w3.org/2000/svg" class="ml-1 w-3 h-3" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512">
-                   <path
-                     d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"
-                   ></path></svg
-               ></a>
-             </div>
-           </th>
-           <th scope="col" class="py-3 px-6">
-             <div class="flex items-center">
-               NRP
-               <a href="#"
-                 ><svg xmlns="http://www.w3.org/2000/svg" class="ml-1 w-3 h-3" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512">
-                   <path
-                     d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"
-                   ></path></svg
-               ></a>
-             </div>
-           </th>
-           <th scope="col text-center" class="py-3 px-6">
-             <div class="flex items-center">
-               Divisi
-               <a href="#"
-                 ><svg xmlns="http://www.w3.org/2000/svg" class="ml-1 w-3 h-3" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512">
-                   <path
-                     d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"
-                   ></path></svg
-               ></a>
-             </div>
-           </th>
-           <th scope="col text-center" class="py-3 px-6">
-             <div class="flex items-center">
-               Role
-               <a href="#"
-                 ><svg xmlns="http://www.w3.org/2000/svg" class="ml-1 w-3 h-3" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512">
-                   <path
-                     d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"
-                   ></path></svg
-               ></a>
-             </div>
-           </th>
-           <th scope="col text-center" class="py-3 px-6">
-             <div class="flex items-center">
-               Action
-               <a href="#"
-                 ><svg xmlns="http://www.w3.org/2000/svg" class="ml-1 w-3 h-3" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512">
-                   <path
-                     d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"
-                   ></path></svg
-               ></a>
-             </div>
-           </th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-           <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">012890</th>
-           <td class="py-4 px-6">Jihan</td>
-           <td class="py-4 px-6">sdm-0923738</td>
-           <td class="py-4 px-6">Divisi Sumber Daya dan Umum</td>
-           <td class="py-4 px-6">Karyawan Umum</td>
-           <td class="py-4 px-6">
-             <button
-               class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
-               type="button"
-               id="detail"
-               @click="detailPengguna = true"
-             >
-               <i class="fas fa-info-circle text-white" style="font-size: 15px"></i>
-             </button>
-             <Teleport to="body">
-               <modal :show="detailPengguna" @close="detailPengguna = false">
-                 <template #header>
-                   <h3 class="text-2xl font-bold text-center">Detail Pengguna</h3>
-                 </template>
-                 <template #body>
-                   <div class="flex flex-wrap">
-                     <div class="w-full px-4">
-                       <div class="flex flex-wrap">
-                         <div class="w-full lg:w-3/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Judul Pengguna</h2>
-                           </div>
-                         </div>
-                         <div class="w-full lg:w-9/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block text-black text-xs font-reguler mb-2">Service Laptop</h2>
-                           </div>
-                         </div>
-                       </div>
-                       <div class="flex flex-wrap">
-                         <div class="w-full lg:w-3/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Jenis Pengguna</h2>
-                           </div>
-                         </div>
-                         <div class="w-full lg:w-9/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block text-black text-xs font-reguler mb-2">Incident</h2>
-                           </div>
-                         </div>
-                       </div>
-                       <div class="flex flex-wrap">
-                         <div class="w-full lg:w-3/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product Pengguna</h2>
-                           </div>
-                         </div>
-                         <div class="w-full lg:w-9/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block text-black text-xs font-reguler mb-2">PC/Laptop</h2>
-                           </div>
-                         </div>
-                       </div>
-                       <div class="flex flex-wrap">
-                         <div class="w-full lg:w-3/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Permasalahan</h2>
-                           </div>
-                         </div>
-                         <div class="w-full lg:w-9/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block text-black text-xs font-reguler mb-2">Laptop tiba-tiba mati, tapi kipas tetap berbunyi</h2>
-                           </div>
-                         </div>
-                       </div>
-                       <div class="flex flex-wrap">
-                         <div class="w-full lg:w-3/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status</h2>
-                           </div>
-                         </div>
-                         <div class="w-full lg:w-9/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block text-black text-xs font-reguler mb-2">In Progress</h2>
-                           </div>
-                         </div>
-                       </div>
-                     </div>
-                   </div>
-                 </template>
-                 <template #footer>
-                   <div class="text-center">
-                     <button
-                       class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                       @click="detailPengguna = false"
-                     >
-                       Oke
-                     </button>
-                   </div>
-                 </template>
-               </modal>
-             </Teleport>
-             <button class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="update" @click="updatePengguna = true">
-               <i class="fas fa-pen-square text-white" style="font-size: 15px"></i>
-             </button>
-             <Teleport to="body">
-               <modal :show="updatePengguna" @close="updatePengguna = false">
-                 <template #header>
-                   <h3 class="text-2xl font-bold text-center">Update Data Pengguna</h3>
-                 </template>
-                 <template #body>
-                   <form>
-                     <div class="flex flex-wrap">
-                       <div class="w-full px-4">
-                         <div class="relative w-full mb-3">
-                           <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Judul Pengguna </label>
-                           <input
-                             type="text"
-                             class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                             placeholder="Isikan Pengguna"
-                           />
-                         </div>
-                       </div>
-                       <div class="w-full px-4">
-                         <div class="relative w-full mb-3">
-                           <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product</label>
-                           <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                             <option>--Pilih Product--</option>
-                             <option>PC/Laptop</option>
-                             <option>Printer</option>
-                             <option>Jaringan/Internet</option>
-                             <option>My PDS</option>
-                             <option>Humanis</option>
-                             <option>Penarikan Data</option>
-                             <option>Lainnya</option>
-                           </select>
-                         </div>
-                       </div>
-                       <div class="w-full px-4">
-                         <div class="relative w-full mb-3">
-                           <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Permasalahan </label>
-                           <input
-                             type="text"
-                             class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                             placeholder="Jelaskan Permasalahan"
-                           />
-                         </div>
-                       </div>
-                       <div class="w-full px-4">
-                         <div class="relative w-full mb-3">
-                           <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Harapan </label>
-                           <input
-                             type="text"
-                             class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                             placeholder="Tuliskan Harapanmu"
-                           />
-                         </div>
-                       </div>
-                       <div class="w-full px-4">
-                         <div class="relative w-full mb-3">
-                           <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">PIC Pengguna</label>
-                           <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                             <option>--Pilih PIC Pengguna--</option>
-                             <option>Budi</option>
-                             <option>Bambang</option>
-                             <option>Joko</option>
-                           </select>
-                         </div>
-                       </div>
-                       <div class="w-full px-4">
-                         <div class="relative w-full mb-3">
-                           <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Lampiran </label>
-                           <input type="file" id="dropzoneFile" class="dropzoneFile" />
-                         </div>
-                       </div>
-                     </div>
-                   </form>
-                 </template>
-                 <template #footer>
-                   <div class="text-left">
-                     <button
-                       class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                       @click="updatePengguna = false"
-                     >
-                       Batal
-                     </button>
-                     <button
-                       class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                       @click="updatePengguna = false"
-                     >
-                       Simpan
-                     </button>
-                   </div>
-                 </template>
-               </modal>
-             </Teleport>
-             <button class="bg-red-600 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="delete" @click="deletePengguna = true">
-               <i class="fas fa-trash text-white" style="font-size: 15px"></i>
-             </button>
-             <Teleport to="body">
-               <modal :show="deletePengguna" @close="deletePengguna = false">
-                 <template #header>
-                   <h3 class="text-2xl font-bold text-center">Delete Data Pengguna</h3>
-                 </template>
-                 <template #body>
-                         <div class="relative w-full mb-3 text-center">
-                           Apakah anda yakin ingin menghapus?
-                         </div>
-                 </template>
-                 <template #footer>
-                   <div class="text-center">
-                     <button
-                       class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-4 ease-linear transition-all duration-150"
-                       @click="deletePengguna = false"
-                     >
-                       Ya
-                     </button>
-                     <button
-                       class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150"
-                       @click="deletePengguna = false"
-                     >
-                       Tidak
-                     </button>
-                   </div>
-                 </template>
-               </modal>
-             </Teleport>
-           </td>
-         </tr>
-         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-           <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">012890</th>
-           <td class="py-4 px-6">Jihan</td>
-           <td class="py-4 px-6">sdm-0923738</td>
-           <td class="py-4 px-6">Divisi Sumber Daya dan Umum</td>
-           <td class="py-4 px-6">Karyawan Umum</td>
-           <td class="py-4 px-6">
-             <button
-               class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
-               type="button"
-               id="detail"
-               @click="detailPengguna = true"
-             >
-               <i class="fas fa-info-circle text-white" style="font-size: 15px"></i>
-             </button>
-             <Teleport to="body">
-               <modal :show="detailPengguna" @close="detailPengguna = false">
-                 <template #header>
-                   <h3 class="text-2xl font-bold text-center">Detail Pengguna</h3>
-                 </template>
-                 <template #body>
-                   <div class="flex flex-wrap">
-                     <div class="w-full px-4">
-                       <div class="flex flex-wrap">
-                         <div class="w-full lg:w-3/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Judul Pengguna</h2>
-                           </div>
-                         </div>
-                         <div class="w-full lg:w-9/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block text-black text-xs font-reguler mb-2">Service Laptop</h2>
-                           </div>
-                         </div>
-                       </div>
-                       <div class="flex flex-wrap">
-                         <div class="w-full lg:w-3/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Jenis Pengguna</h2>
-                           </div>
-                         </div>
-                         <div class="w-full lg:w-9/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block text-black text-xs font-reguler mb-2">Incident</h2>
-                           </div>
-                         </div>
-                       </div>
-                       <div class="flex flex-wrap">
-                         <div class="w-full lg:w-3/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product Pengguna</h2>
-                           </div>
-                         </div>
-                         <div class="w-full lg:w-9/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block text-black text-xs font-reguler mb-2">PC/Laptop</h2>
-                           </div>
-                         </div>
-                       </div>
-                       <div class="flex flex-wrap">
-                         <div class="w-full lg:w-3/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Permasalahan</h2>
-                           </div>
-                         </div>
-                         <div class="w-full lg:w-9/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block text-black text-xs font-reguler mb-2">Laptop tiba-tiba mati, tapi kipas tetap berbunyi</h2>
-                           </div>
-                         </div>
-                       </div>
-                       <div class="flex flex-wrap">
-                         <div class="w-full lg:w-3/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status</h2>
-                           </div>
-                         </div>
-                         <div class="w-full lg:w-9/12">
-                           <div class="relative w-full mb-3">
-                             <h2 class="block text-black text-xs font-reguler mb-2">In Progress</h2>
-                           </div>
-                         </div>
-                       </div>
-                     </div>
-                   </div>
-                 </template>
-                 <template #footer>
-                   <div class="text-center">
-                     <button
-                       class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                       @click="detailPengguna = false"
-                     >
-                       Oke
-                     </button>
-                   </div>
-                 </template>
-               </modal>
-             </Teleport>
-             <button class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="update" @click="updatePengguna = true">
-               <i class="fas fa-pen-square text-white" style="font-size: 15px"></i>
-             </button>
-             <Teleport to="body">
-               <modal :show="updatePengguna" @close="updatePengguna = false">
-                 <template #header>
-                   <h3 class="text-2xl font-bold text-center">Update Data Pengguna</h3>
-                 </template>
-                 <template #body>
-                   <form>
-                     <div class="flex flex-wrap">
-                       <div class="w-full px-4">
-                         <div class="relative w-full mb-3">
-                           <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Judul Pengguna </label>
-                           <input
-                             type="text"
-                             class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                             placeholder="Isikan Pengguna"
-                           />
-                         </div>
-                       </div>
-                       <div class="w-full px-4">
-                         <div class="relative w-full mb-3">
-                           <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product</label>
-                           <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                             <option>--Pilih Product--</option>
-                             <option>PC/Laptop</option>
-                             <option>Printer</option>
-                             <option>Jaringan/Internet</option>
-                             <option>My PDS</option>
-                             <option>Humanis</option>
-                             <option>Penarikan Data</option>
-                             <option>Lainnya</option>
-                           </select>
-                         </div>
-                       </div>
-                       <div class="w-full px-4">
-                         <div class="relative w-full mb-3">
-                           <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Permasalahan </label>
-                           <input
-                             type="text"
-                             class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                             placeholder="Jelaskan Permasalahan"
-                           />
-                         </div>
-                       </div>
-                       <div class="w-full px-4">
-                         <div class="relative w-full mb-3">
-                           <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Harapan </label>
-                           <input
-                             type="text"
-                             class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                             placeholder="Tuliskan Harapanmu"
-                           />
-                         </div>
-                       </div>
-                       <div class="w-full px-4">
-                         <div class="relative w-full mb-3">
-                           <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">PIC Pengguna</label>
-                           <select id="divisi" class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                             <option>--Pilih PIC Pengguna--</option>
-                             <option>Budi</option>
-                             <option>Bambang</option>
-                             <option>Joko</option>
-                           </select>
-                         </div>
-                       </div>
-                       <div class="w-full px-4">
-                         <div class="relative w-full mb-3">
-                           <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Lampiran </label>
-                           <input type="file" id="dropzoneFile" class="dropzoneFile" />
-                         </div>
-                       </div>
-                     </div>
-                   </form>
-                 </template>
-                 <template #footer>
-                   <div class="text-left">
-                     <button
-                       class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                       @click="updatePengguna = false"
-                     >
-                       Batal
-                     </button>
-                     <button
-                       class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                       @click="updatePengguna = false"
-                     >
-                       Simpan
-                     </button>
-                   </div>
-                 </template>
-               </modal>
-             </Teleport>
-             <button class="bg-red-600 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150" type="button" id="delete" @click="deletePengguna = true">
-               <i class="fas fa-trash text-white" style="font-size: 15px"></i>
-             </button>
-             <Teleport to="body">
-               <modal :show="deletePengguna" @close="deletePengguna = false">
-                 <template #header>
-                   <h3 class="text-2xl font-bold text-center">Delete Data Pengguna</h3>
-                 </template>
-                 <template #body>
-                         <div class="relative w-full mb-3 text-center">
-                           Apakah anda yakin ingin menghapus?
-                         </div>
-                 </template>
-                 <template #footer>
-                   <div class="text-center">
-                     <button
-                       class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-4 ease-linear transition-all duration-150"
-                       @click="deletePengguna = false"
-                     >
-                       Ya
-                     </button>
-                     <button
-                       class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150"
-                       @click="deletePengguna = false"
-                     >
-                       Tidak
-                     </button>
-                   </div>
-                 </template>
-               </modal>
-             </Teleport>
-           </td>
-         </tr>
-       </tbody>
-     </table>
-     </div>
- </template>
- 
- <script>
- import Modal from "@/components/Modal/ModalDetail.vue";
- 
- export default {
-   components: {
-     Modal,
-   },
-   data() {
-     return {
-       addPengguna: false,
-       detailPengguna: false,
-       updatePengguna: false,
-       deletePengguna: false,
-     };
- }
- }
- </script>
+  <div>
+    <div class="pb-4 flex justify-end">
+      <button
+        class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+        type="button"
+        id="Pelaporan"
+        @click="handleClickCreatePengguna"
+      >
+        Tambah Pengguna
+      </button>
+    </div>
+    <div class="overflow-x-auto relative sm:rounded-lg">
+      <div>
+        <modal :show="modalPengguna">
+          <template #header>
+            <h3 class="text-2xl font-bold text-center">
+              {{ isEditPengguna ? "Ubah" : "Tambah" }} Pengguna
+            </h3>
+          </template>
+          <template #body>
+            <form
+              @submit.prevent="
+                isEditPengguna ? submitEditForm() : submitForm()
+              "
+            >
+              <div class="flex flex-wrap">
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Nama Karyawan
+                    </label>
+                    <input
+                      type="text"
+                      v-model="form.nama_karyawan"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Isikan Nama Karyawan"
+                    />
+                  </div>
+                </div>
+                </div>
+                  <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    >
+                      NRP
+                    </label>
+                    <input
+                      type="text"
+                      v-model="form.nrp"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Jelaskan Permasalahan"
+                    />
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    >
+                      Divisi
+                    </label>
+                    <select
+                      v-model="form.divisi_id"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    >
+                      <option disabled>---Pilih Divisi---</option>
+                      <option v-for="item in divisi" :key="item.id">{{ item.nama_divisi }}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      >Role</label
+                    >
+                    <select
+                      v-model="form.role_id"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    >
+                      <option disabled>---Roles---</option>
+                      <option v-for="item in roles" :key="item.id">{{ item.name }}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      v-model="form.email"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Tuliskan Harapanmu"
+                    />
+                  </div>
+                </div>
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    >
+                    Password
+                    </label>
+                    <input
+                      type="password"
+                      v-model="form.password"
+                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Tuliskan Harapanmu"
+                    />
+                  </div>
+                </div>
+                <div class="relative w-full text-center mt-4">
+                <button
+                  class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  @click="modalPengguna = false"
+                  type="button"
+                >
+                  Batal
+                </button>
+                <button
+                  class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  type="submit"
+                >
+                  {{ isEditPengguna ? "Simpan" : "Tambah" }}
+                </button>
+              </div>
+              </form>
+          </template>
+        </modal>
+      </div>
+      <div>
+        <modal :show="detailPengguna">
+          <template #header>
+            <h3 class="text-2xl font-bold text-center">Detail Pengguna</h3>
+          </template>
+          <template #body>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">ID Karyawan</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.id}}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Nama Karyawan</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.nama_karyawan}}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">NRP</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.nrp}}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Divisi</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.divisi.nama_divisi }}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Roles</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.roles.name }}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap">
+                  <div class="lg:w-3/12 ">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Email</h2>
+                    </div>
+                  </div>
+                  <div class="lg:w-9/12">
+                    <div class="relative w-full mb-3">
+                      <h2 class="block text-black text-xs font-reguler mb-2">
+                        {{ form?.email }}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center mt-2">
+                      <button
+                        class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                        @click="detailPengguna = false"
+                      >
+                        Oke
+                      </button>
+                    </div>
+          </template>
+        </modal>
+      </div>
+      <div>
+        <modal :show="deletePengguna">
+          <template #header>
+            <h3 class="text-2xl font-bold text-center">Hapus Pengguna</h3>
+          </template>
+          <template #body>
+            <div>
+              <div class="flex flex-wrap">
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3">
+                    <h5>
+                      Yakin ingin menghapus data pengguna
+                      {{ form?.nama_karyawan }}? Data yang sudah dihapus tidak
+                      dapat dikembalikan
+                    </h5>
+                  </div>
+                </div>
+
+                <!-- Buttons -->
+                <button
+                  class="bg-gray-600 text-black active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  @click="deletePengguna = false"
+                >
+                  Batal
+                </button>
+                <button
+                  class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  @click="deletePenggunaData(form)"
+                >
+                  Hapus
+                </button>
+              </div>
+            </div>
+          </template>
+        </modal>
+      </div>
+      <table class="w-full mb-5 overflow-x-auto relative">
+        <thead
+          class="text-xs text-white uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <tr>
+            <th class="py-3 px-6">ID Karyawan</th>
+            <th class="py-3 px-6">Nama Karyawan</th>
+            <th class="py-3 px-6">NRP</th>
+            <th class="py-3 px-6">Divisi</th>
+            <th class="py-3 px-6">Role</th>
+            <th class="py-3 px-6">Email</th>
+            <th class="py-3 px-6">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="item in users"
+            :key="item.id"
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center"
+          >
+            <th
+              scope="row"
+              class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            >
+              {{ item?.id }}
+            </th>
+            <td class="py-4 px-6">{{ item?.nama_karyawan }}</td>
+            <td class="py-4 px-6">{{ item?.nrp }}</td>
+            <td class="py-4 px-6">{{ item?.divisi.nama_divisi }}</td>
+            <td class="py-4 px-6">{{ item?.roles[0]?.name }}</td>
+            <td class="py-4 px-6">{{ item?.email }}</td>
+            <td>
+              <div class="flex space-x-2 justify-center px-6">
+                <button
+                  class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                  type="button"
+                  id="detail"
+                  @click="handleShowDetail(item)"
+                >
+                  <i
+                    class="fas fa-info-circle text-white"
+                    style="font-size: 15px"
+                  ></i>
+                </button>
+                <button
+                  class="bg-blue-300 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150"
+                  type="button"
+                  id="update"
+                  @click="handleSelectedData(item)"
+                >
+                  <i
+                    class="fas fa-pen-square text-white"
+                    style="font-size: 15px"
+                  ></i>
+                </button>
+                <button
+                  class="bg-red-600 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150"
+                  type="button"
+                  id="delete"
+                  @click="handleShowDeleteModal(item)"
+                >
+                  <i
+                    class="fas fa-trash text-white"
+                    style="font-size: 15px"
+                  ></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>
+
+<script>
+import Modal from "@/components/Modal/ModalDetail.vue";
+import { mapActions } from "vuex";
+export default {
+  name: "DataPengguna",
+  components: {
+    Modal,
+  },
+  data: () => ({
+    form: {},
+    modalPengguna: false,
+    detailPengguna: false,
+    deletePengguna: false,
+    isEditPengguna: false,
+    }),
+  methods: {
+    ...mapActions([
+      "getAllUser","getAllRoles", "getAllDivisi"
+    ]),
+    handleShowDetail(item) {
+      this.detailPengguna = true;
+      this.form = { ...item };
+    },
+    handleShowDeleteModal(item) {
+      this.deletePengguna = true;
+      this.isEditPengguna = true;
+      this.form = { ...item };
+    },
+    handleClickCreatePengguna() {
+      this.modalPengguna = true;
+      this.isEditPengguna = false;
+    },
+    deletePenggunaData(item) {
+      this.deletePengguna = true;
+      const Toast = this.$swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", this.$swal.stopTimer);
+          toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+        },
+      });
+      if (!item) return;
+      this.deleteUser(item.id)
+        .then(() => {
+          Toast.fire({
+            icon: "success",
+            title: "Data Berhasil dihapus",
+          });
+          this.deletePengguna = false;
+        })
+        .catch(() => {
+          Toast.fire({
+            icon: "success",
+            title: "Data Gagal dihapus",
+          });
+          this.deletePengguna = false;
+        });
+    },
+    submitEditForm() {
+      const Toast = this.$swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", this.$swal.stopTimer);
+          toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+        },
+      });
+      /**
+       * @todo sementara aku spread dulu isian form dari input sama inputan hardcode (status & lampiran)
+       * @type `Object`
+       */
+      const submitData = { ...this.form };
+      this.updateUser(submitData)
+        .then(() => {
+          this.modalPengguna = false;
+          Toast.fire({
+            icon: "success",
+            title: "Data Berhasil Diubah",
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          this.modalPengguna = false;
+          Toast.fire({
+            icon: "error",
+            title: "Data Gagal Diubah",
+          });
+        });
+    },
+    submitForm() {
+      const Toast = this.$swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", this.$swal.stopTimer);
+          toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+        },
+      });
+      /**
+       * @todo sementara aku spread dulu isian form dari input sama inputan hardcode (status & lampiran)
+       * @type `Object`
+       */
+      const submitData = { ...this.form };
+      this.register(submitData)
+        .then(() => {
+          this.modalPelaporan = false;
+          Toast.fire({
+            icon: "success",
+            title: "Data Berhasil Ditambahkan",
+          });
+        })
+        .catch((err) => {
+          this.modalPelaporan = false;
+          const errorFromBe = err.response?.data?.message ?? {};
+          /**
+           * @todo ambil 1 error message dari BE, soalnya error store pelaporan BE sifatnya array.
+           * @type string[];
+           * @description perlu di mapping jadi array berisi string keterangan errornya.
+           */
+          const errorMessages =
+            Object.entries(errorFromBe).length > 0
+              ? Object.values(errorFromBe).map((item) => item[0])
+              : [];
+          console.log(errorMessages);
+          Toast.fire({
+            icon: "error",
+            title: "Gagal menambahkan data. " + errorMessages[0],
+          });
+        });
+
+      // console.log(this.form);
+    },
+    handleSelectedData(item) {
+      this.modalPengguna = true;
+      this.isEditPengguna = true;
+      console.log(item);
+      this.form = {
+        id: item.id,
+        nama_karyawan: item.nama_karyawan,
+        nrp: item.nrp,
+        divisi_id: item.divisi_id,
+        role_id: item.role_id,
+        email: item.email,
+        // tanggal_mulai: item.tanggal_mulai,
+        // tanggal_selesai: item.tanggal_selesai,
+        // ...item,
+      };
+    },
+    clearForm() {
+      if (this.isEditPengguna === false && this.modalPengguna === true) {
+        this.form = {};
+      }
+    },
+  },
+  computed: {
+    users() {
+      return this.$store.state.user.users;
+    },
+    roles(){
+      return this.$store.state.roles.roleList;
+    },
+    divisi(){
+      return this.$store.state.divisi.divisiList;
+    }
+  },
+  mounted() {
+    this.$store.dispatch("getAllUser");
+    this.$store.dispatch("getAllRoles");
+    this.$store.dispatch("getAllDivisi");
+    console.log(this.users);
+    console.log(this.form);
+  },
+  watch: {
+    modalPengguan: {
+      handler() {
+        this.clearForm();
+      },
+      immediate: true,
+    },
+  },
+};
+</script>

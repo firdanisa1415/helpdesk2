@@ -32,7 +32,7 @@
   </div>
 </template>
 
-<script>
+  <script>
 import { mapActions } from "vuex";
 import CardBoardPenugasan from "../../components/Cards/CardBoardPenugasan.vue";
 
@@ -94,7 +94,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("getAllStories");
+    this.$store.dispatch("getStories");
   },
 };
 </script>

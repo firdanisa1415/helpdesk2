@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full lg:w-3/12 px-4 mt-16">
+  <div class="w-full lg:w-3/12 px-4 mt-14">
     <div class="relative w-full mb-3 bg-white p-4 shadow-lg rounded">
       <h2 class="text-blueGray-700 text-xl font-semibold">{{ title }}</h2>
       <draggable
@@ -9,7 +9,7 @@
         group="stories"
       >
         <div
-          class="list-group-item bg-blue-500 text-white p-2 mb-4 cursor-pointer"
+          class="list-group-item rounded bg-blue-500 text-white p-2 mb-4 cursor-pointer"
           v-for="element in items"
           :key="element.id_story"
           @click="handleShowDetail(element)"
