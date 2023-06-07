@@ -88,7 +88,7 @@
 import CardLineChart from "@/components/Cards/CardLineChart.vue";
 import CardBarChart from "@/components/Cards/CardBarChart.vue";
 import CardPieChart from "@/components/Cards/CardPieChart.vue";
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 // import CardPageVisits from "@/components/Cards/CardPageVisits.vue";
 // import CardSocialTraffic from "@/components/Cards/CardSocialTraffic.vue";
 export default {
@@ -250,7 +250,8 @@ export default {
         maintainAspectRatio: false,
       },
       chartData: {
-        labels: this.getMappedMonth(this.monthlyList),
+        // this.getMappedMonth(this.monthlyList)
+        labels: this.getMappedMonth(),
         datasets: [
           {
             label: new Date().getFullYear(),
@@ -344,21 +345,29 @@ export default {
     getMappedMonthlyCount() {
       return this.monthlyList.map((data) => data.total_users);
     },
+    reports() {
+      return this.$store.state.report.monthlyList;
+    },
   },
   mounted() {
     this.$store.dispatch("getMonthlyReports");
+    console.log("MOUNTED");
+    console.log(this.reports);
   },
   methods: {
     ...mapActions(["getMonthlyReports"]),
-    ...mapGetters(["monthlyList"]),
     toggleTabs: function (tabNumber) {
       this.openTab = tabNumber;
     },
-    getMappedMonth: function (data) {
-      console.log(data);
-      return data.map((d) => {
+
+    getMappedMonth: function () {
+      console.log("GETMAPPEDMONTH");
+      const res = this.reports.map((d) => {
         return d.month;
       });
+      console.log("RESPONSE");
+      console.log(res);
+      return res;
     },
   },
 };
