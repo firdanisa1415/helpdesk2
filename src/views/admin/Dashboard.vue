@@ -220,7 +220,6 @@ export default {
         responsive: true,
         maintainAspectRatio: false,
       },
-
       chartOptions: {
         maintainAspectRatio: false,
         responsive: true,
@@ -385,9 +384,18 @@ export default {
   },
   methods: {
     ...mapActions(["getMonthlyReports", "getProductReports", "getStatusReports", "getMonthlyReports"]),
-
     toggleTabs: function (tabNumber) {
       this.openTab = tabNumber;
+    },
+
+    getMappedMonth: function () {
+      console.log("GETMAPPEDMONTH");
+      const res = this.reports.map((d) => {
+        return d.month;
+      });
+      console.log("RESPONSE");
+      console.log(res);
+      return res;
     },
   },
 };
