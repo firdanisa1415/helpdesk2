@@ -1,11 +1,9 @@
 <template>
-  <div
-    class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
-  >
+  <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
     <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
-      <div class="flex flex-wrap items-center">
+      <div class="flex flex-wrap items-center text-center">
         <div class="relative w-full max-w-full flex-grow flex-1">
-          <h2 class="text-blueGray-700 text-xl font-semibold">Total Jenis</h2>
+          <h2 class="text-blueGray-700 text-xl font-semibold">{{ title }}</h2>
         </div>
       </div>
     </div>
