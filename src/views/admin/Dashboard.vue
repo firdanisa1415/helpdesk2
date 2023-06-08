@@ -34,10 +34,10 @@
           <div v-bind:class="{ hidden: openTab !== 1, block: openTab === 1 }">
             <div class="flex flex-wrap">
               <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-                <card-line-chart chartId="chart-test2" title="Test 2" :chartData="chartData" :chartOptions="chartOptions" />
+                <card-line-chart chartId="chart-test2" title="Total Data Pelaporan SLA" :chartData="chartData" :chartOptions="chartOptions" />
               </div>
               <div class="w-full xl:w-4/12 px-4">
-                <card-pie-chart chartId="chart-test2-pie" :chartData="chartPieData" :chartOptions="chartPieOptions" />
+                <card-pie-chart chartId="chart-test2-pie" title="Total Status Pelaporan" :chartData="chartPieData" :chartOptions="chartPieOptions" />
               </div>
               <!-- <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
                 <card-line-chart title="Test" />
@@ -48,10 +48,10 @@
             </div>
             <div class="flex flex-wrap mt-4">
               <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-                <card-bar-chart title="Bar Horizontal Chart Biasa Incident" chartId="chart-test3-bar-horizontal" :chartData="chartBarData" :chartOptions="chartHorizontalBarOptions" />
+                <card-bar-chart title="Bar Horizontal Chart Biasa Incident" chartId="chart-test3-bar-horizontal" :chartData="chartBarData1" :chartOptions="chartHorizontalBarOptions" />
               </div>
               <div class="w-full xl:w-4/12 px-4">
-                <card-bar-chart title="Bar Chart Biasa Incident" chartId="chart-test3-bar" :chartData="chartBarData" :chartOptions="chartBarOptions" />
+                <card-bar-chart title="Bar Chart Biasa Incident" chartId="chart-test3-bar" :chartData="chartBarData1" :chartOptions="chartBarOptions" />
               </div>
             </div>
           </div>
@@ -72,10 +72,10 @@
             </div>
             <div class="flex flex-wrap mt-4">
               <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-                <card-bar-chart title="Bar Horizontal Chart Biasa Scrum" chartId="chart-test2-bar-horizontal" :chartData="chartBarData" :chartOptions="chartHorizontalBarOptions" />
+                <card-bar-chart title="Bar Horizontal Chart Biasa Scrum" chartId="chart-test2-bar-horizontal" :chartData="chartBarData1" :chartOptions="chartHorizontalBarOptions" />
               </div>
               <div class="w-full xl:w-4/12 px-4">
-                <card-bar-chart title="Bar Chart Biasa Scrum" chartId="chart-test2-bar" :chartData="chartBarData" :chartOptions="chartBarOptions" />
+                <card-bar-chart title="Bar Chart Biasa Scrum" chartId="chart-test2-bar" :chartData="chartBarData1" :chartOptions="chartBarOptions" />
               </div>
             </div>
           </div>
@@ -102,27 +102,6 @@ export default {
   },
   data() {
     return {
-      chartBarData: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [
-          {
-            label: new Date().getFullYear(),
-            backgroundColor: "#ed64a6",
-            borderColor: "#ed64a6",
-            data: [30, 78, 56, 34, 100, 45, 13],
-            fill: false,
-            barThickness: 18,
-          },
-          // {
-          //   label: new Date().getFullYear() - 1,
-          //   fill: false,
-          //   backgroundColor: "#4c51bf",
-          //   borderColor: "#4c51bf",
-          //   data: [27, 68, 86, 74, 10, 4, 87],
-          //   barThickness: 8,
-          // },
-        ],
-      },
       chartHorizontalBarOptions: {
         maintainAspectRatio: false,
         responsive: true,
@@ -236,40 +215,11 @@ export default {
           },
         },
       },
-      chartPieData: {
-        labels: ["VueJs", "EmberJs", "ReactJs", "AngularJs"],
-        datasets: [
-          {
-            backgroundColor: ["#41B883", "#E46651", "#00D8FF", "#DD1B16"],
-            data: [40, 20, 80, 10],
-          },
-        ],
-      },
+
       chartPieOptions: {
         responsive: true,
         maintainAspectRatio: false,
       },
-      chartData: {
-        // this.getMappedMonth(this.monthlyList)
-        labels: this.getMappedMonth(),
-        datasets: [
-          {
-            label: new Date().getFullYear(),
-            backgroundColor: "#4c51bf",
-            borderColor: "#4c51bf",
-            data: this.getMappedMonthlyCount,
-            fill: false,
-          },
-          {
-            label: new Date().getFullYear() - 1,
-            fill: false,
-            backgroundColor: "#fff",
-            borderColor: "#fff",
-            data: [40, 68, 86, 74, 56, 60, 87],
-          },
-        ],
-      },
-
       chartOptions: {
         maintainAspectRatio: false,
         responsive: true,
@@ -339,23 +289,101 @@ export default {
     };
   },
   computed: {
-    getMappedMonthlyName() {
-      return this.monthlyList.map((data) => data.month);
+    line() {
+      return this.$store.state.report.monthlyList?.map((data) => data.bulan) ?? [];
     },
-    getMappedMonthlyCount() {
-      return this.monthlyList.map((data) => data.total_users);
+    statusReports() {
+      return this.$store.state.report.statusList?.map((data) => data.status) ?? [];
     },
-    reports() {
-      return this.$store.state.report.monthlyList;
+    productReports() {
+      return this.$store.state.report.productList?.map((data) => data.jenis_product) ?? [];
     },
+    getLineMappedMonthlyCount() {
+      return this.$store.state.report.monthlyList.map((data) => data.total_users) ?? [];
+    },
+    getLineMappedStatusCount() {
+      return this.$store.state.report.statusList?.map((data) => data.total_users) ?? [];
+    },
+    getLineMappedProductCount() {
+      return this.$store.state.report.productList?.map((data) => data.total_users) ?? [];
+    },
+    chartData() {
+      return {
+        labels: this.line,
+        datasets: [
+          {
+            label: new Date().getFullYear(),
+            backgroundColor: "#4c51bf",
+            borderColor: "#4c51bf",
+            data: this.getLineMappedMonthlyCount,
+            fill: false,
+          },
+          {
+            label: new Date().getFullYear() - 1,
+            fill: false,
+            backgroundColor: "#fff",
+            borderColor: "#fff",
+            data: [],
+          },
+        ],
+      };
+    },
+    chartPieData() {
+      return {
+        labels: this.statusReports,
+        datasets: [
+          {
+            backgroundColor: ["#41B883", "#E46651", "#00D8FF", "#DD1B16"],
+            data: this.getLineMappedStatusCount,
+          },
+        ],
+      };
+    },
+    chartBarData1() {
+      const datasets = this.productReports.map((product, index) => {
+        const filteredData = this.getLineMappedProductCount.filter((count, i) => i === index);
+        return {
+          label: product,
+          backgroundColor: ["#41B883", "#E46651", "#00D8FF", "#DD1B16"][index],
+          borderColor: ["#41B883", "#E46651", "#00D8FF", "#DD1B16"][index],
+          data: filteredData,
+          fill: false,
+          barThickness: 18,
+        };
+      });
+
+      return {
+        labels: this.productReports,
+        datasets: datasets,
+      };
+    },
+
+    // chartBarData1() {
+    //   return {
+    //     labels: this.productReports,
+    //     datasets: [
+    //       {
+    //         label: this.productReports,
+    //         backgroundColor: ["#41B883", "#E46651", "#00D8FF", "#DD1B16"],
+    //         borderColor: ["#41B883", "#E46651", "#00D8FF", "#DD1B16"],
+    //         data: this.getLineMappedProductCount,
+    //         fill: false,
+    //         barThickness: 18,
+    //       },
+    //     ],
+    //   };
+    // },
   },
   mounted() {
     this.$store.dispatch("getMonthlyReports");
-    console.log("MOUNTED");
-    console.log(this.reports);
+    this.$store.dispatch("getStatusReports");
+    this.$store.dispatch("getProductReports");
+    console.log(this.line);
+    console.log(this.statusReports);
+    console.log(this.productReports);
   },
   methods: {
-    ...mapActions(["getMonthlyReports"]),
+    ...mapActions(["getMonthlyReports", "getProductReports", "getStatusReports", "getMonthlyReports"]),
     toggleTabs: function (tabNumber) {
       this.openTab = tabNumber;
     },

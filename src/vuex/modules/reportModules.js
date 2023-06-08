@@ -8,6 +8,9 @@ import {
   GET_ALL_REPORT,
   DELETE_REPORT,
   GET_MONTHLY_REPORT,
+  GET_STATUS_REPORT,
+  GET_PRODUCT_REPORT,
+  GET_PIC_REPORT,
 } from "../constant";
 
 const reportModules = {
@@ -46,15 +49,15 @@ const reportModules = {
     [GET_MONTHLY_REPORT](state, monthly) {
       state.monthlyList = monthly;
     },
-    // [GET_STATUS_REPORT](state, status) {
-    //   state.statusList = status;
-    // },
-    // [GET_PRODUCT_REPORT](state, product) {
-    //   state.productList = product;
-    // },
-    // [GET_PIC_REPORT](state, pic) {
-    //   state.picList = pic;
-    // },
+    [GET_STATUS_REPORT](state, status) {
+      state.statusList = status;
+    },
+    [GET_PRODUCT_REPORT](state, product) {
+      state.productList = product;
+    },
+    [GET_PIC_REPORT](state, pic) {
+      state.picList = pic;
+    },
   },
   actions: {
     async getAllReports({ commit }) {
@@ -114,6 +117,34 @@ const reportModules = {
         .then((res) => {
           const monthly = res?.data;
           commit(GET_MONTHLY_REPORT, monthly);
+          console.log("monthly", res?.data);
+        });
+    },
+    async getStatusReports({ commit }) {
+      await apiClient()
+        .get(`/api/status`)
+        .then((res) => {
+          const status = res?.data;
+          commit(GET_STATUS_REPORT, status);
+          console.log("status", res?.data);
+        });
+    },
+    async getProductReports({ commit }) {
+      await apiClient()
+        .get(`/api/product`)
+        .then((res) => {
+          const product = res?.data;
+          commit(GET_PRODUCT_REPORT, product);
+          console.log("product", res?.data);
+        });
+    },
+    async getPicReports({ commit }) {
+      await apiClient()
+        .get(`/api/pic`)
+        .then((res) => {
+          const pic = res?.data;
+          commit(GET_PIC_REPORT, pic);
+          console.log("pic", res?.data);
         });
     },
   },
