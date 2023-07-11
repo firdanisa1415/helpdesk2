@@ -53,7 +53,7 @@
 
         <div class="md:flex-col md:min-w-full flex flex-col list-none">
           <li class="items-center">
-            <router-link to="/admin/dashboard" v-slot="{ href, navigate, isActive }">
+            <router-link to="/user/dashboard" v-slot="{ href, navigate, isActive }">
               <a :href="href" @click="navigate" class="text-xs uppercase py-3 font-bold block" :class="[isActive ? 'text-blue-500 hover:text-blue-300' : 'text-blueGray-700 hover:text-blueGray-500']">
                 <i class="fas fa-tv mr-2 text-sm" :class="[isActive ? 'opacity-75' : 'text-blueGray-300']"></i>
                 Dashboard
@@ -62,55 +62,10 @@
           </li>
 
           <li class="items-center">
-            <router-link to="/admin/pelaporan" v-slot="{ href, navigate, isActive }">
+            <router-link to="/user/pelaporan" v-slot="{ href, navigate, isActive }">
               <a :href="href" @click="navigate" class="text-xs uppercase py-3 font-bold block" :class="[isActive ? 'text-blue-500 hover:text-blue-300' : 'text-blueGray-700 hover:text-blueGray-500']">
                 <i class="fas fa-list-ul mr-3 text-sm" :class="[isActive ? 'opacity-75' : 'text-blueGray-300']"></i>
                 Data Pelaporan
-              </a>
-            </router-link>
-          </li>
-
-          <li class="items-center">
-            <router-link to="/admin/boardpelaporan" v-slot="{ href, navigate, isActive }">
-              <a :href="href" @click="navigate" class="text-xs uppercase py-3 font-bold block" :class="[isActive ? 'text-blue-500 hover:text-blue-300' : 'text-blueGray-700 hover:text-blueGray-500']">
-                <i class="fas fa-table mr-3 text-sm" :class="[isActive ? 'opacity-75' : 'text-blueGray-300']"></i>
-                Board Pelaporan
-              </a>
-            </router-link>
-          </li>
-
-          <li class="items-center">
-            <router-link to="/admin/backlog" v-slot="{ href, navigate, isActive }">
-              <a :href="href" @click="navigate" class="text-xs uppercase py-3 font-bold block" :class="[isActive ? 'text-blue-500 hover:text-blue-300' : 'text-blueGray-700 hover:text-blueGray-500']">
-                <i class="fas fa-stream mr-3 text-sm" :class="[isActive ? 'opacity-75' : 'text-blueGray-300']"></i>
-                Data Epic
-              </a>
-            </router-link>
-          </li>
-
-          <li class="items-center">
-            <router-link to="/admin/Sprint" v-slot="{ href, navigate, isActive }">
-              <a :href="href" @click="navigate" class="text-xs uppercase py-3 font-bold block" :class="[isActive ? 'text-blue-500 hover:text-blue-300' : 'text-blueGray-700 hover:text-blueGray-500']">
-                <i class="fas fa-stream mr-3 text-sm" :class="[isActive ? 'opacity-75' : 'text-blueGray-300']"></i>
-                Sprint Backlog
-              </a>
-            </router-link>
-          </li>
-
-          <li class="items-center">
-            <router-link to="/admin/board" v-slot="{ href, navigate, isActive }">
-              <a :href="href" @click="navigate" class="text-xs uppercase py-3 font-bold block" :class="[isActive ? 'text-blue-500 hover:text-blue-300' : 'text-blueGray-700 hover:text-blueGray-500']">
-                <i class="fas fa-table mr-3 text-sm" :class="[isActive ? 'opacity-75' : 'text-blueGray-300']"></i>
-                Board Scrum
-              </a>
-            </router-link>
-          </li>
-
-          <li class="items-center">
-            <router-link to="/admin/pengguna" v-slot="{ href, navigate, isActive }">
-              <a :href="href" @click="navigate" class="text-xs uppercase py-3 font-bold block" :class="[isActive ? 'text-blue-500 hover:text-blue-300' : 'text-blueGray-700 hover:text-blueGray-500']">
-                <i class="fas fa-users mr-2 text-sm" :class="[isActive ? 'opacity-75' : 'text-blueGray-300']"></i>
-                Data Pengguna
               </a>
             </router-link>
           </li>

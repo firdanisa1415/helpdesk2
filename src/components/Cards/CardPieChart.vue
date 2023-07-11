@@ -7,7 +7,7 @@
         </div>
       </div>
     </div>
-    <div class="p-4 flex-auto">
+    <div class="p-4 flex-wrap items-center text-center">
       <div class="relative h-350-px">
         <Pie :id="chartId" :data="chartData" :options="options" />
       </div>

@@ -2,28 +2,16 @@
   <div class="container mx-auto px-4 h-full">
     <div class="flex content-center items-center justify-center h-full">
       <div class="w-full lg:w-6/12 px-4">
-        <div
-          class="relative flex flex-col min-w-0 break-words w-full mt-4 shadow-lg rounded-lg bg-blueGray-100 border-0"
-        >
+        <div class="relative flex flex-col min-w-0 break-words w-full mt-4 shadow-lg rounded-lg bg-blueGray-100 border-0">
           <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
             <div class="text-center justify-center mb-5 mt-5">
-              <img
-                src="@/assets/img/brand.png"
-                width="150"
-                height="50"
-                class="text-center"
-              />
+              <img src="@/assets/img/brand.png" width="150" height="50" class="text-center" />
 
               <h6 class="text-black text-sm font-bold">Masuk Pelapor</h6>
             </div>
             <form @submit.prevent="submitForm">
               <div class="relative w-full mb-3">
-                <label
-                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                  htmlFor="grid-password"
-                >
-                  NRP
-                </label>
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> NRP </label>
                 <input
                   type="text"
                   v-model="form.nrp"
@@ -33,12 +21,7 @@
               </div>
 
               <div class="relative w-full mb-3">
-                <label
-                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                  htmlFor="grid-password"
-                >
-                  Password
-                </label>
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Password </label>
                 <input
                   type="password"
                   v-model="form.password"
@@ -48,23 +31,13 @@
               </div>
               <div>
                 <label class="inline-flex items-center cursor-pointer">
-                  <input
-                    id="customCheckLogin"
-                    type="checkbox"
-                    class="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
-                  />
-                  <span class="ml-2 text-sm font-semibold text-blueGray-600">
-                    Ingatkan saya
-                  </span>
+                  <input id="customCheckLogin" type="checkbox" class="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150" />
+                  <span class="ml-2 text-sm font-semibold text-blueGray-600"> Ingatkan saya </span>
                 </label>
               </div>
 
               <div class="text-center mt-6">
-                <button
-                  :class="buttonSubmitClass"
-                  type="submit"
-                  :disabled="isSubmitting"
-                >
+                <button :class="buttonSubmitClass" type="submit" :disabled="isSubmitting">
                   {{ isSubmitting ? "Loading" : "Masuk" }}
                 </button>
                 <!-- <router-link to="/admin/dashboard">
@@ -92,7 +65,7 @@
 </template>
 <script>
 import { mapActions } from "vuex";
-import { adminRouteLinks } from "../../utils/routeLinks";
+import { adminRouteLinks, userRouteLinks } from "../../utils/routeLinks";
 
 export default {
   computed: {
@@ -121,7 +94,13 @@ export default {
     submitForm() {
       this.login(this.form).then(() => {
         this.form = {};
-        this.$router.push(adminRouteLinks.dashboard);
+        console.log(this.user.user.role_id);
+        if (this.user.user.role_id == 1) {
+          console.log("Login Karyawan Success!");
+          this.$router.push(userRouteLinks.dashboard);
+        } else if (this.user.user.role_id == 2) {
+          this.$router.push(adminRouteLinks.dashboard);
+        }
       });
     },
   },
