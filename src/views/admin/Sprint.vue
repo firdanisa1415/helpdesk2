@@ -10,12 +10,7 @@
         Run Sprint
       </button>
     </div>
-    <kanban-board
-      :sprints="sprints"
-      @handleDragEnd="handleDragEnd"
-      :items="reportFilteredByStatus()"
-      :selectedItem="selectedItem"
-    />
+    <kanban-board :sprints="sprints" @handleDragEnd="handleDragEnd" :items="reportFilteredByStatus()" :selectedItem="selectedItem" />
     <div class="pb-4 flex justify-end">
       <button
         class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -26,22 +21,11 @@
         Tambah Sprint
       </button>
     </div>
-    <!-- <kanban-board :sprints="Backlog" 
-    @handleDragEnd="handleDragEnd" 
-    :items="reportFilteredByStatus('null')" 
-    :selectedItem="selectedItem" /> -->
     <div class="relative w-full mb-3 bg-white p-4 shadow-lg rounded">
       <h2 class="font-bold">Backlog</h2>
       <draggable>
         <div class="list-group bg-white mb-2 p-2"></div>
-        <div
-          class="list-group-item rounded bg-blue-500 text-white p-2 mb-4 cursor-pointer"
-          v-for="story in storiesNull"
-          :key="story.id_story"
-          @click="handleShowDetail(story)"
-        >
-          {{ story.id_story }} - {{ story.isi_story }}
-        </div>
+        <div class="list-group-item rounded bg-blue-500 text-white p-2 mb-4 cursor-pointer" v-for="story in storiesNull" :key="story.id_story" @click="handleShowDetail(story)">{{ story.id_story }} - {{ story.isi_story }}</div>
       </draggable>
     </div>
   </div>
@@ -66,12 +50,7 @@ export default defineComponent({
     selectedSprint: null,
   }),
   methods: {
-    ...mapActions([
-      "getAllSprint",
-      "updateStory",
-      "createSprint",
-      "updateSprint",
-    ]),
+    ...mapActions(["getAllSprint", "updateStory", "createSprint", "updateSprint"]),
 
     reportFilteredByStatus(sprintId) {
       return this.stories.filter((story) => story.sprint_id === sprintId);
@@ -106,10 +85,7 @@ export default defineComponent({
            * @type string[];
            * @description perlu di mapping jadi array berisi string keterangan errornya.
            */
-          const errorMessages =
-            Object.entries(errorFromBe).length > 0
-              ? Object.values(errorFromBe).map((item) => item[0])
-              : [];
+          const errorMessages = Object.entries(errorFromBe).length > 0 ? Object.values(errorFromBe).map((item) => item[0]) : [];
           const Toast = this.$swal.mixin({
             toast: true,
             position: "top-end",
@@ -171,10 +147,7 @@ export default defineComponent({
            * @type string[];
            * @description perlu di mapping jadi array berisi string keterangan errornya.
            */
-          const errorMessages =
-            Object.entries(errorFromBe).length > 0
-              ? Object.values(errorFromBe).map((item) => item[0])
-              : [];
+          const errorMessages = Object.entries(errorFromBe).length > 0 ? Object.values(errorFromBe).map((item) => item[0]) : [];
           console.log(errorMessages);
           Toast.fire({
             icon: "error",
@@ -209,6 +182,9 @@ export default defineComponent({
   computed: {
     stories() {
       return this.$store.state.story.storyList;
+    },
+    sprints() {
+      return this.$store.state.sprint.sprintList;
     },
   },
   mounted() {

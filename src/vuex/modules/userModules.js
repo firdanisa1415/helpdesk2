@@ -1,25 +1,17 @@
 import apiClient from "../../utils/apiClient";
 import CookieHandler from "../../utils/cookieHandler";
-import {
-  DELETE_USER,
-  SET_IS_LOADING,
-  SET_USER,
-  UPDATE_USER,
-  GET_ALL_USER,
-  LOGOUT_USER,
-  GET_ALL_OPERATOR
-} from "../constant";
+import { DELETE_USER, SET_IS_LOADING, SET_USER, UPDATE_USER, GET_ALL_USER, LOGOUT_USER, GET_ALL_OPERATOR } from "../constant";
 const cookieHandler = new CookieHandler();
 const userModules = {
   state: {
     data: null,
     users: [],
     isSubmitting: false,
-    operatorList:[]
+    operatorList: [],
   },
   mutations: {
     [GET_ALL_USER](state, user) {
-      state.users=user;
+      state.users = user;
     },
     [SET_IS_LOADING](state, payload) {
       state.isSubmitting = payload;
@@ -38,9 +30,9 @@ const userModules = {
     [LOGOUT_USER](state) {
       state.data = null;
     },
-    [GET_ALL_OPERATOR](state, operator){
+    [GET_ALL_OPERATOR](state, operator) {
       state.operatorList = operator;
-    }
+    },
   },
   actions: {
     async getAllUser({ commit }, params) {
@@ -104,6 +96,7 @@ const userModules = {
                     token: userData.token,
                     nama_karyawan: userData.user.nama_karyawan,
                     nrp: userData.user.nrp,
+                    role: userData.user.role_id,
                   };
 
                   cookieHandler.store(storedUserCookies, {

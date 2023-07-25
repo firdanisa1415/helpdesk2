@@ -13,7 +13,7 @@ import "sweetalert2/dist/sweetalert2.min.css";
 import App from "@/App.vue";
 
 // layouts
-
+import User from "@/layouts/User.vue";
 import Admin from "@/layouts/Admin.vue";
 import Auth from "@/layouts/Auth.vue";
 
@@ -39,17 +39,14 @@ import Profile from "@/views/Profile.vue";
 import Index from "@/views/Index.vue";
 
 import store from "./vuex/store";
-import {
-  adminRouteLinks,
-  baseRouteLinks,
-  credsRouteLinks,
-} from "./utils/routeLinks";
+import { adminRouteLinks, baseRouteLinks, credsRouteLinks, userRouteLinks } from "./utils/routeLinks";
 
 const routes = [
   {
     path: "/admin",
     redirect: adminRouteLinks.dashboard,
     component: Admin,
+    meta: { role_id: 2 },
     children: [
       {
         path: adminRouteLinks.dashboard,
@@ -77,6 +74,42 @@ const routes = [
       },
       {
         path: adminRouteLinks.pengguna,
+        component: Pengguna,
+      },
+    ],
+  },
+  {
+    path: "/user",
+    redirect: userRouteLinks.dashboard,
+    component: User,
+    meta: { role_id: 1 },
+    children: [
+      {
+        path: userRouteLinks.dashboard,
+        component: Dashboard,
+      },
+      {
+        path: userRouteLinks.pelaporan,
+        component: Pelaporan,
+      },
+      {
+        path: userRouteLinks.boardpelaporan,
+        component: BoardPelaporan,
+      },
+      {
+        path: userRouteLinks.backlog,
+        component: Backlog,
+      },
+      {
+        path: userRouteLinks.sprint,
+        component: Sprint,
+      },
+      {
+        path: userRouteLinks.board,
+        component: Board,
+      },
+      {
+        path: userRouteLinks.pengguna,
         component: Pengguna,
       },
     ],
@@ -118,6 +151,20 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.role_id)) {
+    console.log(to.meta.role_id);
+    if (store.state.user.data.user.role_id !== to.meta.role_id) {
+      // next({ name: "AccessDenied" }); // Redirect to an 'Access Denied' page
+      console.log("accesdenied");
+    } else {
+      next(); // Allow the navigation
+    }
+  } else {
+    next(); // Allow the navigation
+  }
 });
 
 const app = createApp(App);
