@@ -66,7 +66,7 @@ const reportModules = {
         .then((res) => {
           const reports = res?.data?.data;
           commit(GET_ALL_REPORT, reports);
-          console.log(reports);
+          // console.log(reports);
         });
     },
     async createReport({ commit }, payload) {
@@ -98,6 +98,7 @@ const reportModules = {
           const { status: statusDariBackend, data: dataDariBackend } = res.data;
           console.log(statusDariBackend);
           const data = dataDariBackend ?? {};
+          console.log("coba", data);
           commit(UPDATE_REPORT, data);
         });
     },

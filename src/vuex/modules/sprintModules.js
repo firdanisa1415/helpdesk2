@@ -1,6 +1,5 @@
 import apiClient from "../../utils/apiClient";
-import { SET_SPRINT, UPDATE_SPRINT,
-  UPDATE_SPRINTS,DELETE_SPRINT, CREATE_SPRINT, GET_ALL_SPRINT } from "../constant";
+import { SET_SPRINT, UPDATE_SPRINT, UPDATE_SPRINTS, DELETE_SPRINT, CREATE_SPRINT, GET_ALL_SPRINT } from "../constant";
 
 const sprintModules = {
   state: {
@@ -21,9 +20,7 @@ const sprintModules = {
       state.sprintList.push(sprint);
     },
     [UPDATE_SPRINT](state, payload) {
-      let index = state.sprintList.findIndex(
-        (item) => item.id_sprint === payload.id_sprint
-      );
+      let index = state.sprintList.findIndex((item) => item.id_sprint === payload.id_sprint);
       state.sprintList.splice(index, 1, payload);
     },
     [UPDATE_SPRINTS](state, payload) {
@@ -75,7 +72,7 @@ const sprintModules = {
           commit(UPDATE_SPRINT, data);
         });
     },
-    async deleteSprint({ commit }, payload) {
+    async deleteSprints({ commit }, payload) {
       await apiClient()
         .delete(`/api/sprint/${payload}`)
         .then((res) => {

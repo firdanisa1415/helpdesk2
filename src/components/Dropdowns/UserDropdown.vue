@@ -1,21 +1,8 @@
 <template>
   <div>
-    <a
-      class="text-blueGray-500 block"
-      href="#pablo"
-      ref="btnDropdownRef"
-      v-on:click="toggleDropdown($event)"
-    >
+    <a class="text-blueGray-500 block" href="#pablo" ref="btnDropdownRef" v-on:click="toggleDropdown($event)">
       <div class="items-center flex">
-        <span
-          class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"
-        >
-          <img
-            alt="..."
-            class="w-full rounded-full align-middle border-none shadow-lg"
-            :src="image"
-          />
-        </span>
+        <i class="fas fa-user text-white" style="font-size: 15px"></i>
       </div>
     </a>
     <div
@@ -26,22 +13,7 @@
         block: dropdownPopoverShow,
       }"
     >
-      <router-link
-        to="/profile"
-      >
-        <a
-        href="javascript:void(0);"
-        class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-      >
-        Kelola Akun
-      </a>
-      </router-link>
-      <a
-        @click="handleLogout"
-        class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 cursor-pointer"
-      >
-        Keluar
-      </a>
+      <a @click="handleLogout" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 cursor-pointer"> Keluar </a>
     </div>
   </div>
 </template>

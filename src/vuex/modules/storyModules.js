@@ -1,13 +1,6 @@
 import apiClient from "../../utils/apiClient";
 // import { convertToEncodedURL } from "../../utils/usefulFunctions";
-import {
-  SET_STORY,
-  DELETE_STORY,
-  UPDATE_STORY,
-  UPDATE_STORYS,
-  CREATE_STORY,
-  GET_ALL_STORY,
-} from "../constant";
+import { SET_STORY, DELETE_STORY, UPDATE_STORY, UPDATE_STORYS, CREATE_STORY, GET_ALL_STORY } from "../constant";
 
 const storyModules = {
   state: {
@@ -35,9 +28,7 @@ const storyModules = {
       state.storyList.push(payload);
     },
     [DELETE_STORY](state, payload) {
-      const index = state.storyList.findIndex(
-        (post) => post.id_story === payload
-      );
+      const index = state.storyList.findIndex((post) => post.id_story === payload);
       state.storyList.splice(index, 1);
     },
   },
@@ -74,9 +65,9 @@ const storyModules = {
       }
     },
 
-    async createStory({ commit }) {
+    async createStory({ commit }, { epic_id, ...rest }) {
       await apiClient()
-        .post("/api/story")
+        .post(`/api/story/${epic_id}`, rest)
         .then((res) => {
           const { status: statusDariBackend, data: dataDariBackend } = res.data;
           console.log(statusDariBackend);
@@ -90,7 +81,7 @@ const storyModules = {
         .then((res) => {
           const { status: statusDariBackend, data: dataDariBackend } = res.data;
           console.log(statusDariBackend);
-          const data = dataDariBackend ?? {};
+          const data = { ...dataDariBackend, sprint: { id_sprint: rest.sprint_id } } ?? {};
           commit(UPDATE_STORY, data);
         });
     },

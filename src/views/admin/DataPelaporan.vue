@@ -5,34 +5,24 @@
         class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
         type="button"
         id="Pelaporan"
+        v-if="showButton"
         @click="handleClickCreatePelaporan"
       >
         Tambah Pelaporan
       </button>
     </div>
-    <div  class="overflow-x-auto relative sm:rounded-lg">
+    <div class="overflow-x-auto relative sm:rounded-lg">
       <div>
         <modal :show="modalPelaporan">
           <template #header>
-            <h3 class="text-2xl font-bold text-center">
-              {{ isEditPelaporan ? "Ubah" : "Tambah" }} Pelaporan
-            </h3>
+            <h3 class="text-2xl font-bold text-center">{{ isEditPelaporan ? "Ubah" : "Tambah" }} Pelaporan</h3>
           </template>
           <template #body>
-            <form
-              @submit.prevent="
-                isEditPelaporan ? submitEditForm() : submitForm()
-              "
-            >
+            <form @submit.prevent="isEditPelaporan ? submitEditForm() : submitForm()">
               <div class="flex flex-wrap">
                 <div class="w-full px-4">
                   <div class="relative w-full mb-3">
-                    <label
-                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
-                      Judul Pelaporan
-                    </label>
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Judul Pelaporan </label>
                     <input
                       type="text"
                       v-model="form.judul_pelaporan"
@@ -41,89 +31,69 @@
                     />
                   </div>
                 </div>
+              </div>
+              <div class="w-full px-4">
+                <div class="relative w-full mb-3">
+                  <label for="countries" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product</label>
+                  <select
+                    id="divisi"
+                    v-model="form.jenis_product"
+                    class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  >
+                    <option>--Pilih Product--</option>
+                    <option>PC/Laptop</option>
+                    <option>Printer</option>
+                    <option>Jaringan/Internet</option>
+                    <option>My PDS</option>
+                    <option>Humanis</option>
+                    <option>Penarikan Data</option>
+                    <option>SOP</option>
+                    <option>RKM</option>
+                    <option>KPI</option>
+                  </select>
                 </div>
-                <div class="w-full px-4">
-                  <div class="relative w-full mb-3">
-                    <label
-                      for="countries"
-                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                      >Product</label
-                    >
-                    <select
-                      id="divisi"
-                      v-model="form.jenis_product"
-                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    >
-                      <option>--Pilih Product--</option>
-                      <option>PC/Laptop</option>
-                      <option>Printer</option>
-                      <option>Jaringan/Internet</option>
-                      <option>My PDS</option>
-                      <option>Humanis</option>
-                      <option>Penarikan Data</option>
-                      <option>Lainnya</option>
-                    </select>
-                  </div>
+              </div>
+              <div class="w-full px-4">
+                <div class="relative w-full mb-3">
+                  <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Permasalahan </label>
+                  <input
+                    type="text"
+                    v-model="form.isi_pelaporan"
+                    class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    placeholder="Jelaskan Permasalahan"
+                  />
                 </div>
-                  <div class="w-full px-4">
-                  <div class="relative w-full mb-3">
-                    <label
-                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
-                      Permasalahan
-                    </label>
-                    <input
-                      type="text"
-                      v-model="form.isi_pelaporan"
-                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Jelaskan Permasalahan"
-                    />
-                  </div>
+              </div>
+              <div class="w-full px-4">
+                <div class="relative w-full mb-3">
+                  <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Harapan </label>
+                  <input
+                    type="text"
+                    v-model="form.harapan"
+                    class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    placeholder="Tuliskan Harapanmu"
+                  />
                 </div>
-                <div class="w-full px-4">
-                  <div class="relative w-full mb-3">
-                    <label
-                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
-                      Harapan
-                    </label>
-                    <input
-                      type="text"
-                      v-model="form.harapan"
-                      class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Tuliskan Harapanmu"
-                    />
-                  </div>
+              </div>
+              <div class="w-full px-4">
+                <div class="relative w-full mb-3">
+                  <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password"> Lampiran </label>
+                  <input type="file" @change="onFileChange" />
                 </div>
-                <div class="w-full px-4">
-                  <div class="relative w-full mb-3">
-                    <label
-                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
-                      Lampiran
-                    </label>
-                    <input type="file" @change="onFileChange" />
-                  </div>
-                </div>
-                <div class="relative w-full text-center mt-4">
-                  <button
+              </div>
+              <div class="relative w-full text-center mt-4">
+                <button
                   class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-2 ease-linear transition-all duration-150"
                   @click="modalPelaporan = false"
                   type="button"
                 >
                   Batal
                 </button>
-                <button
-                  class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ml-2 ease-linear transition-all duration-150"
-                  type="submit"
-                >
+                <button class="bg-emerald-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ml-2 ease-linear transition-all duration-150" type="submit">
                   {{ isEditPelaporan ? "Simpan" : "Tambah" }}
                 </button>
-                </div>
-              </form>
+              </div>
+            </form>
           </template>
         </modal>
       </div>
@@ -133,126 +103,112 @@
             <h3 class="text-2xl font-bold text-center">Detail Pelaporan</h3>
           </template>
           <template #body>
-                <div class="flex flex-wrap">
-                  <div class="lg:w-3/12 ">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Nomor Ticket</h2>
-                    </div>
-                  </div>
-                  <div class="lg:w-9/12">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block text-black text-xs font-reguler mb-2">
-                        {{ form?.id_pelaporan}}
-                      </h2>
-                    </div>
-                  </div>
+            <div class="flex flex-wrap">
+              <div class="lg:w-3/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Nomor Ticket</h2>
                 </div>
-                <div class="flex flex-wrap">
-                  <div class="lg:w-3/12 ">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Judul Pelaporan</h2>
-                    </div>
-                  </div>
-                  <div class="lg:w-9/12">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block text-black text-xs font-reguler mb-2">
-                        {{ form?.judul_pelaporan}}
-                      </h2>
-                    </div>
-                  </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ form?.id_pelaporan }}
+                  </h2>
                 </div>
-                <div class="flex flex-wrap">
-                  <div class="lg:w-3/12 ">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Jenis Produk</h2>
-                    </div>
-                  </div>
-                  <div class="lg:w-9/12">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block text-black text-xs font-reguler mb-2">
-                        {{ form?.jenis_product}}
-                      </h2>
-                    </div>
-                  </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap">
+              <div class="lg:w-3/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Judul Pelaporan</h2>
                 </div>
-                <div class="flex flex-wrap">
-                  <div class="lg:w-3/12 ">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Isi Pelaporan</h2>
-                    </div>
-                  </div>
-                  <div class="lg:w-9/12">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block text-black text-xs font-reguler mb-2">
-                        {{ form?.isi_pelaporan }}
-                      </h2>
-                    </div>
-                  </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ form?.judul_pelaporan }}
+                  </h2>
                 </div>
-                <div class="flex flex-wrap">
-                  <div class="lg:w-3/12 ">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Harapan</h2>
-                    </div>
-                  </div>
-                  <div class="lg:w-9/12">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block text-black text-xs font-reguler mb-2">
-                        {{ form?.harapan }}
-                      </h2>
-                    </div>
-                  </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap">
+              <div class="lg:w-3/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Jenis Produk</h2>
                 </div>
-                <div class="flex flex-wrap">
-                  <div class="lg:w-3/12 ">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Klasifikasi</h2>
-                    </div>
-                  </div>
-                  <div class="lg:w-9/12">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block text-black text-xs font-reguler mb-2">
-                        {{ form?.klasifikasi }}
-                      </h2>
-                    </div>
-                  </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ form?.jenis_product }}
+                  </h2>
                 </div>
-                <div class="flex flex-wrap">
-                  <div class="lg:w-3/12 ">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">PIC Pelaporan</h2>
-                    </div>
-                  </div>
-                  <div class="lg:w-9/12">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block text-black text-xs font-reguler mb-2">
-                        {{ form?.nama_pic }}
-                      </h2>
-                    </div>
-                  </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap">
+              <div class="lg:w-3/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Isi Pelaporan</h2>
                 </div>
-                <div class="flex flex-wrap">
-                  <div class="lg:w-3/12 ">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status</h2>
-                    </div>
-                  </div>
-                  <div class="lg:w-9/12">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block text-black text-xs font-reguler mb-2">
-                        {{ form?.status }}
-                      </h2>
-                    </div>
-                  </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ form?.isi_pelaporan }}
+                  </h2>
                 </div>
-                <div class="text-center mt-2">
-                      <button
-                        class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                        @click="detailPelaporan = false"
-                      >
-                        Oke
-                      </button>
-                    </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap">
+              <div class="lg:w-3/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Harapan</h2>
+                </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ form?.harapan }}
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap">
+              <div class="lg:w-3/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">PIC Pelaporan</h2>
+                </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ form?.nama_pic }}
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap">
+              <div class="lg:w-3/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status</h2>
+                </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ form?.status }}
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="text-center mt-2">
+              <button
+                class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                @click="detailPelaporan = false"
+              >
+                Oke
+              </button>
+            </div>
           </template>
         </modal>
       </div>
@@ -266,24 +222,20 @@
               <div class="flex flex-wrap">
                 <div class="w-full px-4">
                   <div class="relative w-full mb-3 text-center">
-                    <h5>
-                      Yakin ingin menghapus data pelaporan
-                    </h5>
-                    <h5 class="font-bold mb-6">
-                      {{ form?.id_pelaporan }}?
-                    </h5>
+                    <h5>Yakin ingin menghapus data pelaporan</h5>
+                    <h5 class="font-bold mb-6">{{ form?.id_pelaporan }}?</h5>
                     <button
-                  class="bg-blue-300 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-2 ease-linear transition-all duration-150"
-                  @click="deletePelaporan = false"
-                >
-                  Batal
-                </button>
-                <button
-                  class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ml-2n ease-linear transition-all duration-150"
-                  @click="deletePelaporanData(form)"
-                >
-                  Hapus
-                </button>
+                      class="bg-blue-300 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-2 ease-linear transition-all duration-150"
+                      @click="deletePelaporan = false"
+                    >
+                      Batal
+                    </button>
+                    <button
+                      class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ml-2n ease-linear transition-all duration-150"
+                      @click="deletePelaporanData(form)"
+                    >
+                      Hapus
+                    </button>
                   </div>
                 </div>
               </div>
@@ -291,15 +243,14 @@
           </template>
         </modal>
       </div>
-      <input type="text" 
-      v-model="searchTerm" 
-      class="px-3 py-3 mb-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring lg:w-3/12 ease-linear transition-all duration-150" 
-      placeholder="Cari..."
-      >
+      <input
+        type="text"
+        v-model="searchTerm"
+        class="px-3 py-3 mb-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring lg:w-3/12 ease-linear transition-all duration-150"
+        placeholder="Cari..."
+      />
       <table class="w-full mb-5 overflow-x-auto relative">
-        <thead
-          class="text-xs text-white uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400"
-        >
+        <thead class="text-xs text-white uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <!-- <th class="py-3 px-6"><input type="checkbox"/></th> -->
             <th class="py-3 px-6">Nomor Ticket</th>
@@ -312,11 +263,9 @@
             <th class="py-3 px-6">Action</th>
           </tr>
         </thead>
+
         <tbody>
-          <tr
-          v-for="item in filteredItems" :key="item.id"
-            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center"
-          >
+          <tr v-for="item in filteredItems" :key="item.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
             <!-- <td class="py-2 px-4"><input type="checkbox" @change="handleCheck(item)"/></td> -->
             <td class="py-4 px-6">{{ item?.id_pelaporan }}</td>
             <td class="py-4 px-6">{{ item?.judul_pelaporan }}</td>
@@ -331,41 +280,34 @@
                   class="bg-blue-500 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                   type="button"
                   id="detail"
+                  v-if="showDetailButton"
                   @click="handleShowDetail(item)"
                 >
-                  <i
-                    class="fas fa-info-circle text-white"
-                    style="font-size: 15px"
-                  ></i>
+                  <i class="fas fa-info-circle text-white" style="font-size: 15px"></i>
                 </button>
                 <button
                   class="bg-blue-300 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150"
                   type="button"
                   id="update"
+                  v-if="showUpdateButton"
                   @click="handleSelectedData(item)"
                 >
-                  <i
-                    class="fas fa-pen-square text-white"
-                    style="font-size: 15px"
-                  ></i>
+                  <i class="fas fa-pen-square text-white" style="font-size: 15px"></i>
                 </button>
                 <button
                   class="bg-red-600 active:bg-white text-xs p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-2 mb-3 ease-linear transition-all duration-150"
                   type="button"
                   id="delete"
+                  v-if="showDeleteButton"
                   @click="handleShowDeleteModal(item)"
                 >
-                  <i
-                    class="fas fa-trash text-white"
-                    style="font-size: 15px"
-                  ></i>
+                  <i class="fas fa-trash text-white" style="font-size: 15px"></i>
                 </button>
                 <!-- <button v-if="selectedItems.length > 0" @click="handleDelete">Hapus</button> -->
               </div>
             </td>
           </tr>
         </tbody>
-        
       </table>
     </div>
     <!-- <div class="overflow-x-auto relative sm:rounded-lg">
@@ -594,11 +536,13 @@
 
 <script>
 import Modal from "@/components/Modal/ModalDetail.vue";
+// import Pagination from "@/components/Pagination/Pagination.vue";
 import { mapActions } from "vuex";
 export default {
   name: "DataPelaporan",
   components: {
     Modal,
+    // Pagination,
   },
   data: () => ({
     form: {},
@@ -606,17 +550,13 @@ export default {
     detailPelaporan: false,
     deletePelaporan: false,
     isEditPelaporan: false,
-    searchTerm: '',
+    searchTerm: "",
     selectedItems: [],
-    }),
+    // pagination: 10,
+    // offset: 0,
+  }),
   methods: {
-    ...mapActions([
-      "getAllReports",
-      "deleteReport",
-      "createReport",
-      "updateReport",
-      "getAllOperator"
-    ]),
+    ...mapActions(["getAllReports", "deleteReport", "createReport", "updateReport", "getAllOperator"]),
     handleShowDetail(item) {
       this.detailPelaporan = true;
       this.form = { ...item };
@@ -727,10 +667,7 @@ export default {
            * @type string[];
            * @description perlu di mapping jadi array berisi string keterangan errornya.
            */
-          const errorMessages =
-            Object.entries(errorFromBe).length > 0
-              ? Object.values(errorFromBe).map((item) => item[0])
-              : [];
+          const errorMessages = Object.entries(errorFromBe).length > 0 ? Object.values(errorFromBe).map((item) => item[0]) : [];
           console.log(errorMessages);
           Toast.fire({
             icon: "error",
@@ -752,7 +689,7 @@ export default {
         jenis_product: item.jenis_product,
         klasifikasi: item.klasifikasi,
         harapan: item.harapan,
-        nama_pic:item.nama_pic,
+        nama_pic: item.nama_pic,
         status: item.status,
         lampiran: item.lampiran,
         // tanggal_mulai: item.tanggal_mulai,
@@ -783,18 +720,83 @@ export default {
     reports() {
       return this.$store.state.report.reportList;
     },
-    operator(){
+    operator() {
       return this.$store.state.user.operatorList;
     },
     filteredItems() {
-      return this.reports.filter(item =>{
-        return Object.keys(item).some(key =>
-          String(item[key]).toLowerCase().includes(this.searchTerm.toLowerCase())
-        );
+      let role_id = this.$store.state.user.data.user.role_id;
+      let newReports = [];
+      if (role_id == 1) {
+        newReports = this.reports.filter((report) => {
+          let user_id = report.user_id;
+
+          if (user_id == this.$store.state.user.data.user.id) {
+            return report;
+          }
+        });
+      } else if (role_id == 2) {
+        newReports = this.reports.filter((report) => {
+          let pic_pelaporan = report.pic_pelaporan;
+
+          if (pic_pelaporan == this.$store.state.user.data.user.id) {
+            return report;
+          }
+        });
+      } else if (role_id == 3) {
+        newReports = this.reports;
       }
-      );
+      return newReports.filter((item) => {
+        return Object.keys(item).some((key) => String(item[key]).toLowerCase().includes(this.searchTerm.toLowerCase()));
+      });
+    },
+    showButton() {
+      let role_id = this.$store.state.user.data.user.role_id;
+      if (role_id == 1) {
+        return true;
+      } else {
+        return false;
+      }
     },
 
+    showDetailButton() {
+      let role_id = this.$store.state.user.data.user.role_id;
+      switch (role_id) {
+        case 1:
+          return true;
+        case 2:
+          return true;
+        case 3:
+          return true;
+        default:
+          return false;
+      }
+    },
+    showUpdateButton() {
+      let role_id = this.$store.state.user.data.user.role_id;
+      switch (role_id) {
+        case 1:
+          return true;
+        case 2:
+          return false;
+        case 3:
+          return true;
+        default:
+          return false;
+      }
+    },
+    showDeleteButton() {
+      let role_id = this.$store.state.user.data.user.role_id;
+      switch (role_id) {
+        case 1:
+          return true;
+        case 2:
+          return false;
+        case 3:
+          return false;
+        default:
+          return false;
+      }
+    },
   },
   mounted() {
     this.$store.dispatch("getAllReports");

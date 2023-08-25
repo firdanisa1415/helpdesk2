@@ -80,6 +80,35 @@ const userModules = {
         console.log(error);
       }
     },
+    async getUserFromCookies({ commit }) {
+      const token = cookieHandler.get("token");
+      const id = cookieHandler.get("id");
+      try {
+        const res = await apiClient().get(`api/user/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const responseUser = res.data.data;
+        if (responseUser) {
+          const userData = {
+            user: responseUser,
+            token,
+          };
+          const storedUserCookies = {
+            token: token,
+            nama_karyawan: userData.user.nama_karyawan,
+            nrp: userData.user.nrp,
+          };
+          cookieHandler.store(storedUserCookies, {
+            sameSite: true,
+          });
+          await commit(SET_USER, userData);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
     async login({ commit }, payload) {
       await commit(SET_IS_LOADING, true);
       await apiClient()
@@ -97,6 +126,8 @@ const userModules = {
                     nama_karyawan: userData.user.nama_karyawan,
                     nrp: userData.user.nrp,
                     role: userData.user.role_id,
+                    id: userData.user.id,
+                    email: userData.user.email,
                   };
 
                   cookieHandler.store(storedUserCookies, {

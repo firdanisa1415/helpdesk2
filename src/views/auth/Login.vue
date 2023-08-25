@@ -65,7 +65,7 @@
 </template>
 <script>
 import { mapActions } from "vuex";
-import { adminRouteLinks, userRouteLinks } from "../../utils/routeLinks";
+import { adminRouteLinks, userRouteLinks, managerRouteLinks } from "../../utils/routeLinks";
 
 export default {
   computed: {
@@ -94,12 +94,14 @@ export default {
     submitForm() {
       this.login(this.form).then(() => {
         this.form = {};
-        console.log(this.user.user.role_id);
+        // console.log(this.user.user.role_id);
         if (this.user.user.role_id == 1) {
           console.log("Login Karyawan Success!");
           this.$router.push(userRouteLinks.dashboard);
         } else if (this.user.user.role_id == 2) {
           this.$router.push(adminRouteLinks.dashboard);
+        } else if (this.user.user.role_id == 3) {
+          this.$router.push(managerRouteLinks.dashboard);
         }
       });
     },

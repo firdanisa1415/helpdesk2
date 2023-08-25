@@ -17,6 +17,7 @@ export const credsRouteLinks = {
 
 const baseAdminRouteLink = `/admin`;
 const baseUserRouteLink = `/user`;
+const managerRouteLink = `/manager`;
 
 export const adminRouteLinks = {
   dashboard: `${baseAdminRouteLink}/dashboard`,
@@ -27,6 +28,17 @@ export const adminRouteLinks = {
   board: `${baseAdminRouteLink}/board`,
   penugasan: `${baseAdminRouteLink}/penugasan`,
   pengguna: `${baseAdminRouteLink}/pengguna`,
+};
+
+export const managerRouteLinks = {
+  dashboard: `${managerRouteLink}/dashboard`,
+  pelaporan: `${managerRouteLink}/pelaporan`,
+  boardpelaporan: `${managerRouteLink}/boardpelaporan`,
+  backlog: `${managerRouteLink}/backlog`,
+  sprint: `${managerRouteLink}/sprint`,
+  board: `${managerRouteLink}/board`,
+  penugasan: `${managerRouteLink}/penugasan`,
+  pengguna: `${managerRouteLink}/pengguna`,
 };
 
 export const userRouteLinks = {

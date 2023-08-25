@@ -63,11 +63,11 @@
                   </button>
                 </div>
               </div>
-              </form>
-            </template>
-          </modal>   
-    </div>
-    <div>
+            </form>
+          </template>
+        </modal>
+      </div>
+      <div>
         <modal :show="detailEpic">
           <template #header>
             <h3 class="text-2xl font-bold text-center">Detail Epic</h3>
@@ -120,54 +120,37 @@
                 <div class="relative w-full mb-3">
                   <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Harapan</h2>
                 </div>
-                <div class="flex flex-wrap">
-                  <div class="lg:w-3/12 ">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Isi Epic</h2>
-                    </div>
-                  </div>
-                  <div class="lg:w-9/12">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block text-black text-xs font-reguler mb-2">
-                        {{ form?.isi_epic }}
-                      </h2>
-                    </div>
-                  </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ form?.harapan }}
+                  </h2>
                 </div>
               </div>
             </div>
             <div class="flex flex-wrap">
               <div class="lg:w-3/12">
-                <div class="relative w-full mb-4">
-                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status</h2>
+                <div class="relative w-full mb-3">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Product Owner</h2>
                 </div>
-                <div class="flex flex-wrap">
-                  <div class="lg:w-3/12 ">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status</h2>
-                    </div>
-                  </div>
-                  <div class="lg:w-9/12">
-                    <div class="relative w-full mb-3">
-                      <h2 class="block text-black text-xs font-reguler mb-2">
-                        {{ form?.status }}
-                      </h2>
-                    </div>
-                  </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ form?.status }}
+                  </h2>
                 </div>
               </div>
             </div>
             <hr class="my-2 border-blueGray-300" />
             <h3 class="text-xs font-bold text-left mb-2">List Story</h3>
             <ul>
-              <div class="relative w-full mb-3 bg-blueGray-200 text-blue-500 p-2 font-semibold shadow-md rounded flex justify-between"
-                v-for="story in stories" 
-                :key="story.id_story"
-                @click="handleShowDetailStory(story)"
-                >
-                {{ story.isi_story }}
-                <i class="fas fa-trash text-blue-500" style="font-size: 15px; align-self: flex-end"></i>
-              </div >
+              <div class="relative w-full mb-3 bg-blueGray-200 text-blue-500 p-2 font-semibold shadow-md rounded flex justify-between" v-for="story in epics.find((epic) => form?.id_epic === epic.id_epic).stories" :key="story.id_story">
+                <div @click="handleShowDetailStory(story)">{{ story.id_story }} - {{ story.isi_story }}</div>
+                <!-- <button @click="handleShowDeleteStoryModal(story)"><i class="fas fa-pen text-blue-500" style="font-size: 15px; align-self: flex-end"></i></button> -->
+                <button @click="handleShowDeleteStoryModal(story)"><i class="fas fa-trash text-red-600 ml-2" style="font-size: 15px; align-self: flex-end"></i></button>
+              </div>
             </ul>
             <button @click="showAddStoryForm = true">Tambah Story</button>
             <div v-if="showAddStoryForm">
@@ -218,126 +201,156 @@
                     </button>
                   </div>
                 </div>
-               
               </div>
             </div>
           </template>
         </modal>
       </div>
       <div>
-          <modal :show="detailStory">
-            <template #header>
-              <h3 class="text-2xl font-bold text-center">Detail Story</h3>
-            </template>
-            <template #body>
-                  <div class="flex flex-wrap">
-                    <div class="lg:w-3/12 ">
-                      <div class="relative w-full mb-3">
-                        <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Nomor Ticket</h2>
-                      </div>
-                    </div>
-                    <div class="lg:w-9/12">
-                      <div class="relative w-full mb-3">
-                        <h2 class="block text-black text-xs font-reguler mb-2">
-                          {{ selectedItem?.id_story}}
-                        </h2>
-                      </div>
-                    </div>
+        <modal :show="detailStory">
+          <template #header>
+            <h3 class="text-2xl font-bold text-center">Detail Story</h3>
+          </template>
+          <template #body>
+            <div class="flex flex-wrap">
+              <div class="lg:w-3/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Nomor Ticket</h2>
+                </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ selectedItem?.id_story }}
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap">
+              <div class="lg:w-3/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Epic Story</h2>
+                </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ selectedItem?.epic_id }}
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap">
+              <div class="lg:w-3/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Sprint Story</h2>
+                </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ selectedItem?.sprint_id }}
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap">
+              <div class="lg:w-3/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Isi Story</h2>
+                </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ selectedItem?.isi_story }}
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap">
+              <div class="lg:w-3/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status</h2>
+                </div>
+              </div>
+              <div class="lg:w-9/12">
+                <div class="relative w-full mb-3">
+                  <h2 class="block text-black text-xs font-reguler mb-2">
+                    {{ selectedItem?.status }}
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <!-- <hr class="my-2 border-blueGray-300" />
+            <h3 class="text-xs font-bold text-left mb-2">List Tugas</h3>
+            <ul>
+              <li v-for="tugas in stories.find((story) => selectedItem?.id_story === story.id_story).task" :key="tugas.id_tugas">
+              {{ tugas.isi_tugas }}
+              </li>
+            </ul>
+            <button @click="showAddTaskForm = true">Tambah Tugas</button>
+            <div v-if="showAddTaskForm">
+              <form @submit.prevent="addTask(form)">
+                <input
+                  type="text"
+                  v-model="taskValue.isi_tugas"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Isikan Tugas"
+                />
+                <button type="submit">Tambahkan</button>
+              </form>
+            </div> -->
+            <div class="text-center mt-2">
+              <button
+                class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                @click="detailStory = false"
+              >
+                Oke
+              </button>
+            </div>
+          </template>
+        </modal>
+      </div>
+      <div>
+        <modal :show="deleteStory">
+          <template #header>
+            <h3 class="text-2xl font-bold text-center">Hapus Story</h3>
+          </template>
+          <template #body>
+            <div>
+              <div class="flex flex-wrap">
+                <div class="w-full px-4">
+                  <div class="relative w-full mb-3 text-center">
+                    <h5 class="font-semibold">Yakin ingin menghapus data Story</h5>
+                    <h5 class="font-bold mb-6">{{ inputValue?.id_story }}?</h5>
+                    <button
+                      class="bg-blue-300 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-2 ease-linear transition-all duration-150"
+                      @click="deleteStory = false"
+                    >
+                      Batal
+                    </button>
+                    <button
+                      class="bg-red-600 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ml-2 ease-linear transition-all duration-150"
+                      @click="deleteStoryData(form)"
+                    >
+                      Hapus
+                    </button>
                   </div>
-                  <div class="flex flex-wrap">
-                    <div class="lg:w-3/12 ">
-                      <div class="relative w-full mb-3">
-                        <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Epic Story</h2>
-                      </div>
-                    </div>
-                    <div class="lg:w-9/12">
-                      <div class="relative w-full mb-3">
-                        <h2 class="block text-black text-xs font-reguler mb-2">
-                          {{ selectedItem?.epic_id}}
-                        </h2>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="flex flex-wrap">
-                    <div class="lg:w-3/12 ">
-                      <div class="relative w-full mb-3">
-                        <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Sprint Story</h2>
-                      </div>
-                    </div>
-                    <div class="lg:w-9/12">
-                      <div class="relative w-full mb-3">
-                        <h2 class="block text-black text-xs font-reguler mb-2">
-                          {{ selectedItem?.sprint_id}}
-                        </h2>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="flex flex-wrap">
-                    <div class="lg:w-3/12 ">
-                      <div class="relative w-full mb-3">
-                        <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Isi Story</h2>
-                      </div>
-                    </div>
-                    <div class="lg:w-9/12">
-                      <div class="relative w-full mb-3">
-                        <h2 class="block text-black text-xs font-reguler mb-2">
-                          {{ selectedItem?.isi_story }}
-                        </h2>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="flex flex-wrap">
-                    <div class="lg:w-3/12 ">
-                      <div class="relative w-full mb-3">
-                        <h2 class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status</h2>
-                      </div>
-                    </div>
-                    <div class="lg:w-9/12">
-                      <div class="relative w-full mb-3">
-                        <h2 class="block text-black text-xs font-reguler mb-2">
-                          {{ selectedItem?.status }}
-                        </h2>
-                      </div>
-                    </div>
-                  </div>
-                  <hr class="my-2 border-blueGray-300" />
-                  <h3 class="text-xs font-bold text-left mb-2">List Tugas</h3>
-                  <ul>
-                    <li v-for="tugas in tugas" :key="tugas.id_tugas">
-                      {{ tugas.isi_tugas}}
-                    </li>
-                  </ul>
-                  <button @click="showAddStoryForm = true">Tambah Tugas</button>
-                  <div v-if="showAddStoryForm">
-                    <form @submit.prevent="addTask(form)">
-                      <input
-                        type="text"
-                        v-model="inputValue.isi_tugas"
-                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Isikan Tugas"
-                      />
-                      <button type="submit">Tambahkan</button>
-                    </form>
-                  </div>
-                  <div class="text-center mt-2">
-                        <button
-                          class="bg-blue-500 text-white active:bg-blue-200 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                          @click="detailStory = false"
-                        >
-                          Oke
-                        </button>
-                      </div>
-            </template>
-          </modal>
-        </div>
+                </div>
+              </div>
+            </div>
+          </template>
+        </modal>
+      </div>
       <table class="w-full mb-5 overflow-x-auto relative">
         <thead class="text-xs text-white uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400">
           <tr class="w-full">
             <th class="py-3 px-6">Nomor Epic</th>
             <th class="py-3 px-6">Judul Epic</th>
+            <th class="py-3 px-6">Isi Epic</th>
             <th class="py-3 px-6">Deskripsi</th>
-            <th class="py-3 px-6">Nama Pelapor</th>
-            <th class="py-3 px-6">Status</th>
+            <th class="py-3 px-6">Product Owner</th>
             <th class="py-3 px-6">Total Story</th>
             <th class="py-3 px-6">Action</th>
           </tr>
@@ -350,9 +363,8 @@
             <td class="py-4 px-6">{{ item?.judul_epic }}</td>
             <td class="py-4 px-6">{{ item?.isi_epic }}</td>
             <td class="py-4 px-6">{{ item?.harapan }}</td>
-            <td class="py-4 px-6">Budi</td>
-            <td class="py-4 px-6">{{ item?.status }}</td>
-            <td class="py-4 px-6">{{ item?.harapan }}</td>
+            <td class="py-4 px-6">{{ item?.user.nama_karyawan }}</td>
+            <td class="py-4 px-6">{{ item?.story_count }}</td>
             <td>
               <div class="flex space-x-2 justify-center py-4 px-6">
                 <button
@@ -400,20 +412,26 @@ export default defineComponent({
     draggable: VueDraggableNext,
     Modal,
   },
-  data:() => ({
+  props: {
+    story: Object,
+  },
+  data: () => ({
     form: {},
     modalEpic: false,
     detailEpic: false,
     detailStory: false,
     isEditEpic: false,
     deleteEpic: false,
+    deleteStory: false,
     inputValue: {},
+    taskValue: {},
     showAddStoryForm: false,
+    showAddTaskForm: false,
     selectedIdEpic: 0,
     selectedItem: null,
   }),
   methods: {
-    ...mapActions(["getAllEpics", "createEpic", "updateEpic", "deleteEpics", ]),
+    ...mapActions(["getAllEpics", "createEpic", "updateEpic", "deleteEpics", "createStory", "deleteStories"]),
     handleShowDetail(item) {
       this.detailEpic = true;
       this.form = { ...item };
@@ -426,6 +444,10 @@ export default defineComponent({
       this.deleteEpic = true;
       this.isEditEpic = true;
       this.form = { ...item };
+    },
+    handleShowDeleteStoryModal(item) {
+      this.deleteStory = true;
+      this.inputValue = { ...item };
     },
     handleClickCreateEpic() {
       this.modalEpic = true;
@@ -459,6 +481,36 @@ export default defineComponent({
             title: "Data Gagal dihapus",
           });
           this.deleteEpic = false;
+        });
+    },
+    deleteStoryData(item) {
+      this.deleteStory = true;
+      const Toast = this.$swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", this.$swal.stopTimer);
+          toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+        },
+      });
+      if (!item) return;
+      this.deleteStories(item.id_story)
+        .then(() => {
+          Toast.fire({
+            icon: "success",
+            title: "Data Berhasil dihapus",
+          });
+          this.deleteStory = false;
+        })
+        .catch(() => {
+          Toast.fire({
+            icon: "success",
+            title: "Data Gagal dihapus",
+          });
+          this.deleteStory = false;
         });
     },
     submitEditForm() {
@@ -542,9 +594,10 @@ export default defineComponent({
         epic_id: epicData.id_epic,
         ...this.inputValue,
       };
-      this.createStory(submitData)
+      this.createStory(submitData, epicData.id_epic)
         .then(() => {
           this.showAddStoryForm = false;
+          this.$store.dispatch("getAllEpics");
         })
         .catch((err) => {
           this.showAddStoryForm = false;
@@ -573,10 +626,6 @@ export default defineComponent({
   computed: {
     epics() {
       return this.$store.state.epic.epicList;
-    },
-    stories() {
-      const epic = this.epics.find((epic) => this.selectedIdEpic === epic.id_epic);
-      return epic.stories;
     },
   },
   mounted() {

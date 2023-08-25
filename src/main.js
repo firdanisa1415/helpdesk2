@@ -7,6 +7,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "@/assets/styles/tailwind.css";
 import VueSweetalert2 from "vue-sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
+import moment from "moment-timezone";
 
 // mouting point for the whole app
 
@@ -15,6 +16,7 @@ import App from "@/App.vue";
 // layouts
 import User from "@/layouts/User.vue";
 import Admin from "@/layouts/Admin.vue";
+import Manager from "@/layouts/Manager.vue";
 import Auth from "@/layouts/Auth.vue";
 
 // views for Admin layout
@@ -39,7 +41,10 @@ import Profile from "@/views/Profile.vue";
 import Index from "@/views/Index.vue";
 
 import store from "./vuex/store";
-import { adminRouteLinks, baseRouteLinks, credsRouteLinks, userRouteLinks } from "./utils/routeLinks";
+import { adminRouteLinks, baseRouteLinks, credsRouteLinks, userRouteLinks, managerRouteLinks } from "./utils/routeLinks";
+
+// import CookieHandler from "./utils/cookieHandler";
+// const cookieHandler = new CookieHandler();
 
 const routes = [
   {
@@ -74,6 +79,42 @@ const routes = [
       },
       {
         path: adminRouteLinks.pengguna,
+        component: Pengguna,
+      },
+    ],
+  },
+  {
+    path: "/manager",
+    redirect: managerRouteLinks.dashboard,
+    component: Manager,
+    meta: { role_id: 3 },
+    children: [
+      {
+        path: managerRouteLinks.dashboard,
+        component: Dashboard,
+      },
+      {
+        path: managerRouteLinks.pelaporan,
+        component: Pelaporan,
+      },
+      {
+        path: managerRouteLinks.boardpelaporan,
+        component: BoardPelaporan,
+      },
+      {
+        path: managerRouteLinks.backlog,
+        component: Backlog,
+      },
+      {
+        path: managerRouteLinks.sprint,
+        component: Sprint,
+      },
+      {
+        path: managerRouteLinks.board,
+        component: Board,
+      },
+      {
+        path: managerRouteLinks.pengguna,
         component: Pengguna,
       },
     ],
@@ -153,9 +194,14 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   if (to.matched.some((record) => record.meta.role_id)) {
-    console.log(to.meta.role_id);
+    // console.log(to.meta.role_id);
+
+    if (store.state.user.data === null) {
+      await store.dispatch("getUserFromCookies");
+    }
+    console.log(store.state.user.data.user);
     if (store.state.user.data.user.role_id !== to.meta.role_id) {
       // next({ name: "AccessDenied" }); // Redirect to an 'Access Denied' page
       console.log("accesdenied");
@@ -166,10 +212,12 @@ router.beforeEach((to, from, next) => {
     next(); // Allow the navigation
   }
 });
+const timezone = moment.tz.setDefault("Asia/Jakarta");
 
 const app = createApp(App);
 
 app.use(router);
 app.use(store);
+app.use(timezone);
 app.use(VueSweetalert2);
 app.mount("#app");
