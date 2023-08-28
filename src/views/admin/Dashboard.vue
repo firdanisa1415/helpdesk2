@@ -370,6 +370,72 @@ export default {
         ],
       };
     },
+    chartData() {
+      return {
+        labels: this.line,
+        datasets: [
+          {
+            label: new Date().getFullYear(),
+            backgroundColor: "#4c51bf",
+            borderColor: "#4c51bf",
+            data: this.getLineMappedMonthlyCount,
+            fill: false,
+          },
+          {
+            label: new Date().getFullYear() - 1,
+            fill: false,
+            backgroundColor: "#fff",
+            borderColor: "#fff",
+            data: [],
+          },
+        ],
+      };
+    },
+    chartPieData() {
+      return {
+        labels: this.statusReports,
+        datasets: [
+          {
+            backgroundColor: ["#41B883", "#E46651", "#00D8FF", "#DD1B16"],
+            data: this.getLineMappedStatusCount,
+          },
+        ],
+      };
+    },
+    chartBarData1() {
+      const datasets = this.productReports.map((product, index) => {
+        const filteredData = this.getLineMappedProductCount.filter((count, i) => i === index);
+        return {
+          label: product,
+          backgroundColor: ["#41B883", "#E46651", "#00D8FF", "#DD1B16"][index],
+          borderColor: ["#41B883", "#E46651", "#00D8FF", "#DD1B16"][index],
+          data: filteredData,
+          fill: false,
+          barThickness: 18,
+        };
+      });
+
+      return {
+        labels: this.productReports,
+        datasets: datasets,
+      };
+    },
+
+    // chartBarData1() {
+    //   return {
+    //     labels: this.productReports,
+    //     datasets: [
+    //       {
+    //         label: this.productReports,
+    //         backgroundColor: ["#41B883", "#E46651", "#00D8FF", "#DD1B16"],
+    //         borderColor: ["#41B883", "#E46651", "#00D8FF", "#DD1B16"],
+    //         data: this.getLineMappedProductCount,
+    //         fill: false,
+    //         barThickness: 18,
+    //       },
+    //     ],
+    //   };
+    // },
   },
   mounted() {
     this.$store.dispatch("getMonthlyReports");
@@ -383,7 +449,6 @@ export default {
   },
   methods: {
     ...mapActions(["getMonthlyReports", "getProductReports", "getStatusReports", "getPicReports"]),
-
     toggleTabs: function (tabNumber) {
       this.openTab = tabNumber;
     },
